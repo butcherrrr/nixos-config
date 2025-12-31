@@ -7,7 +7,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # Home Manager - manages user-level configuration and packages
-    home-manager.url = "github:nix-community/home-manager";
+    # Must use the same release branch as nixpkgs to avoid version mismatches
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
 
     # Makes home-manager use the same nixpkgs version as the system
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
