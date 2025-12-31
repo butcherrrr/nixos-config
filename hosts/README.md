@@ -1,89 +1,43 @@
-# Hosts Directory Quick Reference
+# Hosts Directory
 
-This directory contains host-specific configurations. Each subdirectory represents one physical or virtual machine.
+Each subdirectory represents one machine. Current hosts:
 
-## Directory Structure
+- `guinea-pig/` - Test machine (for testing this repo)
+- `example-host/` - Template (copy this for new hosts)
 
-- `nixos/` - Your primary machine (current configuration)
-- `example-host/` - Template for creating new hosts
-
-## Adding a New Host (Quick Steps)
+## Quick Add New Host
 
 ```bash
 # 1. Copy template
-cp -r hosts/example-host hosts/NEW-HOSTNAME
+cp -r hosts/example-host hosts/NEW-NAME
 
-# 2. Generate hardware config on target machine
-sudo nixos-generate-config --show-hardware-config > hosts/NEW-HOSTNAME/hardware-configuration.nix
+# 2. Edit hosts/NEW-NAME/default.nix (timezone, locale, modules)
 
-# 3. Edit hosts/NEW-HOSTNAME/default.nix
-#    - Adjust timezone, locale, keyboard layout
-#    - Choose which modules to import
-#    - Add host-specific settings
+# 3. Add to flake.nix under nixosConfigurations
 
-# 4. Add to flake.nix under nixosConfigurations:
-#    NEW-HOSTNAME = mkSystem {
-#      hostname = "NEW-HOSTNAME";
-#      system = "x86_64-linux";
-#      user = "your-username";
-#    };
+# 4. On target machine after NixOS install:
+cp /etc/nixos/hardware-configuration.nix hosts/NEW-NAME/
 
-# 5. Build and switch
-sudo nixos-rebuild switch --flake .#NEW-HOSTNAME
+# 5. Rebuild
+sudo nixos-rebuild switch --flake .#NEW-NAME
 ```
 
-## What Goes in Each Host's default.nix?
+## What Each Host Contains
 
-### Always Include
-- Boot configuration (bootloader settings)
-- System state version
-- Hostname, timezone, locale
-- Hardware configuration import
-- Core modules import
+- `default.nix` - Host configuration (timezone, modules, settings)
+- `hardware-configuration.nix` - Auto-generated hardware config (unique per machine)
 
-### Conditionally Include (based on host type)
-- Desktop/Laptop: `greetd.nix`, `hyprland.nix`
-- Server: Skip GUI modules, add `openssh`
-- Laptop: Add power management (`tlp`)
-- Gaming: Add Steam, GPU drivers
+## Module Selection
 
-## Common Module Imports
+Edit `default.nix` imports based on host type:
 
-```nix
-imports = [
-  ./hardware-configuration.nix  # Always needed
-  ../../modules/core.nix         # Always needed
-  ../../modules/greetd.nix       # Only for GUI systems
-  ../../modules/hyprland.nix     # Only if using Hyprland
-];
-```
+**Desktop/Laptop:**
+- `core.nix` + `greetd.nix` + `hyprland.nix`
 
-## Host Configuration Checklist
-
-When creating a new host configuration:
-
-- [ ] Copy template directory
-- [ ] Generate and add hardware-configuration.nix
-- [ ] Set correct hostname (uses variable from flake.nix)
-- [ ] Set correct timezone
-- [ ] Set correct locale
-- [ ] Set correct keyboard layout
-- [ ] Choose appropriate module imports
-- [ ] Add host-specific settings
-- [ ] Add to flake.nix
-- [ ] Test build before switching
-- [ ] Document any quirks in comments
-
-## Tips
-
-- **Laptops**: Consider adding `services.tlp.enable = true;` for battery management
-- **Servers**: Remove GUI modules, enable SSH, configure firewall
-- **Gaming**: Add `programs.steam.enable = true;` and GPU drivers
-- **Work**: Create separate user or add work-specific packages
-- **Testing**: Use `sudo nixos-rebuild test --flake .#hostname` before `switch`
+**Server:**
+- `core.nix` only
 
 ## See Also
 
+- `../README.md` - Main documentation and setup guide
 - `../HOSTS.md` - Comprehensive multi-host management guide
-- `../flake.nix` - Where all hosts are defined
-- `../modules/` - Shared system modules

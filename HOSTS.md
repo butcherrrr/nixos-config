@@ -1,154 +1,46 @@
-# Multi-Host Management Guide
+# Advanced Multi-Host Management
 
-This NixOS configuration is designed to manage multiple computers from a single repository. Each host (computer) can have its own unique configuration while sharing common modules.
+This guide covers advanced topics for managing multiple NixOS machines. For basic setup, see `README.md`.
 
-## Repository Structure
-
-```
-nixos-config/
-├── flake.nix                    # Main flake file - defines all hosts
-├── flake.lock                   # Locked dependency versions
-├── hosts/                       # Host-specific configurations
-│   ├── nixos/                   # Your primary machine
-│   │   ├── default.nix          # Host configuration
-│   │   └── hardware-configuration.nix
-│   └── example-host/            # Template for new hosts
-│       ├── default.nix
-│       └── hardware-configuration.nix
-├── modules/                     # Shared system modules
-│   ├── core.nix                 # Core system configuration
-│   ├── greetd.nix               # Display manager
-│   └── hyprland.nix             # Hyprland window manager
-└── home/                        # Home-manager user configurations
-    └── butcherrrr.nix           # User-specific settings
-```
-
-## Adding a New Host
-
-### Step 1: Create Host Directory
-
-Copy the example host template:
-
-```bash
-cd ~/nixos-config
-cp -r hosts/example-host hosts/YOUR-HOSTNAME
-```
-
-### Step 2: Generate Hardware Configuration
-
-On the target machine, generate its hardware configuration:
-
-```bash
-# If you're on the target machine:
-sudo nixos-generate-config --show-hardware-config > ~/nixos-config/hosts/YOUR-HOSTNAME/hardware-configuration.nix
-
-# Or if you're setting up remotely:
-# 1. Boot the target machine with NixOS installer
-# 2. Generate config: sudo nixos-generate-config
-# 3. Copy /etc/nixos/hardware-configuration.nix to your repo
-```
-
-### Step 3: Customize Host Configuration
-
-Edit `hosts/YOUR-HOSTNAME/default.nix`:
-
-- Set the correct timezone
-- Adjust locale settings
-- Choose which modules to import (remove what you don't need)
-- Add host-specific configuration
-
-Example customizations:
-
-```nix
-# For a laptop, you might want:
-services.tlp.enable = true;  # Power management
-services.blueman.enable = true;  # Bluetooth
-
-# For a server, you might want:
-services.openssh.enable = true;  # Remote access
-# And remove greetd.nix and hyprland.nix from imports
-
-# For a gaming machine:
-programs.steam.enable = true;
-hardware.opengl.driSupport32Bit = true;
-```
-
-### Step 4: Add Host to flake.nix
-
-Edit `flake.nix` and add your host to `nixosConfigurations`:
-
-```nix
-nixosConfigurations = {
-  # Existing hosts...
-  nixos = mkSystem { ... };
-  
-  # Your new host
-  YOUR-HOSTNAME = mkSystem {
-    hostname = "YOUR-HOSTNAME";
-    system = "x86_64-linux";  # or "aarch64-linux" for ARM
-    user = "your-username";
-  };
-};
-```
-
-### Step 5: Build and Deploy
-
-On the target machine:
-
-```bash
-cd ~/nixos-config
-sudo nixos-rebuild switch --flake .#YOUR-HOSTNAME
-```
-
-## Managing Different Host Types
-
-### Desktop/Laptop Configuration
-
-**Modules to include:**
-- `core.nix` - Essential system configuration
-- `greetd.nix` - Graphical login
-- `hyprland.nix` - Window manager
-
-**Additional considerations:**
-- Laptop: Add power management (`services.tlp.enable = true`)
-- Gaming: Enable Steam, gamemode, etc.
-- Multiple monitors: Configure in Hyprland settings
+## Host Type Examples
 
 ### Server Configuration
 
-**Modules to include:**
-- `core.nix` - Essential system configuration
+Skip GUI modules, enable SSH:
 
-**Modules to exclude:**
-- `greetd.nix` - No graphical login needed
-- `hyprland.nix` - No GUI needed
-
-**Additional configuration:**
 ```nix
-# Enable SSH
+# hosts/server/default.nix
+imports = [
+  ./hardware-configuration.nix
+  ../../modules/core.nix
+  # Skip greetd.nix and hyprland.nix
+];
+
 services.openssh = {
   enable = true;
-  settings.PasswordAuthentication = false;  # Security
+  settings.PasswordAuthentication = false;
   settings.PermitRootLogin = "no";
 };
 
-# Enable firewall
 networking.firewall.enable = true;
 networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 ```
 
-### Work Machine Configuration
+### Laptop Configuration
 
-You might want to create a separate work user or add work-specific packages:
+Add power management:
 
 ```nix
 # In your host's default.nix
-environment.systemPackages = with pkgs; [
-  slack
-  zoom-us
-  teams
-  vscode
-];
+services.tlp.enable = true;
+services.blueman.enable = true;
+```
+
+### Gaming Machine
+
+```nix
+programs.steam.enable = true;
+hardware.opengl.driSupport32Bit = true;
 ```
 
 ## User Management
@@ -176,79 +68,45 @@ Both will use `home/butcherrrr.nix` for home-manager configuration.
 
 ### Different Users Per Host
 
-For different users on different machines:
-
 ```nix
-# In flake.nix
-personal-laptop = mkSystem {
-  hostname = "personal-laptop";
-  system = "x86_64-linux";
-  user = "butcherrrr";
-};
-
-work-laptop = mkSystem {
-  hostname = "work-laptop";
-  system = "x86_64-linux";
-  user = "john.doe";  # Different user
-};
+personal = mkSystem { user = "butcherrrr"; ... };
+work = mkSystem { user = "john.doe"; ... };  # Create home/john.doe.nix
 ```
 
-Then create `home/john.doe.nix` with work-specific configuration.
+### Conditional Packages Based on Hostname
 
-### Per-Host Customization in Home-Manager
-
-You can use the `hostname` variable in your home-manager config:
+Use the `hostname` variable in home-manager:
 
 ```nix
-# In home/butcherrrr.nix
-{ config, pkgs, hostname, ... }:
-
+# home/butcherrrr.nix
+{ pkgs, hostname, ... }:
 {
   home.packages = with pkgs; [
-    # Common packages
     firefox
     neovim
-  ] ++ (if hostname == "work-laptop" then [
-    # Work-specific packages
-    slack
-    teams
-  ] else []);
+  ] ++ (if hostname == "work-laptop" then [ slack teams ] else []);
 }
 ```
 
-## Synchronizing Changes
+## Advanced Operations
 
-### Updating All Hosts
-
-After making changes to shared modules:
+### Testing Changes
 
 ```bash
-# On each host
-cd ~/nixos-config
-git pull
-nix flake update  # Optional: update dependencies
-sudo nixos-rebuild switch --flake .#$(hostname)
+sudo nixos-rebuild test --flake .#$(hostname)  # Test without committing
+sudo nixos-rebuild switch --flake .#$(hostname)  # Apply permanently
 ```
 
-### Testing Changes Before Applying
-
-Use `nixos-rebuild test` to test without making changes permanent:
+### Build for Another Host
 
 ```bash
-sudo nixos-rebuild test --flake .#$(hostname)
-# If everything works:
-sudo nixos-rebuild switch --flake .#$(hostname)
+nixos-rebuild build --flake .#other-hostname  # Result in ./result
 ```
 
-### Building for a Different Host
-
-You can build a configuration for another host from your current machine:
+### Remote Deployment
 
 ```bash
-# Build configuration for another host
-nixos-rebuild build --flake .#other-hostname
-
-# The result will be in ./result
+nixos-rebuild switch --flake .#hostname --target-host user@remote-host
 ```
 
 ## Common Patterns
@@ -290,122 +148,41 @@ imports = [
 ] ++ (if builtins.pathExists ./nvidia.nix then [ ./nvidia.nix ] else []);
 ```
 
-### Different System Architectures
-
-For ARM-based systems (Raspberry Pi, Apple Silicon):
+### ARM Systems
 
 ```nix
 rpi4 = mkSystem {
   hostname = "rpi4";
-  system = "aarch64-linux";  # ARM 64-bit
+  system = "aarch64-linux";
   user = "pi";
 };
 ```
 
+### Different Kernels Per Host
+
+```nix
+# In host's default.nix
+boot.kernelPackages = pkgs.linuxPackages_latest;  # Latest
+# boot.kernelPackages = pkgs.linuxPackages;       # LTS
+```
+
 ## Troubleshooting
 
-### Host-Specific Hardware Issues
-
-If hardware isn't detected properly:
+### Hardware Not Detected
 
 ```bash
-# Regenerate hardware config
 sudo nixos-generate-config --show-hardware-config
-# Compare with your current hardware-configuration.nix
+# Compare with your hosts/*/hardware-configuration.nix
 ```
 
 ### Module Conflicts
 
-If modules conflict (e.g., two display managers):
-
-- Only import one display manager per host
-- Use `imports` carefully in each host's `default.nix`
-- Comment out modules you don't need
-
-### Different Kernel Versions
-
-Some hosts might need different kernels:
-
-```nix
-# In host's default.nix
-boot.kernelPackages = pkgs.linuxPackages_latest;  # Latest kernel
-# Or for LTS:
-# boot.kernelPackages = pkgs.linuxPackages;
-```
+Only import one display manager per host. Check your `imports` in `hosts/*/default.nix`.
 
 ## Best Practices
 
-1. **Keep hardware configs separate** - Never commit sensitive UUIDs to public repos without checking
-2. **Test on one host first** - Test major changes on your primary machine before deploying
-3. **Use git branches** - Create branches for experimental changes
-4. **Document host-specific quirks** - Add comments in host configs explaining why certain options are set
-5. **Regular updates** - Keep flake inputs updated: `nix flake update`
-6. **Backup before major changes** - NixOS makes rollbacks easy, but backups are still good practice
-
-## Example Configurations
-
-### Minimal Server
-
-```nix
-# hosts/server/default.nix
-{ hostname, user, ... }:
-{
-  imports = [
-    ./hardware-configuration.nix
-    ../../modules/core.nix
-  ];
-  
-  system.stateVersion = "25.11";
-  networking.hostName = hostname;
-  
-  services.openssh.enable = true;
-  networking.firewall.enable = true;
-}
-```
-
-### Full Desktop
-
-```nix
-# hosts/desktop/default.nix
-{ hostname, user, ... }:
-{
-  imports = [
-    ./hardware-configuration.nix
-    ../../modules/core.nix
-    ../../modules/greetd.nix
-    ../../modules/hyprland.nix
-  ];
-  
-  system.stateVersion = "25.11";
-  networking.hostName = hostname;
-  
-  # Desktop-specific features
-  programs.steam.enable = true;
-  services.printing.enable = true;
-}
-```
-
-## Quick Reference
-
-```bash
-# Add new host
-cp -r hosts/example-host hosts/NEW-HOST
-sudo nixos-generate-config --show-hardware-config > hosts/NEW-HOST/hardware-configuration.nix
-# Edit flake.nix and add host
-sudo nixos-rebuild switch --flake .#NEW-HOST
-
-# Update dependencies
-nix flake update
-
-# Rebuild current host
-sudo nixos-rebuild switch --flake .#$(hostname)
-
-# Test without switching
-sudo nixos-rebuild test --flake .#$(hostname)
-
-# Build for different host
-nixos-rebuild build --flake .#other-host
-
-# List all available configurations
-nix flake show
-```
+- Test major changes on one host before deploying to all
+- Use git branches for experimental changes
+- Document host-specific quirks in comments
+- Keep flake inputs updated regularly
+- Never share hardware-configuration.nix between machines
