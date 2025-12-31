@@ -39,5 +39,15 @@
     ".config/hypr/hyprland.conf" = {
       source = ../dotfiles/hyprland.conf;
     };
+    
+    # Waybar configuration
+    ".config/waybar/config" = {
+      source = ../dotfiles/waybar-config.json;
+    };
+    
+    # Waybar stylesheet
+    ".config/waybar/style.css" = {
+      source = ../dotfiles/waybar-style.css;
+    };
   };
 }
