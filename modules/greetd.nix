@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 
 {
   # ============================================================================
@@ -14,8 +14,9 @@
         # Command to run after successful login
         command = "${pkgs.hyprland}/bin/Hyprland";
 
+        # Which user this session is for - using variable from flake.nix
         # Greetd will automatically log in this user and start Hyprland
-        user = "butcherrrr";
+        user = user;
       };
     };
   };

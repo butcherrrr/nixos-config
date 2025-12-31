@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, user, ...}:
 
 {
   # ============================================================================
@@ -12,9 +12,13 @@
   # User Configuration
   # ============================================================================
 
-  users.users.butcherrrr = {
+  # Define the main user account using the variable passed from flake.nix
+  # This allows different hosts to have different primary users
+  users.users.${user} = {
+    # This is a regular user account (not a system account)
     isNormalUser = true;
 
+    # Add user to important groups:
     # "wheel" - allows using sudo for administrative tasks
     # "networkmanager" - allows managing network connections without sudo
     extraGroups = [ "wheel" "networkmanager" ];

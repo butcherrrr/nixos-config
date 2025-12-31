@@ -1,4 +1,6 @@
-{ ... }:
+# Host-specific configuration for: nixos
+# This file defines settings unique to this particular machine
+{ hostname, user, ... }:
 
 {
   # ============================================================================
@@ -25,7 +27,9 @@
   # DO NOT CHANGE this on an existing system
   system.stateVersion = "25.11";
 
-  networking.hostName = "nixos";
+  # Hostname - using the variable passed from flake.nix
+  # This makes it easy to reuse this configuration structure for other hosts
+  networking.hostName = hostname;
 
   time.timeZone = "Europe/Stockholm";
 
@@ -39,15 +43,21 @@
   # ============================================================================
 
   imports = [
+    # Hardware configuration - auto-generated, unique per machine
     ./hardware-configuration.nix
 
     # Core system configuration (users, networking, audio, packages)
+    # Every system should import this
     ../../modules/core.nix
 
     # Greetd display manager configuration (login screen)
+    # Only import this if you want a graphical login
+    # For servers, you might skip this
     ../../modules/greetd.nix
 
     # Hyprland window manager system-level configuration
+    # Only import this if this machine will use Hyprland
+    # For servers or different desktop environments, skip this
     ../../modules/hyprland.nix
   ];
 }
