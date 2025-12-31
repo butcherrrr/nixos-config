@@ -109,15 +109,6 @@
           # Number of blur passes (higher = smoother but slower)
           passes = 1;
         };
-
-        # Enable drop shadows behind windows
-        drop_shadow = true;
-
-        # Shadow spread distance in pixels
-        shadow_range = 4;
-
-        # Shadow intensity (1-4, higher = more intense)
-        shadow_render_power = 3;
       };
 
       # ========================================================================
