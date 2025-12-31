@@ -23,6 +23,7 @@
     wofi          # Application launcher
     waybar        # Status bar
     mako          # Notification daemon
+    swaybg        # Wallpaper manager
 
     # Applications
     neovim
@@ -48,6 +49,11 @@
     # Waybar stylesheet
     ".config/waybar/style.css" = {
       source = ../dotfiles/waybar-style.css;
+    };
+    
+    # Wallpaper
+    ".config/hypr/wallpaper.jpg" = {
+      source = ../backgrounds/minimalist-black-hole.png;
     };
   };
 }
