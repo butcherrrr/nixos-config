@@ -20,6 +20,8 @@ nixos-config/
 │   ├── core.nix           # Base system (users, audio, networking)
 │   ├── greetd.nix         # Display manager
 │   └── hyprland.nix       # Hyprland window manager
+├── dotfiles/              # Configuration files (symlinked by home-manager)
+│   └── hyprland.conf      # Hyprland configuration
 └── home/                  # Home-manager user configs
     └── butcherrrr.nix     # User packages and settings
 ```
@@ -149,8 +151,23 @@ See `HOSTS.md` for more host type examples.
 
 **System packages:** Edit `modules/core.nix`  
 **User packages:** Edit `home/butcherrrr.nix`  
-**Keybindings:** Edit Hyprland settings in `home/butcherrrr.nix`  
+**Hyprland config:** Edit `dotfiles/hyprland.conf` (instant reload with `hyprctl reload`)  
 **Per-host settings:** Edit `hosts/YOUR-HOSTNAME/default.nix`
+
+### Dotfiles vs Nix Configuration
+
+Hyprland uses a dotfile approach (`dotfiles/hyprland.conf`) instead of Nix-defined settings because:
+- Changes apply instantly without rebuilding
+- Native Hyprland syntax (easier to copy examples)
+- Faster iteration for keybindings and visual tweaks
+
+Edit the config file and reload:
+```bash
+nano dotfiles/hyprland.conf
+hyprctl reload  # Or press SUPER+SHIFT+R
+```
+
+See `dotfiles/README.md` for details.
 
 ## Hyprland Keybindings
 
