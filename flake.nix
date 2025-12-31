@@ -1,27 +1,44 @@
 {
   description = "NixOS config";
 
+  # Input sources - these are external dependencies
   inputs = {
-   nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-   home-manager.url = "github:nix-community/home-manager";
-   home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # NixOS package repository
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+
+    # Home Manager - manages user-level configuration and packages
+    home-manager.url = "github:nix-community/home-manager";
+
+    # Makes home-manager use the same nixpkgs version as the system
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  # Outputs - what this flake produces
   outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
     in
     {
+      # NixOS system configurations
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+
         modules = [
           ./hosts/nixos/default.nix
-	  home-manager.nixosModules.home-manager
-	  {
+
+          home-manager.nixosModules.home-manager
+
+          # Home Manager configuration block
+          {
+            # Use system-level packages instead of separate user-level ones
             home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.butcherrrr = import ./home/butcherrrr.nix;
-	  }
+
+            # Install user packages to /etc/profiles instead of ~/.nix-profile
+            home-manager.useUserPackages = true;
+
+            # Configuration for the "butcherrrr" user
+            home-manager.users.butcherrrr = import ./home/butcherrrr.nix;
+          }
         ];
       };
     };
