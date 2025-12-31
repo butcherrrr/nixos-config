@@ -2,13 +2,13 @@
   # ============================================================================
   # Multi-Host NixOS Configuration
   # ============================================================================
-  
+
   description = "NixOS config";
 
   # ============================================================================
   # Input Sources
   # ============================================================================
-  
+
   # Input sources - these are external dependencies for your configuration
   inputs = {
     # NixOS package repository - using the stable 25.11 release
@@ -28,14 +28,14 @@
   # ============================================================================
   # Outputs
   # ============================================================================
-  
+
   # Outputs - what this flake produces (your system configurations)
   outputs = { self, nixpkgs, home-manager, ... }:
     let
       # ========================================================================
       # Helper Function: mkSystem
       # ========================================================================
-      
+
       # Helper function to create a system configuration
       # This reduces duplication when defining multiple hosts
       #
@@ -91,40 +91,40 @@
       # ========================================================================
       # NixOS System Configurations
       # ========================================================================
-      
+
       # Define all your systems here
       # Each system can be built with: nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
-        
+
         # Primary desktop/laptop - your current system
-        # Rebuild with: sudo nixos-rebuild switch --flake .#nixos
-        nixos = mkSystem {
-          hostname = "nixos";
+        # Rebuild with: sudo nixos-rebuild switch --flake .#guinea-pig
+        guinea-pig = mkSystem {
+          hostname = "guinea-pig";
           system = "x86_64-linux";
           user = "butcherrrr";
         };
 
         # Example: Add more systems as needed
         # Uncomment and customize these templates for additional machines:
-        
+
         # laptop = mkSystem {
         #   hostname = "laptop";
         #   system = "x86_64-linux";
         #   user = "butcherrrr";
         # };
-        
+
         # workstation = mkSystem {
         #   hostname = "workstation";
         #   system = "x86_64-linux";
         #   user = "butcherrrr";
         # };
-        
+
         # server = mkSystem {
         #   hostname = "server";
         #   system = "x86_64-linux";
         #   user = "admin";
         # };
-        
+
         # ARM-based system example (e.g., Raspberry Pi, M1/M2 Mac via Asahi)
         # rpi = mkSystem {
         #   hostname = "rpi";
