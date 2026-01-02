@@ -23,6 +23,9 @@
     # "network" - allows managing network connections without sudo
     # "netdev" - allows managing network devices (required for iwd/impala)
     extraGroups = [ "wheel" "network" "netdev" ];
+
+    # Default shell
+    shell = pkgs.zsh;
   };
 
   # ============================================================================
@@ -98,6 +101,8 @@
     wget
     ripgrep
     jq
-    impala
   ];
+
+  # Enable zsh system-wide
+  programs.zsh.enable = true;
 }
