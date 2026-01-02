@@ -23,6 +23,9 @@
     # Makes home-manager use the same nixpkgs version as the system
     # This prevents version conflicts between system and user packages
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Catppuccin theme for automatic theming across 70+ applications
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   # ============================================================================
@@ -30,7 +33,7 @@
   # ============================================================================
 
   # Outputs - what this flake produces (your system configurations)
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, ... }:
     let
       # ========================================================================
       # Helper Function: mkSystem
@@ -82,7 +85,12 @@
 
               # User-specific home-manager configuration
               # Each user has their own file: home/${user}.nix
-              home-manager.users.${user} = import ./home/${user}.nix;
+              home-manager.users.${user} = {
+                imports = [
+                  ./home/${user}.nix
+                  catppuccin.homeManagerModules.catppuccin
+                ];
+              };
             }
           ];
         };

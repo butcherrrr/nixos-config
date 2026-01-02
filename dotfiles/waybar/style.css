@@ -1,3 +1,9 @@
+/* ============================================================================
+   Waybar Stylesheet
+   Managed by home-manager, symlinked to ~/.config/waybar/style.css
+   Colors are managed by catppuccin/nix module
+   ============================================================================ */
+
 * {
   border: none;
   border-radius: 0;
@@ -8,17 +14,11 @@
 
 window#waybar {
   background: rgba(26, 27, 38, 0.95);
-  color: #cdd6f4;
 }
 
 tooltip {
-  background: #1e1e2e;
-  border: 1px solid #45475a;
+  border: 1px solid;
   border-radius: 8px;
-}
-
-tooltip label {
-  color: #cdd6f4;
 }
 
 #workspaces {
@@ -28,37 +28,31 @@ tooltip label {
 
 #workspaces button {
   padding: 0 8px;
-  color: #6c7086;
   background: transparent;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
 }
 
 #workspaces button:hover {
-  color: #cdd6f4;
   background: rgba(108, 112, 134, 0.1);
 }
 
 #workspaces button.active {
-  color: #89b4fa;
-  border-bottom: 2px solid #89b4fa;
+  border-bottom: 2px solid;
 }
 
 #workspaces button.urgent {
-  color: #f38ba8;
-  border-bottom: 2px solid #f38ba8;
+  border-bottom: 2px solid;
 }
 
 #window {
   margin: 0 8px;
   padding: 0 12px;
-  color: #cdd6f4;
   font-weight: 500;
 }
 
 #clock {
   padding: 0 16px;
-  color: #cdd6f4;
   font-weight: 600;
   margin: 4px 8px;
 }
@@ -73,28 +67,7 @@ tooltip label {
   margin: 4px 2px;
 }
 
-#cpu {
-  color: #f9e2af;
-}
-
-#memory {
-  color: #cba6f7;
-}
-
-#battery {
-  color: #a6e3a1;
-}
-
-#battery.charging {
-  color: #89dceb;
-}
-
-#battery.warning:not(.charging) {
-  color: #fab387;
-}
-
 #battery.critical:not(.charging) {
-  color: #f38ba8;
   animation: blink 1s linear infinite;
 }
 
@@ -102,22 +75,6 @@ tooltip label {
   to {
     opacity: 0.5;
   }
-}
-
-#network {
-  color: #89b4fa;
-}
-
-#network.disconnected {
-  color: #f38ba8;
-}
-
-#pulseaudio {
-  color: #89dceb;
-}
-
-#pulseaudio.muted {
-  color: #6c7086;
 }
 
 #tray {

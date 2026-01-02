@@ -1,5 +1,6 @@
 # Ghostty Configuration
 # Managed by home-manager, symlinked to ~/.config/ghostty/config
+# Theme is managed by catppuccin/nix module
 
 # =============================================================================
 # Font Configuration
@@ -9,11 +10,10 @@ font-family = JetBrainsMono Nerd Font
 font-size = 11
 
 # =============================================================================
-# Theme & Colors
+# Theme & Colors (managed by catppuccin/nix)
 # =============================================================================
 
-theme = Catppuccin Mocha
-
+# Theme is automatically set by catppuccin/nix module
 # Opacity and blur managed by Hyprland
 
 # =============================================================================

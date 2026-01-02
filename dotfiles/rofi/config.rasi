@@ -1,6 +1,7 @@
 // ============================================================================
 // Rofi Configuration
 // Managed by home-manager, symlinked to ~/.config/rofi/config.rasi
+// Colors are managed by catppuccin/nix module
 // ============================================================================
 
 configuration {
@@ -36,37 +37,11 @@ configuration {
 }
 
 // ============================================================================
-// Catppuccin Mocha Theme Colors
+// Layout & Sizing
+// Colors are automatically provided by catppuccin/nix
 // ============================================================================
 
 * {
-    // Catppuccin Mocha colors
-    bg: #1e1e2e;
-    bg-alt: #181825;
-    bg-selected: #313244;
-
-    fg: #cdd6f4;
-    fg-alt: #bac2de;
-
-    border: #89b4fa;
-
-    red: #f38ba8;
-    green: #a6e3a1;
-    yellow: #f9e2af;
-    blue: #89b4fa;
-    purple: #cba6f7;
-    cyan: #94e2d5;
-
-    // UI Elements
-    background-color: @bg;
-    text-color: @fg;
-
-    border-color: @border;
-    separatorcolor: @border;
-
-    selected-normal-background: @bg-selected;
-    selected-normal-foreground: @blue;
-
     font: "JetBrainsMono Nerd Font 9";
 }
 
@@ -76,9 +51,7 @@ configuration {
 
 window {
     transparency: "real";
-    background-color: @bg;
     border: 1px;
-    border-color: @border;
     border-radius: 6px;
     width: 420px;
     padding: 8px;
@@ -99,8 +72,6 @@ mainbox {
 // ============================================================================
 
 inputbar {
-    background-color: @bg-alt;
-    text-color: @fg;
     border-radius: 4px;
     padding: 6px 8px;
     children: [ prompt, entry ];
@@ -109,15 +80,12 @@ inputbar {
 
 prompt {
     background-color: transparent;
-    text-color: @blue;
     font: "JetBrainsMono Nerd Font Bold 9";
 }
 
 entry {
     background-color: transparent;
-    text-color: @fg;
     placeholder: "Search...";
-    placeholder-color: @fg-alt;
     cursor: text;
 }
 
@@ -142,7 +110,6 @@ listview {
 
 element {
     background-color: transparent;
-    text-color: @fg;
     orientation: horizontal;
     border-radius: 3px;
     padding: 4px 6px;
@@ -161,67 +128,16 @@ element-text {
 }
 
 // ============================================================================
-// Element States
-// ============================================================================
-
-element normal.normal {
-    background-color: transparent;
-    text-color: @fg;
-}
-
-element selected.normal {
-    background-color: @bg-selected;
-    text-color: @blue;
-}
-
-element alternate.normal {
-    background-color: transparent;
-    text-color: @fg;
-}
-
-element normal.active {
-    background-color: transparent;
-    text-color: @blue;
-}
-
-element selected.active {
-    background-color: @bg-selected;
-    text-color: @blue;
-}
-
-element alternate.active {
-    background-color: transparent;
-    text-color: @blue;
-}
-
-element normal.urgent {
-    background-color: transparent;
-    text-color: @red;
-}
-
-element selected.urgent {
-    background-color: @bg-selected;
-    text-color: @red;
-}
-
-element alternate.urgent {
-    background-color: transparent;
-    text-color: @red;
-}
-
-// ============================================================================
 // Message (for errors/info)
 // ============================================================================
 
 message {
-    background-color: @bg-alt;
     border: 0px;
     border-radius: 4px;
     padding: 6px;
 }
 
 textbox {
-    text-color: @fg;
     background-color: transparent;
 }
 
@@ -235,13 +151,6 @@ mode-switcher {
 }
 
 button {
-    background-color: @bg-alt;
-    text-color: @fg;
     border-radius: 4px;
     padding: 6px;
-}
-
-button selected {
-    background-color: @bg-selected;
-    text-color: @blue;
 }

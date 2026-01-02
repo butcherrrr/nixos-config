@@ -10,6 +10,17 @@
   home.stateVersion = "25.11";
 
   # ============================================================================
+  # Catppuccin Theme Configuration
+  # ============================================================================
+
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";  # Options: latte, frappe, macchiato, mocha
+    accent = "blue";   # Options: rosewater, flamingo, pink, mauve, red, maroon,
+                       #          peach, yellow, green, teal, sky, sapphire, blue, lavender
+  };
+
+  # ============================================================================
   # User Packages
   # ============================================================================
 
