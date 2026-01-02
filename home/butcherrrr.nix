@@ -19,8 +19,11 @@
     kitty
     ghostty
 
+    # Icons
+    papirus-icon-theme
+
     # Wayland utilities
-    wofi          # Application launcher
+    rofi          # Application launcher
     waybar        # Status bar
     mako          # Notification daemon
     swaybg        # Wallpaper manager
@@ -63,6 +66,11 @@
     # Ghostty configuration
     ".config/ghostty/config" = {
       source = ../dotfiles/ghostty-config;
+    };
+
+    # Rofi configuration
+    ".config/rofi/config.rasi" = {
+      source = ../dotfiles/rofi/config.rasi;
     };
   };
 
