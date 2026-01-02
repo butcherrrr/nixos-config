@@ -1,62 +1,52 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 34,
-  "spacing": 4,
-  
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
-  
+  "height": 26,
+  "spacing": 0,
+
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": [],
+  "modules-right": ["tray", "network", "pulseaudio", "cpu", "memory", "battery", "clock"],
+
   "hyprland/workspaces": {
-    "format": "{name}",
-    "on-click": "activate",
-    "all-outputs": true,
-    "active-only": false,
-    "persistent-workspaces": {
-      "*": [1, 2, 3, 4, 5]
-    }
-  },
-  
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 50,
-    "separate-outputs": true
-  },
-  
-  "clock": {
-    "format": " {:%H:%M}",
-    "format-alt": " {:%A, %B %d, %Y (%H:%M)}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "year",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-      }
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0"
     },
-    "actions": {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
     }
   },
-  
+
+  "clock": {
+    "format": "{:L%A %H:%M}",
+    "format-alt": " {:%A, %B %d, %Y (%H:%M)}",
+    "tooltip": false
+  },
+
   "cpu": {
     "format": "󰻠 {usage}%",
     "tooltip": false
   },
-  
+
   "memory": {
     "format": " {percentage}%"
   },
-  
+
   "battery": {
     "states": {
       "warning": 30,
@@ -68,7 +58,7 @@
     "format-alt": "{icon} {time}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
-  
+
   "network": {
     "format-wifi": "󰖩 {signalStrength}%",
     "format-ethernet": "󰈀 {ipaddr}/{cidr}",
@@ -77,7 +67,7 @@
     "format-disconnected": "󰖪 Disconnected",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
-  
+
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": "󰂯 {volume}%",
@@ -94,7 +84,7 @@
     },
     "on-click": "pavucontrol"
   },
-  
+
   "tray": {
     "icon-size": 18,
     "spacing": 10

@@ -1,8 +1,8 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
-  font-size: 13px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
   min-height: 0;
 }
 
@@ -22,7 +22,8 @@ tooltip label {
 }
 
 #workspaces {
-  margin: 0 4px;
+  margin: 0;
+  padding: 0;
 }
 
 #workspaces button {
@@ -59,8 +60,6 @@ tooltip label {
   padding: 0 16px;
   color: #cdd6f4;
   font-weight: 600;
-  background: rgba(137, 180, 250, 0.1);
-  border-radius: 8px;
   margin: 4px 8px;
 }
 
@@ -72,8 +71,6 @@ tooltip label {
 #tray {
   padding: 0 12px;
   margin: 4px 2px;
-  background: rgba(69, 71, 90, 0.4);
-  border-radius: 6px;
 }
 
 #cpu {
