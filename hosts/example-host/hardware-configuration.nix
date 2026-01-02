@@ -16,7 +16,7 @@
   # ============================================================================
   # Kernel Modules
   # ============================================================================
-  
+
   # Available kernel modules for initrd (loaded during boot)
   # Common modules:
   #   - "xhci_pci" "ehci_pci" "ahci" - USB and SATA controllers
@@ -24,22 +24,22 @@
   #   - "usb_storage" - USB storage devices
   #   - "thunderbolt" - Thunderbolt support
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
-  
+
   # Kernel modules to load in initrd
   boot.initrd.kernelModules = [ ];
-  
+
   # Regular kernel modules to load
   # Common options:
   #   - "kvm-intel" or "kvm-amd" - Virtualization support
   boot.kernelModules = [ "kvm-intel" ];
-  
+
   # Extra kernel module packages
   boot.extraModulePackages = [ ];
 
   # ============================================================================
   # Filesystems
   # ============================================================================
-  
+
   # Root filesystem
   # Replace with your actual UUID from: lsblk -f
   fileSystems."/" = {
@@ -58,7 +58,7 @@
   # ============================================================================
   # Swap Configuration
   # ============================================================================
-  
+
   # Swap devices (if you have a swap partition or swap file)
   # swapDevices = [
   #   { device = "/dev/disk/by-uuid/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"; }
@@ -68,16 +68,16 @@
   # ============================================================================
   # Hardware Platform
   # ============================================================================
-  
+
   # CPU architecture
   # Use "x86_64-linux" for Intel/AMD 64-bit
   # Use "aarch64-linux" for ARM 64-bit (e.g., Raspberry Pi 4, Apple Silicon)
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  
+
   # CPU microcode updates (security and stability fixes)
   # For Intel CPUs:
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
+
   # For AMD CPUs, use this instead:
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

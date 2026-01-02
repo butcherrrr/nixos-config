@@ -14,9 +14,12 @@ Place your background images in this directory.
    home.file.".config/hypr/wallpaper.jpg".source = ../backgrounds/my-background.jpg;
    ```
 
-3. Set it in `dotfiles/hyprland.conf`:
-   ```conf
-   exec-once = swaybg -i ~/.config/hypr/wallpaper.jpg
+3. Configure hyprpaper in `home/butcherrrr.nix`:
+   ```nix
+   services.hyprpaper.settings = {
+     preload = [ "~/.config/hypr/wallpaper.jpg" ];
+     wallpaper = [ ",~/.config/hypr/wallpaper.jpg" ];
+   };
    ```
 
 4. Rebuild:
@@ -44,3 +47,7 @@ home.file.".config/hypr/wallpaper.jpg".source =
 ## Current Backgrounds
 
 - `minimalist-black-hole.png` - Primary background
+
+## Notes
+
+Backgrounds are managed by the `services.hyprpaper` module, which is configured in `home/butcherrrr.nix`.

@@ -20,8 +20,6 @@ nixos-config/
 │   ├── core.nix           # Base system (users, audio, networking)
 │   ├── greetd.nix         # Display manager
 │   └── hyprland.nix       # Hyprland window manager
-├── dotfiles/              # Configuration files (symlinked by home-manager)
-│   └── hyprland.conf      # Hyprland configuration
 └── home/                  # Home-manager user configs
     └── butcherrrr.nix     # User packages and settings
 ```
@@ -33,6 +31,10 @@ nixos-config/
 ## Features
 
 - **Hyprland** - Wayland compositor with animations and effects
+- **Waybar** - Status bar with system information
+- **Rofi** - Application launcher
+- **Ghostty** - Terminal emulator
+- **Catppuccin** - Consistent theming across all applications
 - **Greetd** - Minimal display manager with auto-login
 - **PipeWire** - Modern audio server (PulseAudio + ALSA support)
 - **Home Manager** - Declarative user environment
@@ -149,25 +151,44 @@ See `HOSTS.md` for more host type examples.
 
 ## Customization
 
+All configuration is managed through **home-manager modules** in `home/butcherrrr.nix`.
+
 **System packages:** Edit `modules/core.nix`  
-**User packages:** Edit `home/butcherrrr.nix`  
-**Hyprland config:** Edit `dotfiles/hyprland.conf` (instant reload with `hyprctl reload`)  
+**User packages & config:** Edit `home/butcherrrr.nix`  
 **Per-host settings:** Edit `hosts/YOUR-HOSTNAME/default.nix`
 
-### Dotfiles vs Nix Configuration
+### Configuration Structure
 
-Hyprland uses a dotfile approach (`dotfiles/hyprland.conf`) instead of Nix-defined settings because:
-- Changes apply instantly without rebuilding
-- Native Hyprland syntax (easier to copy examples)
-- Faster iteration for keybindings and visual tweaks
+- **Hyprland:** `wayland.windowManager.hyprland.settings`
+- **Waybar:** `programs.waybar.settings`
+- **Rofi:** `programs.rofi`
+- **Ghostty:** `programs.ghostty`
+- **Theme:** `catppuccin.flavor` and `catppuccin.accent`
 
-Edit the config file and reload:
+After editing, rebuild:
 ```bash
-nano dotfiles/hyprland.conf
+sudo nixos-rebuild switch --flake .#$(hostname)
 hyprctl reload  # Or press SUPER+SHIFT+R
 ```
 
-See `dotfiles/README.md` for details.
+### Catppuccin Theming
+
+Change theme globally by editing `home/butcherrrr.nix`:
+```nix
+catppuccin = {
+  enable = true;
+  flavor = "mocha";     # mocha, macchiato, frappe, latte
+  accent = "blue";      # blue, lavender, pink, etc.
+  
+  # Per-app theming
+  rofi.enable = true;
+  waybar.enable = true;
+  mako.enable = true;
+  hyprland.enable = true;
+};
+```
+
+All applications will automatically use consistent colors.
 
 ## Hyprland Keybindings
 
@@ -209,4 +230,3 @@ sudo nixos-rebuild test --flake .#$(hostname)
 - The folder name, flake config name, and hostname must all match
 - Always commit `flake.lock` for reproducibility
 - System state version: 25.11
-
