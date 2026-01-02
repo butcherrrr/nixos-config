@@ -50,6 +50,9 @@
     };
   };
 
+  # Enable D-Bus for iwd user access (required for impala)
+  services.dbus.enable = true;
+
   # ============================================================================
   # Audio Configuration
   # ============================================================================
