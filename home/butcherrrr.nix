@@ -31,6 +31,8 @@
     # Applications
     neovim
     firefox
+    zed-editor
+    # zen-browser (uncomment when stable or https://medium.com/@notquitethereyet_/installing-zen-browser-on-nixos-%EF%B8%8F-7ae541f5533f)
 
     # Shell
     zsh-powerlevel10k
