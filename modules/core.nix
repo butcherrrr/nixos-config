@@ -20,8 +20,9 @@
 
     # Add user to important groups:
     # "wheel" - allows using sudo for administrative tasks
-    # "networkmanager" - allows managing network connections without sudo
-    extraGroups = [ "wheel" "networkmanager" ];
+    # "network" - allows managing network connections without sudo
+    # "netdev" - allows managing network devices (required for iwd/impala)
+    extraGroups = [ "wheel" "network" "netdev" ];
   };
 
   # ============================================================================
@@ -35,8 +36,19 @@
   # Networking Configuration
   # ============================================================================
 
-  # Enable NetworkManager
-  networking.networkmanager.enable = true;
+  # Enable iwd (iwd wireless daemon) for WiFi management
+  # Required for impala WiFi manager
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      General = {
+        EnableNetworkConfiguration = true;
+      };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
+  };
 
   # ============================================================================
   # Audio Configuration
@@ -83,5 +95,6 @@
     wget
     ripgrep
     jq
+    impala
   ];
 }
