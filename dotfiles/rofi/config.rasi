@@ -66,6 +66,8 @@ configuration {
 
     selected-normal-background: @bg-selected;
     selected-normal-foreground: @blue;
+
+    font: "JetBrainsMono Nerd Font 9";
 }
 
 // ============================================================================

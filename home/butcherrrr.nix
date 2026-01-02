@@ -45,17 +45,17 @@
   home.file = {
     # Hyprland configuration
     ".config/hypr/hyprland.conf" = {
-      source = ../dotfiles/hyprland.conf;
+      source = ../dotfiles/hyprland/hyprland.conf;
     };
 
     # Waybar configuration
     ".config/waybar/config" = {
-      source = ../dotfiles/waybar-config.json;
+      source = ../dotfiles/waybar/config.json;
     };
 
     # Waybar stylesheet
     ".config/waybar/style.css" = {
-      source = ../dotfiles/waybar-style.css;
+      source = ../dotfiles/waybar/style.css;
     };
 
     # Wallpaper
@@ -65,7 +65,7 @@
 
     # Ghostty configuration
     ".config/ghostty/config" = {
-      source = ../dotfiles/ghostty-config;
+      source = ../dotfiles/ghostty/config;
     };
 
     # Rofi configuration
