@@ -57,6 +57,34 @@
   services.dbus.enable = true;
 
   # ============================================================================
+  # Keyboard Configuration
+  # ============================================================================
+
+  # keyd - keyboard remapping daemon
+  # Remap Caps Lock to Hyper key (Ctrl+Shift+Alt+Super combined)
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            # Remap Caps Lock to Hyper (Ctrl+Shift+Alt+Super)
+            # Tapped alone = Escape, held with other keys = Hyper modifier
+            capslock = "overload(hyper, esc)";
+          };
+          # Hyper layer - when Caps Lock is held
+          "hyper:C-S-M-A" = {
+            # C-S-M-A = Ctrl+Shift+Meta(Alt)+Super
+            # All keys pressed with Caps Lock will have all 4 modifiers
+            # Example: Caps+h = Ctrl+Shift+Alt+Super+h
+          };
+        };
+      };
+    };
+  };
+
+  # ============================================================================
   # Audio Configuration
   # ============================================================================
 
@@ -101,6 +129,7 @@
     wget
     ripgrep
     jq
+    keyd  # Keyboard remapping daemon
   ];
 
   # Enable zsh system-wide
