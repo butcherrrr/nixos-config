@@ -31,6 +31,7 @@
 
     # Shell
     zsh-powerlevel10k
+    zoxide
   ];
 
   # ============================================================================
@@ -78,7 +79,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" "docker" ];
+      plugins = [ "git" "sudo" "docker" "zoxide" ];
       theme = "";  # Empty - using powerlevel10k instead
     };
 
@@ -88,6 +89,9 @@
 
       # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+      # Initialize zoxide (smart cd replacement)
+      eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
     '';
   };
 }
