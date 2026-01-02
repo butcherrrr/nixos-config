@@ -59,6 +59,11 @@
     ".config/hypr/wallpaper.jpg" = {
       source = ../backgrounds/minimalist-black-hole.png;
     };
+
+    # Ghostty configuration
+    ".config/ghostty/config" = {
+      source = ../dotfiles/ghostty-config;
+    };
   };
 
   # ============================================================================
