@@ -83,7 +83,7 @@
       theme = "";  # Empty - using powerlevel10k instead
     };
 
-    initExtra = ''
+    initContent = ''
       # Powerlevel10k theme
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
