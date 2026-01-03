@@ -17,8 +17,8 @@
       font-size = 11;
 
       # Window configuration
-      window-padding-x = 8;
-      window-padding-y = 8;
+      window-padding-x = 14;
+      window-padding-y = 14;
       window-padding-balance = true;
       window-decoration = false;
 
