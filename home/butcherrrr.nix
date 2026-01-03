@@ -37,6 +37,7 @@
     ./butcherrrr/waybar.nix      # Status bar
     ./butcherrrr/rofi.nix        # Application launcher
     ./butcherrrr/ghostty.nix     # Terminal emulator
+    ./butcherrrr/zed.nix         # Zed editor
     ./butcherrrr/services.nix    # Mako and Hyprpaper
     ./butcherrrr/theme.nix       # GTK and cursor theming
   ];
