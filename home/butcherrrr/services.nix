@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # ============================================================================
@@ -10,13 +10,7 @@
     enable = true;
   };
 
-  # Hyprpaper configuration file
-  # Note: hyprpaper is started via Hyprland's exec-once
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ~/.config/hypr/wallpaper.jpg
-    wallpaper = ,~/.config/hypr/wallpaper.jpg
-
-    splash = false
-    ipc = on
-  '';
+  # Swaybg wallpaper service (more reliable than hyprpaper)
+  # The wallpaper symlink is created in theme.nix
+  # Note: This will be started via Hyprland's exec-once
 }

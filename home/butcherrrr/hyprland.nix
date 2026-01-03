@@ -161,7 +161,7 @@
       exec-once = [
         "waybar"
         "mako"
-        "hyprpaper"
+        "swaybg -i ~/.config/hypr/wallpaper.jpg -m fill"
       ];
     };
   };

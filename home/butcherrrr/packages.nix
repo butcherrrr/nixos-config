@@ -12,7 +12,7 @@
     papirus-icon-theme
 
     # Wayland utilities
-    hyprpaper
+    swaybg
 
     # Applications
     neovim
