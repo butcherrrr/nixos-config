@@ -17,7 +17,7 @@
 
         modules-left = ["hyprland/workspaces"];
         modules-center = [];
-        modules-right = ["tray" "network" "pulseaudio" "cpu" "memory" "battery" "clock"];
+        modules-right = ["tray" "network" "pulseaudio" "cpu" "battery" "clock"];
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -50,12 +50,8 @@
         };
 
         cpu = {
-          format = "󰻠 {usage}%";
+          format = "󰻠";
           tooltip = false;
-        };
-
-        memory = {
-          format = " {percentage}%";
         };
 
         battery = {
@@ -63,25 +59,27 @@
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-plugged = "󰚥 {capacity}%";
+          format = "{icon}";
+          format-charging = "󰂄";
+          format-plugged = "󰚥";
           format-alt = "{icon} {time}";
           format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
 
         network = {
-          format-wifi = "󰖩 {signalStrength}%";
-          format-ethernet = "󰈀 {ipaddr}/{cidr}";
-          tooltip-format = "{ifname} via {gwaddr}";
-          format-linked = "󰈂 {ifname} (No IP)";
-          format-disconnected = "󰖪 Disconnected";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          format-icons =["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format = "{icon}";
+          format-wifi = "{icon}";
+          format-ethernet = "󰀂";
+          format-disconnected = "󰤮";
+          tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+          tooltip-format-disconnected = "Disconnected";
         };
 
         pulseaudio = {
-          format = "{icon} {volume}%";
-          format-bluetooth = "󰂯 {volume}%";
+          format = "{icon}";
+          format-bluetooth = "󰂯";
           format-bluetooth-muted = "󰂲";
           format-muted = "󰖁";
           format-icons = {
@@ -103,144 +101,7 @@
       };
     };
 
-    # Custom Catppuccin Mocha styling
-    style = ''
-      * {
-        border: none;
-        border-radius: 0;
-        font-family: "JetBrainsMono Nerd Font";
-        font-size: 13px;
-        min-height: 0;
-      }
-
-      window#waybar {
-        background: rgba(26, 27, 38, 0.95);
-        color: #cdd6f4;
-      }
-
-      tooltip {
-        background: #1e1e2e;
-        border: 1px solid #45475a;
-        border-radius: 8px;
-      }
-
-      tooltip label {
-        color: #cdd6f4;
-      }
-
-      #workspaces {
-        margin: 0 4px;
-      }
-
-      #workspaces button {
-        padding: 0 8px;
-        color: #6c7086;
-        background: transparent;
-        border-bottom: 2px solid transparent;
-        transition: all 0.3s ease;
-      }
-
-      #workspaces button:hover {
-        color: #cdd6f4;
-        background: rgba(108, 112, 134, 0.1);
-      }
-
-      #workspaces button.active {
-        color: #89b4fa;
-        border-bottom: 2px solid #89b4fa;
-      }
-
-      #workspaces button.urgent {
-        color: #f38ba8;
-        border-bottom: 2px solid #f38ba8;
-      }
-
-      #window {
-        margin: 0 8px;
-        padding: 0 12px;
-        color: #cdd6f4;
-        font-weight: 500;
-      }
-
-      #clock {
-        padding: 0 16px;
-        color: #cdd6f4;
-        font-weight: 600;
-        background: rgba(137, 180, 250, 0.1);
-        border-radius: 8px;
-        margin: 4px 8px;
-      }
-
-      #cpu,
-      #memory,
-      #battery,
-      #network,
-      #pulseaudio,
-      #tray {
-        padding: 0 12px;
-        margin: 4px 2px;
-        background: rgba(69, 71, 90, 0.4);
-        border-radius: 6px;
-      }
-
-      #cpu {
-        color: #f9e2af;
-      }
-
-      #memory {
-        color: #cba6f7;
-      }
-
-      #battery {
-        color: #a6e3a1;
-      }
-
-      #battery.charging {
-        color: #89dceb;
-      }
-
-      #battery.warning:not(.charging) {
-        color: #fab387;
-      }
-
-      #battery.critical:not(.charging) {
-        color: #f38ba8;
-        animation: blink 1s linear infinite;
-      }
-
-      @keyframes blink {
-        to {
-          opacity: 0.5;
-        }
-      }
-
-      #network {
-        color: #89b4fa;
-      }
-
-      #network.disconnected {
-        color: #f38ba8;
-      }
-
-      #pulseaudio {
-        color: #89dceb;
-      }
-
-      #pulseaudio.muted {
-        color: #6c7086;
-      }
-
-      #tray {
-        padding: 0 8px;
-      }
-
-      #tray > .passive {
-        -gtk-icon-effect: dim;
-      }
-
-      #tray > .needs-attention {
-        -gtk-icon-effect: highlight;
-      }
-    '';
+    # Styles loaded from separate CSS file
+    style = builtins.readFile ./waybar-style.css;
   };
 }
