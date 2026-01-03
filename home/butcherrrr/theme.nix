@@ -8,8 +8,8 @@
   # Cursor theming
   home.pointerCursor = {
     gtk.enable = true;
-    name = "catppuccin-mocha-blue-cursors";
-    package = pkgs.catppuccin-cursors.mochaBlue;
+    name = "Banana";
+    package = pkgs.banana-cursor;
     size = 24;
   };
 
