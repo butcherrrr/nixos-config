@@ -16,6 +16,7 @@
 
     # System utilities
     fastfetch
+    brightnessctl
 
     # Applications
     neovim
@@ -34,6 +35,16 @@
   
   home.file.".local/bin/toggle-zed" = {
     source = ../../scripts/toggle-zed.sh;
+    executable = true;
+  };
+  
+  home.file.".local/bin/volume" = {
+    source = ../../scripts/volume.sh;
+    executable = true;
+  };
+  
+  home.file.".local/bin/brightness" = {
+    source = ../../scripts/brightness.sh;
     executable = true;
   };
 }

@@ -230,3 +230,59 @@ sudo nixos-rebuild test --flake .#$(hostname)
 - The folder name, flake config name, and hostname must all match
 - Always commit `flake.lock` for reproducibility
 - System state version: 25.11
+
+## Testing Media Keys
+
+After deploying the config, test the volume and brightness controls:
+
+### Volume Keys
+- **Volume Up**: `XF86AudioRaiseVolume` (usually F3 or a dedicated key)
+- **Volume Down**: `XF86AudioLowerVolume` (usually F2 or a dedicated key)
+- **Mute**: `XF86AudioMute` (usually F1 or a dedicated key)
+
+Each volume change will show a notification with:
+- Current volume percentage
+- Volume icon (changes based on level)
+- Progress bar
+
+### Brightness Keys
+- **Brightness Up**: `XF86MonBrightnessUp` (usually F6 or a dedicated key)
+- **Brightness Down**: `XF86MonBrightnessDown` (usually F5 or a dedicated key)
+
+Each brightness change will show a notification with:
+- Current brightness percentage
+- Brightness icon (changes based on level)
+- Progress bar
+
+### Testing Without Physical Keys
+
+If you want to test the functionality without the physical keys:
+
+```bash
+# Test volume
+~/.local/bin/volume up
+~/.local/bin/volume down
+~/.local/bin/volume mute
+
+# Test brightness
+~/.local/bin/brightness up
+~/.local/bin/brightness down
+```
+
+### Debugging Key Detection
+
+If the keys don't work, check if they're being detected:
+
+```bash
+# Run wev and press your volume/brightness keys
+wev
+```
+
+Look for lines like:
+```
+sym: XF86AudioRaiseVolume
+sym: XF86AudioLowerVolume
+sym: XF86MonBrightnessUp
+```
+
+If you see different key names, update the bindings in `home/butcherrrr/hyprland.nix`.

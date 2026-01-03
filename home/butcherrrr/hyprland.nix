@@ -164,6 +164,15 @@
 
         # Reload configuration
         "$mainMod SHIFT, R, exec, hyprctl reload"
+
+        # Volume control
+        ", XF86AudioRaiseVolume, exec, ~/.local/bin/volume up"
+        ", XF86AudioLowerVolume, exec, ~/.local/bin/volume down"
+        ", XF86AudioMute, exec, ~/.local/bin/volume mute"
+
+        # Brightness control
+        ", XF86MonBrightnessUp, exec, ~/.local/bin/brightness up"
+        ", XF86MonBrightnessDown, exec, ~/.local/bin/brightness down"
       ];
 
       # Hyper key bindings
