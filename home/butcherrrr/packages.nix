@@ -19,4 +19,14 @@
     firefox
     zed-editor
   ];
+
+  # ============================================================================
+  # Scripts
+  # ============================================================================
+
+  # Install custom scripts
+  home.file.".local/bin/toggle-terminal" = {
+    source = ../../scripts/toggle-terminal.sh;
+    executable = true;
+  };
 }

@@ -60,9 +60,10 @@
         };
       };
 
-      # Window opacity
+      # Window rules
       windowrulev2 = [
         "opacity 0.95 0.95,class:.*"
+        "workspace 1,class:(com.mitchellh.ghostty)"
       ];
 
       # Animations
@@ -101,6 +102,7 @@
         "$mainMod, Return, exec, ghostty"
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, B, exec, firefox"
+        "$hyper, T, exec, ~/.local/bin/toggle-terminal"
 
         # Window management
         "$mainMod, W, killactive"
