@@ -62,25 +62,26 @@ tooltip label {
   padding: 0 12px;
   color: #cdd6f4;
   font-weight: 600;
-  margin: 4px 2px;
+  margin: 4px 4px;
 }
 
 #cpu,
 #memory,
 #battery,
 #network,
+#bluetooth,
 #pulseaudio,
 #tray {
   padding: 0 12px;
-  margin: 4px 2px;
+  margin: 4px 4px;
 }
 
 #cpu {
-  color: #f9e2af;
+  color: #cdd6f4;
 }
 
 #memory {
-  color: #cba6f7;
+  color: #cdd6f4;
 }
 
 #battery {
@@ -107,15 +108,24 @@ tooltip label {
 }
 
 #network {
-  color: #89b4fa;
+  color: #cdd6f4;
 }
 
 #network.disconnected {
   color: #f38ba8;
 }
 
+
+#bluetooth {
+  color: #cdd6f4;
+}
+
+#bluetooth.disabled {
+  color: #6c7086;
+}
+
 #pulseaudio {
-  color: #89dceb;
+  color: #cdd6f4;
 }
 
 #pulseaudio.muted {
