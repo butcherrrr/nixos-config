@@ -159,6 +159,7 @@
     impala  # WiFi manager
     bluetui  # Bluetooth manager
     btop  # System monitor
+    libnotify
   ];
 
   # Enable zsh system-wide
