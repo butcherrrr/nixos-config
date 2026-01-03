@@ -6,15 +6,16 @@ This directory contains modular home-manager configurations for user `butcherrrr
 
 ```
 butcherrrr/
-├── packages.nix     # User packages (firefox, neovim, etc.)
-├── shell.nix        # Zsh shell and zoxide configuration
-├── hyprland.nix     # Hyprland window manager settings
-├── waybar.nix       # Status bar configuration
-├── rofi.nix         # Application launcher configuration
-├── ghostty.nix      # Terminal emulator configuration
-├── services.nix     # Background services (mako, hyprpaper)
-├── theme.nix        # GTK and cursor theming
-└── README.md        # This file
+├── packages.nix         # User packages and custom scripts
+├── shell.nix            # Zsh shell and zoxide configuration
+├── hyprland.nix         # Hyprland window manager settings
+├── waybar.nix           # Status bar configuration
+├── waybar-style.css     # Waybar styling (Catppuccin Mocha)
+├── rofi.nix             # Application launcher configuration
+├── ghostty.nix          # Terminal emulator configuration
+├── services.nix         # Background services (mako, swaybg)
+├── theme.nix            # Cursor theming and wallpaper
+└── README.md            # This file
 ```
 
 ## Main Configuration
@@ -66,6 +67,17 @@ Edit `waybar.nix`:
 modules-right = ["tray" "network" "cpu" "memory" "battery" "clock"];
 ```
 
+### To Customize Waybar Colors/Styling
+
+Edit `waybar-style.css`:
+```css
+#clock {
+  padding: 0 16px;
+  color: #cdd6f4;
+  background: rgba(137, 180, 250, 0.1);
+}
+```
+
 ### To Change Rofi Size
 
 Edit `rofi.nix`:
@@ -105,13 +117,13 @@ catppuccin = {
   
   # Per-app theming
   rofi.enable = true;
-  waybar.enable = true;
+  waybar.enable = false;  # Using custom manual styling in waybar-style.css
   mako.enable = true;
   hyprland.enable = true;
 };
 ```
 
-Individual module files do NOT contain `catppuccin.enable` - it's all managed centrally.
+**Note:** Waybar uses custom CSS styling (`waybar-style.css`) instead of the catppuccin module to allow fine-grained control over colors and layout.
 
 ## Rebuilding
 
@@ -156,16 +168,27 @@ To add a new program module:
 ## Module Descriptions
 
 ### packages.nix
-Simple package list. Only includes packages WITHOUT home-manager modules.
+Package list and custom scripts:
+- User packages (only those WITHOUT home-manager modules)
+- Custom scripts installed to `~/.local/bin/`
+  - `toggle-terminal` - Focus or launch terminal (bound to Hyper+T)
 
 ### shell.nix
 Zsh configuration with oh-my-zsh, powerlevel10k theme, and zoxide integration.
 
 ### hyprland.nix
-Complete Hyprland configuration: keybindings, animations, layouts, workspace management.
+Complete Hyprland configuration:
+- Keybindings (including Hyper key bindings)
+- Window rules (e.g., ghostty bound to workspace 1)
+- Animations and visual effects
+- Multi-monitor setup
+- Workspace management
 
 ### waybar.nix
-Status bar with modules for workspaces, clock, CPU, memory, battery, network, audio, and tray.
+Status bar configuration and styling:
+- `waybar.nix` - Module configuration (which modules to show)
+- `waybar-style.css` - Visual styling (Catppuccin Mocha colors)
+- Modules: workspaces, clock, CPU, memory, battery, network, audio, tray
 
 ### rofi.nix
 Application launcher with compact sizing, fuzzy search, and icon support.
@@ -175,14 +198,37 @@ Terminal emulator with JetBrainsMono Nerd Font, padding, and shell integration.
 
 ### services.nix
 Background services:
-- Mako (notifications)
-- Hyprpaper (wallpaper daemon)
+- Mako (notification daemon)
+- Swaybg (wallpaper daemon - started via Hyprland's exec-once)
 
 ### theme.nix
 System theming:
-- GTK theme (catppuccin)
 - Cursor theme (catppuccin-mocha-blue)
-- Wallpaper symlink
+- Wallpaper symlink (`~/.config/hypr/wallpaper.jpg`)
+
+## Custom Scripts
+
+Scripts are located in `../../scripts/` and installed to `~/.local/bin/`:
+
+### toggle-terminal
+Bound to `Hyper+T` - Opens or focuses the terminal:
+- If ghostty is running: switches to workspace 1 and focuses it
+- If ghostty is not running: switches to workspace 1 and opens it
+- Ghostty is always bound to workspace 1 via window rules
+
+## Shell Configuration
+
+### Powerlevel10k
+The p10k theme configuration is NOT managed in the repo to avoid language detection issues on GitHub. Each machine configures its own prompt:
+1. Run `p10k configure` on the machine
+2. The `.p10k.zsh` file is saved locally in your home directory
+3. It persists across rebuilds (not managed by home-manager)
+
+### Syntax Highlighting
+Zsh syntax highlighting is enabled with custom colors:
+- Paths: no highlighting (to avoid the "red = error" association)
+- Slashes: no highlighting
+- Other elements: use default colors
 
 ## Resources
 
