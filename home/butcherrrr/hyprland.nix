@@ -16,7 +16,22 @@
       #   - ",preferred,auto,1.25"     # Auto detect, 125% scale
       #   - ",preferred,auto,1.5"      # Auto detect, 150% scale
       #   - "eDP-1,1920x1080,0x0,1"    # Specific monitor, 1080p, 100% scale
-      monitor = ",preferred,auto,1";
+      monitor = [
+        "HDMI-A-1,3840x2160@60,0x0,2"
+        "eDP-1,1920x1080@60,1920x0,1.5"
+      ];
+
+      workspace = [
+        "1,monitor:HDMI-A-1,default:true"
+        "2,monitor:HDMI-A-1"
+        "3,monitor:HDMI-A-1"
+        "4,monitor:HDMI-A-1"
+        "5,monitor:HDMI-A-1"
+        "6,monitor:eDP-1,default:true"
+        "7,monitor:eDP-1"
+        "8,monitor:eDP-1"
+      ];
+
 
       # Input configuration
       input = {
