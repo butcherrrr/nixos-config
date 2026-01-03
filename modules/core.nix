@@ -60,6 +60,12 @@
   # Keyboard Configuration
   # ============================================================================
 
+  # X11 keyboard layout (also used by Wayland compositors as fallback)
+  services.xserver.xkb = {
+    layout = "se";
+    options = "";
+  };
+
   # keyd - keyboard remapping daemon
   # Remap Caps Lock to Hyper key (Ctrl+Shift+Alt+Super combined)
   services.keyd = {
