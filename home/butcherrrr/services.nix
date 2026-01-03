@@ -14,7 +14,7 @@
       # Layout
       width = 300;
       height = 150;
-      margin = "20";
+      margin = "30";
       padding = "10";
       border-size = 1;
       border-radius = 5;

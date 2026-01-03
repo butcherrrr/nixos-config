@@ -36,7 +36,7 @@ send_notification() {
 
 case "$1" in
     up)
-        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0
         send_notification
         ;;
     down)
