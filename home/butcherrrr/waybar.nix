@@ -17,7 +17,7 @@
 
         modules-left = ["hyprland/workspaces"];
         modules-center = [];
-        modules-right = ["tray" "network" "pulseaudio" "cpu" "battery" "clock"];
+        modules-right = ["tray" "bluetooth" "network" "pulseaudio" "cpu" "battery" "clock"];
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -92,6 +92,16 @@
             default = ["󰕿" "󰖀" "󰕾"];
           };
           on-click = "pavucontrol";
+        };
+
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂱 {num_connections}";
+          tooltip-format = "{controller_alias}\t{controller_address}";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          on-click = "blueman-manager";
         };
 
         tray = {

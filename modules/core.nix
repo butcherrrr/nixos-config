@@ -120,6 +120,25 @@
   };
 
   # ============================================================================
+  # Bluetooth Configuration
+  # ============================================================================
+
+  # Enable Bluetooth support
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;  # Power on Bluetooth adapter on boot
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;  # Enable experimental features
+      };
+    };
+  };
+
+  # Enable Bluetooth management service
+  services.blueman.enable = true;
+
+  # ============================================================================
   # Fonts Configuration
   # ============================================================================
 
