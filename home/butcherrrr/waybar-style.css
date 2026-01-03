@@ -85,11 +85,11 @@ tooltip label {
 }
 
 #battery {
-  color: #a6e3a1;
+  color: #cdd6f4;
 }
 
 #battery.charging {
-  color: #89dceb;
+  color: #cdd6f4;
 }
 
 #battery.warning:not(.charging) {
