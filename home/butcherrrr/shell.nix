@@ -30,10 +30,16 @@
 
       # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+      # Disable highlighting on paths and slashes
+      typeset -A ZSH_HIGHLIGHT_STYLES
+      ZSH_HIGHLIGHT_STYLES[path]='none'
+      ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
+      ZSH_HIGHLIGHT_STYLES[path_pathseparator]='none'
     '';
   };
 
-  # Zoxide (smart cd replacement)
+  # Zoxide
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
