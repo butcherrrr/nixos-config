@@ -158,6 +158,7 @@
     keyd  # Keyboard remapping daemon
     impala  # WiFi manager
     bluetui  # Bluetooth manager
+    btop  # System monitor
   ];
 
   # Enable zsh system-wide

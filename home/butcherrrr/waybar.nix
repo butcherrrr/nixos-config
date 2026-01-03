@@ -52,6 +52,7 @@
         cpu = {
           format = "󰻠";
           tooltip = false;
+          on-click = "ghostty -e btop";
         };
 
         battery = {
