@@ -18,10 +18,10 @@
     flavor = "mocha";  # Options: latte, frappe, macchiato, mocha
     accent = "blue";   # Options: rosewater, flamingo, pink, mauve, red, maroon,
                        #          peach, yellow, green, teal, sky, sapphire, blue, lavender
-    
+
     # Per-app theming (new naming scheme)
     rofi.enable = true;
-    waybar.enable = true;
+    waybar.enable = false;  # Using custom manual styling in waybar.nix
     mako.enable = true;
     hyprland.enable = true;
   };
