@@ -10,6 +10,7 @@
 
     settings = {
       mainBar = {
+        reload_style_on_change = true;
         layer = "top";
         position = "top";
         height = 26;
@@ -43,32 +44,21 @@
           };
         };
 
-        clock = {
-          format = "{:L%A %H:%M}";
-          format-alt = " {:%A, %B %d, %Y (%H:%M)}";
-          tooltip = false;
-        };
-
         cpu = {
-          format = "󰻠";
+          interval = 5;
+          format = "󰍛";
           tooltip = false;
           on-click = "ghostty -e btop";
         };
 
-        battery = {
-          states = {
-            warning = 30;
-            critical = 15;
-          };
-          format = "{icon}";
-          format-charging = "󰂄";
-          format-plugged = "󰚥";
-          format-alt = "{icon} {time}";
-          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        clock = {
+          format = "{:L%A %H:%M}";
+          format-alt = "{:L%d %B W%V %Y}";
+          tooltip = false;
         };
 
         network = {
-          format-icons =["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
           format = "{icon}";
           format-wifi = "{icon}";
           format-ethernet = "󰀂";
@@ -76,7 +66,38 @@
           tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-disconnected = "Disconnected";
+          interval = 3;
+          spacing = 1;
           on-click = "ghostty -e impala";
+        };
+
+        battery = {
+          format = "{capacity}% {icon}";
+          format-discharging = "{icon}";
+          format-charging = "{icon}";
+          format-plugged = "";
+          format-icons = {
+            charging = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
+            default = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          };
+          format-full = "󰂅";
+          tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
+          tooltip-format-charging = "{power:>1.0f}W↑ {capacity}%";
+          interval = 5;
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+        };
+
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂱 {num_connections}";
+          tooltip-format = "{controller_alias}\t{controller_address}";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          on-click = "ghostty -e bluetui";
         };
 
         pulseaudio = {
@@ -96,19 +117,9 @@
           on-click = "pavucontrol";
         };
 
-        bluetooth = {
-          format = "󰂯";
-          format-disabled = "󰂲";
-          format-connected = "󰂱 {num_connections}";
-          tooltip-format = "{controller_alias}\t{controller_address}";
-          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
-          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-          on-click = "ghostty -e bluetui";
-        };
-
         tray = {
-          icon-size = 18;
-          spacing = 10;
+          icon-size = 12;
+          spacing = 17;
         };
       };
     };

@@ -1,136 +1,127 @@
 /* =============================================================================
- * Waybar Custom Catppuccin Mocha Styling
+ * Waybar Catppuccin Mocha Styling
  * ============================================================================= */
+
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
 
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono Nerd Font";
-  font-size: 13px;
   min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+  color: @text;
 }
 
 window#waybar {
-  background: rgba(26, 27, 38, 0.95);
-  color: #cdd6f4;
+  background: transparent;
 }
 
-tooltip {
-  background: #1e1e2e;
-  border: 1px solid #45475a;
+/* Remove container styling completely */
+.modules-left,
+.modules-right,
+.modules-center {
+  background: transparent;
+  border: none;
+  margin-top: 4px;
+  padding: 0;
+  min-width: 0;
 }
 
-tooltip label {
-  color: #cdd6f4;
+.modules-left { margin-left: 10px; }
+.modules-right { margin-right: 10px; }
+
+/* Default module spacing + underline hover */
+.modules-left > widget > *,
+.modules-right > widget > * {
+  background: transparent;
+  padding: 0 10px;
+  margin: 2px 2px;
+  border-bottom: 2px solid transparent;
 }
 
+.modules-left > widget > *:hover,
+.modules-right > widget > *:hover {
+  border-bottom: 2px solid rgba(127, 132, 156, 0.65); /* @overlay1 */
+  background: rgba(49, 50, 68, 0.18);                 /* @surface0 */
+}
+
+/* Workspaces */
 #workspaces {
-  margin: 0 4px;
+  padding: 0;
+  background: transparent;
 }
 
 #workspaces button {
-  padding: 0 8px;
-  color: #6c7086;
   background: transparent;
+  border: none;
+  box-shadow: none;
+
+  padding: 0 8px;
+  margin: 0 2px;
+  min-width: 10px;
+
+  color: @subtext1;
+
   border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
 }
 
 #workspaces button:hover {
-  color: #cdd6f4;
-  background: rgba(108, 112, 134, 0.1);
+  background: rgba(49, 50, 68, 0.22);
+  border-bottom: 2px solid rgba(127, 132, 156, 0.65);
+  color: @text;
 }
 
 #workspaces button.active {
-  color: #89b4fa;
-  border-bottom: 2px solid #89b4fa;
+  color: @blue;
+  border-bottom: 2px solid @blue;
 }
 
 #workspaces button.urgent {
-  color: #f38ba8;
-  border-bottom: 2px solid #f38ba8;
+  color: @red;
+  border-bottom: 2px solid @red;
 }
 
-#window {
-  margin: 0 8px;
-  padding: 0 12px;
-  color: #cdd6f4;
-  font-weight: 500;
+#workspaces button.empty {
+  opacity: 0.45;
 }
 
-#clock {
-  padding: 0 12px;
-  color: #cdd6f4;
-  font-weight: 600;
-  margin: 4px 4px;
-}
+/* Semantic colors */
+#network { color: @sky; }
+#bluetooth { color: @sapphire; }
+#pulseaudio { color: @teal; }
+#cpu { color: @mauve; }
 
-#cpu,
-#memory,
-#battery,
-#network,
-#bluetooth,
-#pulseaudio,
-#tray {
-  padding: 0 12px;
-  margin: 4px 4px;
-}
+#battery { color: @green; }
+#battery.warning { color: @yellow; }
+#battery.critical { color: @red; }
 
-#cpu {
-  color: #cdd6f4;
-}
-
-#memory {
-  color: #cdd6f4;
-}
-
-#battery {
-  color: #cdd6f4;
-}
-
-#battery.charging {
-  color: #cdd6f4;
-}
-
-#battery.warning:not(.charging) {
-  color: #fab387;
-}
-
-#battery.critical:not(.charging) {
-  color: #f38ba8;
-  animation: blink 1s linear infinite;
-}
-
-@keyframes blink {
-  to {
-    opacity: 0.5;
-  }
-}
-
-#network {
-  color: #cdd6f4;
-}
-
-#network.disconnected {
-  color: #f38ba8;
-}
-
-
-#bluetooth {
-  color: #cdd6f4;
-}
-
-#bluetooth.disabled {
-  color: #6c7086;
-}
-
-#pulseaudio {
-  color: #cdd6f4;
-}
-
-#pulseaudio.muted {
-  color: #6c7086;
-}
+#clock { color: @text; }
 
 #tray {
   padding: 0 8px;
@@ -143,3 +134,13 @@ tooltip label {
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
 }
+
+/* Tooltip */
+tooltip {
+  background: rgba(17, 17, 27, 0.96);              /* @crust */
+  border: 1px solid rgba(127, 132, 156, 0.30);     /* @overlay1 */
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+tooltip label { color: @text; }
