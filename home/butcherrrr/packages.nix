@@ -31,4 +31,9 @@
     source = ../../scripts/toggle-terminal.sh;
     executable = true;
   };
+  
+  home.file.".local/bin/toggle-zed" = {
+    source = ../../scripts/toggle-zed.sh;
+    executable = true;
+  };
 }

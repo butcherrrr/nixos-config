@@ -64,6 +64,7 @@
       windowrulev2 = [
         "opacity 0.95 0.95,class:.*"
         "workspace 1,class:(com.mitchellh.ghostty)"
+        "workspace 2,class:(dev.zed.Zed)"
       ];
 
       # Animations
@@ -103,6 +104,7 @@
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, B, exec, firefox"
         "$hyper, T, exec, ~/.local/bin/toggle-terminal"
+        "$hyper, E, exec, ~/.local/bin/toggle-zed"
 
         # Window management
         "$mainMod, W, killactive"
