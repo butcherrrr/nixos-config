@@ -99,7 +99,7 @@
       # Keybindings
       bind = [
         # Applications
-        "$mainMod, Return, exec, ghostty"
+        "$hyper, Return, exec, ghostty"
         "$mainMod, Space, exec, rofi -show drun"
         "$mainMod, B, exec, firefox"
         "$hyper, T, exec, ~/.local/bin/toggle-terminal"
@@ -157,8 +157,8 @@
 
       # Hyper key bindings
       bindd = [
-        "$hyper, h, Switch to previous active workspace, workspace, m-1"
-        "$hyper, l, Switch to next active workspace, workspace, m+1"
+        "$hyper, H, Switch to previous active workspace, workspace, m-1"
+        "$hyper, L, Switch to next active workspace, workspace, m+1"
         "$hyper, code:10, Switch to workspace 1, workspace, 1"
         "$hyper, code:11, Switch to workspace 2, workspace, 2"
         "$hyper, code:12, Switch to workspace 3, workspace, 3"
