@@ -60,9 +60,13 @@
   # Keyboard Configuration
   # ============================================================================
 
+  # Console keyboard layout (for TTY/virtual console)
+  console.keyMap = "sv-latin1";
+
   # X11 keyboard layout (also used by Wayland compositors as fallback)
   services.xserver.xkb = {
     layout = "se";
+    variant = "";
     options = "";
   };
 

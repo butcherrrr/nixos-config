@@ -36,6 +36,15 @@
       # Input configuration
       input = {
         kb_layout = "se";
+        kb_variant = "nodeadkeys";
+
+        # Keyboard repeat settings
+        repeat_rate = 40;
+        repeat_delay = 300;
+
+        # Start with numlock on
+        numlock_by_default = true;
+
         follow_mouse = 1;
         touchpad.natural_scroll = false;
         sensitivity = 0;

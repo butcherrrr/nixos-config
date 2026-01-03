@@ -35,8 +35,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Different from Wayland input settings (configured in Hyprland)
-  console.keyMap = "sv-latin1";
+  # Console keymap is configured in modules/core.nix
 
   # ============================================================================
   # Module Imports
