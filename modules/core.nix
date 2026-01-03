@@ -135,9 +135,6 @@
     };
   };
 
-  # Enable Bluetooth management service
-  services.blueman.enable = true;
-
   # ============================================================================
   # Fonts Configuration
   # ============================================================================
@@ -159,6 +156,7 @@
     ripgrep
     jq
     keyd  # Keyboard remapping daemon
+    bluetui  # Bluetooth manager
   ];
 
   # Enable zsh system-wide
