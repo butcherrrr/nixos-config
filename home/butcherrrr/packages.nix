@@ -44,6 +44,11 @@
     executable = true;
   };
   
+  home.file.".local/bin/toggle-firefox" = {
+    source = ../../scripts/toggle-firefox.sh;
+    executable = true;
+  };
+  
   home.file.".local/bin/volume" = {
     source = ../../scripts/volume.sh;
     executable = true;

@@ -74,6 +74,7 @@
         "opacity 0.95 0.95,class:.*"
         "workspace 1,class:(com.mitchellh.ghostty)"
         "workspace 2,class:(dev.zed.Zed)"
+        "workspace 3,class:(firefox)"
       ];
 
       # Animations
@@ -111,9 +112,9 @@
         # Applications
         "$hyper, Return, exec, ghostty"
         "$mainMod, Space, exec, rofi -show drun"
-        "$mainMod, B, exec, firefox"
         "$hyper, T, exec, ~/.local/bin/toggle-terminal"
         "$hyper, E, exec, ~/.local/bin/toggle-zed"
+        "$hyper, B, exec, ~/.local/bin/toggle-firefox"
 
         # Window management
         "$mainMod, W, killactive"
