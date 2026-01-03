@@ -14,6 +14,9 @@
     # Wayland utilities
     swaybg
 
+    # System utilities
+    fastfetch
+
     # Applications
     neovim
     firefox
