@@ -18,6 +18,12 @@
     fastfetch
     brightnessctl
 
+    # Development tools
+    nodejs
+    python3
+    go
+    rustup
+
     # Applications
     neovim
     firefox
