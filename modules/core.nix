@@ -156,6 +156,7 @@
     ripgrep
     jq
     keyd  # Keyboard remapping daemon
+    impala  # WiFi manager
     bluetui  # Bluetooth manager
   ];
 
