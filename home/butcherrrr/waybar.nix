@@ -75,6 +75,7 @@
           tooltip-format-wifi = "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-ethernet = "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
           tooltip-format-disconnected = "Disconnected";
+          on-click = "ghostty -e impala";
         };
 
         pulseaudio = {
