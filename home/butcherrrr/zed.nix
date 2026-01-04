@@ -61,7 +61,7 @@
 
       format_on_save = "on";
       autosave = "on_focus_change";
-      vim_mode = false;
+      vim_mode = true;
     };
 
     extensions = [
