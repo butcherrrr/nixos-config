@@ -57,11 +57,14 @@
   services.dbus.enable = true;
 
   # ============================================================================
-  # Keyboard Configuration
+  # Console Configuration
   # ============================================================================
 
   # Console keyboard layout (for TTY/virtual console)
   console.keyMap = "sv-latin1";
+
+  # Console font for better readability in tuigreet
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v16n.psf.gz";
 
   # X11 keyboard layout (also used by Wayland compositors as fallback)
   services.xserver.xkb = {

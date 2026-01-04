@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, ... }:
 
 {
   # ============================================================================
@@ -9,15 +9,54 @@
     enable = true;
 
     settings = {
-      # Default session configuration - what happens when you log in
       default_session = {
-        # Command to run after successful login
-        command = "${pkgs.hyprland}/bin/Hyprland";
-
-        # Which user this session is for - using variable from flake.nix
-        # Greetd will automatically log in this user and start Hyprland
-        user = user;
+        # tuigreet - TUI login screen with Catppuccin Mocha colors
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --asterisks --greeting 'Welcome to NixOS' --cmd Hyprland";
+        user = "greeter";
       };
     };
+  };
+
+  # ============================================================================
+  # Console Colors - Catppuccin Mocha (matches Ghostty theme)
+  # ============================================================================
+
+  # Set VT/TTY colors to Catppuccin Mocha
+  # This makes tuigreet use the same colors as your Ghostty terminal
+  console.colors = [
+    # Normal colors (0-7)
+    "1e1e2e"  # 0: Black (Base)
+    "f38ba8"  # 1: Red
+    "a6e3a1"  # 2: Green
+    "f9e2af"  # 3: Yellow
+    "89b4fa"  # 4: Blue
+    "cba6f7"  # 5: Magenta
+    "94e2d5"  # 6: Cyan
+    "cdd6f4"  # 7: White (Text)
+
+    # Bright colors (8-15)
+    "45475a"  # 8: Bright Black (Surface0)
+    "f38ba8"  # 9: Bright Red
+    "a6e3a1"  # 10: Bright Green
+    "f9e2af"  # 11: Bright Yellow
+    "89b4fa"  # 12: Bright Blue
+    "cba6f7"  # 13: Bright Magenta
+    "94e2d5"  # 14: Bright Cyan
+    "cdd6f4"  # 15: Bright White
+  ];
+
+  # ============================================================================
+  # Environment Variables for Greetd
+  # ============================================================================
+
+  # Set environment for the greeter session
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 }

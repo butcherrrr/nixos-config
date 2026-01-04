@@ -52,7 +52,7 @@ nixos-config/
 - **Waybar** - Status bar with system information
 - **Rofi** - Application launcher with fuzzy search
 - **Mako** - Notification daemon
-- **Greetd** - Minimal display manager with auto-login
+- **Greetd + tuigreet** - TUI login screen with Catppuccin Mocha theme
 
 ### Applications
 - **Ghostty** - Modern terminal emulator
