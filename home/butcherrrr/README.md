@@ -44,7 +44,9 @@ imports = [
 ## Module Descriptions
 
 ### packages.nix
+
 User packages and custom scripts:
+
 - **Packages**: Only packages WITHOUT home-manager modules
   - Development tools (nodejs, python3, go, rustup)
   - Applications (firefox)
@@ -58,9 +60,11 @@ User packages and custom scripts:
   - `brightness` - Brightness control with notifications
 
 ### shell.nix
+
 Shell configuration with modern tools:
 
 **Eza** - Modern `ls` replacement:
+
 - Icons for file types
 - Git status integration
 - Directories listed first
@@ -69,6 +73,7 @@ Shell configuration with modern tools:
 - Aliases: `ls`, `ll`, `la`, `lt`
 
 **Zsh** - Shell configuration:
+
 - oh-my-zsh framework
 - Powerlevel10k theme
 - Syntax highlighting (paths unhighlighted)
@@ -78,15 +83,18 @@ Shell configuration with modern tools:
 - Custom aliases
 
 **Zoxide** - Smart `cd` replacement:
+
 - Learns frequently used directories
 - Jump to directories with `z <pattern>`
 - Interactive selection with `zi`
 - Full Zsh integration
 
 ### git.nix
+
 Git configuration with modern tooling:
 
 **Git settings**:
+
 - User identity (name, email)
 - Default branch: `main`
 - Pull: rebase with fast-forward only
@@ -95,6 +103,7 @@ Git configuration with modern tooling:
 - Include local config: `~/.gitconfig.local`
 
 **Aliases**:
+
 - `st` - status
 - `co` - checkout
 - `br` - branch
@@ -106,21 +115,25 @@ Git configuration with modern tooling:
 - `graph` - visual commit graph
 
 **Delta** - Syntax-highlighting pager:
+
 - Side-by-side diffs
 - Line numbers
 - Navigation (n/N between sections)
 - Dark theme
 
 ### neovim.nix
+
 Neovim with LazyVim distribution:
 
 **Configuration**:
+
 - LazyVim as base configuration
 - Catppuccin Mocha colorscheme
 - Default editor for system
 - Aliases: `vi`, `vim`, `vimdiff` → `nvim`
 
 **Language Servers**:
+
 - Nix (nil)
 - Lua (lua-language-server)
 - TypeScript/JavaScript (tsserver)
@@ -130,12 +143,14 @@ Neovim with LazyVim distribution:
 - Rust (rust-analyzer)
 
 **Formatters**:
+
 - Nix (nixpkgs-fmt)
 - Lua (stylua)
 - JS/TS/JSON/YAML/Markdown (prettier)
 - Python (black)
 
 **Features**:
+
 - Treesitter syntax highlighting
 - Fuzzy finding (telescope with ripgrep, fd)
 - Git integration
@@ -146,6 +161,7 @@ Neovim with LazyVim distribution:
 - Persistent undo
 
 **LazyVim Extras**:
+
 - TypeScript/JavaScript support
 - JSON support
 - Python support
@@ -156,20 +172,24 @@ Neovim with LazyVim distribution:
 - Animations (mini.animate)
 
 ### hyprland.nix
+
 Hyprland window manager configuration:
 
 **Display**:
+
 - Multi-monitor support
 - HDMI-A-1: 4K@60Hz, 2x scaling (workspaces 1-5)
 - eDP-1: 1080p@60Hz, 1.5x scaling (workspaces 6-8)
 
 **Input**:
+
 - Keyboard: Swedish (se-nodeadkeys)
 - Repeat rate: 40, delay: 300ms
 - Numlock on by default
 - Touchpad: no natural scrolling
 
 **Appearance**:
+
 - Gaps: 8px inner, 16px outer
 - Border: 1px
 - Rounded corners: 5px
@@ -177,12 +197,14 @@ Hyprland window manager configuration:
 - Smooth animations
 
 **Window Rules**:
+
 - Global opacity: 95%
 - Ghostty → Workspace 1
 - Zed → Workspace 2
 - Firefox → Workspace 3
 
 **Keybindings**:
+
 - Main mod: SUPER (Windows key)
 - Window management (close, fullscreen, floating, etc.)
 - Workspace switching (1-9)
@@ -192,44 +214,53 @@ Hyprland window manager configuration:
 - Mouse bindings (move/resize)
 
 **Hyper Key Bindings** (Caps Lock):
+
 - T → Toggle terminal
 - Z → Toggle Zed
 - F → Toggle Firefox
 
 **Media Keys**:
+
 - Volume control (with notifications)
 - Brightness control (with notifications)
 - Screenshots (Print key)
 
 **Auto-start**:
+
 - Waybar (status bar)
 - Swaybg (wallpaper)
 - Mako (notifications)
 
 ### waybar.nix
+
 Status bar configuration:
 
 **Modules**:
+
 - Left: Hyprland workspaces
 - Center: Hyprland window title
 - Right: System tray, network, CPU, memory, battery, clock
 
 **Workspace behavior**:
+
 - Shows all workspaces
 - Highlights active workspace
 - Click to switch workspaces
 
 **System monitoring**:
+
 - CPU usage percentage
 - Memory usage percentage
 - Battery status with icon
 - Network status
 
 **Clock**:
+
 - 24-hour format
 - Full date on tooltip
 
 **Styling**:
+
 - Custom CSS in `waybar-style.gtk.css`
 - Catppuccin Mocha colors
 - Semi-transparent background
@@ -237,9 +268,11 @@ Status bar configuration:
 - Smooth transitions
 
 ### rofi.nix
+
 Application launcher with fuzzy search:
 
 **Features**:
+
 - Icon support (Papirus-Dark)
 - Fuzzy matching (fzf algorithm)
 - Launch applications, run commands, switch windows
@@ -247,6 +280,7 @@ Application launcher with fuzzy search:
 - 6 visible items
 
 **Appearance**:
+
 - Compact width: 420px
 - Semi-transparent background
 - Rounded corners: 6px
@@ -254,45 +288,55 @@ Application launcher with fuzzy search:
 - JetBrainsMono Nerd Font 9pt
 
 **Behavior**:
+
 - History enabled
 - Terminal: ghostty
 - Search placeholder: "Search..."
 
 ### ghostty.nix
+
 Modern terminal emulator:
 
 **Theme**: Catppuccin Mocha (built-in)
 
 **Font**:
+
 - Family: JetBrainsMono Nerd Font
 - Size: 14pt
 
 **Window**:
+
 - Padding: 14px (balanced)
 - No decorations (Hyprland manages borders)
 
 **Cursor**:
+
 - Style: bar
 - Blinking enabled
 
 **Shell**:
+
 - Integration: Zsh
 - Features: cursor, sudo, title
 
 **Behavior**:
+
 - Mouse: hide while typing
 - Copy on select: enabled
 - No close confirmation
 
 ### zed.nix
+
 Modern code editor:
 
 **Fonts**:
+
 - UI: 16pt
 - Buffer: JetBrainsMono Nerd Font 14pt
 - Terminal: JetBrainsMono Nerd Font 14pt
 
 **Editor**:
+
 - Tab size: 2 spaces
 - Soft wrap at editor width
 - Remove trailing whitespace on save
@@ -301,31 +345,38 @@ Modern code editor:
 - Autosave on focus change
 
 **Git**:
+
 - Git gutter on tracked files
 - Inline blame enabled
 
 **LSP**:
+
 - Rust: rust-analyzer (from nixpkgs)
 - Nix: nixd (from nixpkgs)
 - Auto-configured via home-manager
 
 **Terminal**:
+
 - Shell: Zsh
 - JetBrainsMono Nerd Font 14pt
 
 **Extensions**:
+
 - Nix language support
 - Catppuccin theme
 
 **Privacy**:
+
 - Telemetry disabled (diagnostics & metrics)
 
 **Vim mode**: Disabled (can be enabled)
 
 ### services.nix
+
 Background services:
 
 **Mako** - Notification daemon:
+
 - Size: 300x150px
 - Position: top-right corner
 - Margin: 30px from edges
@@ -337,14 +388,17 @@ Background services:
 - Colors: Catppuccin Mocha (auto-applied)
 
 ### theme.nix
+
 System theming:
 
 **Cursor**:
+
 - Theme: Banana
 - Size: 24px
 - GTK integration enabled
 
 **Wallpaper**:
+
 - Location: `~/.config/hypr/wallpaper.jpg`
 - Source: `../../backgrounds/minimalist-black-hole.png`
 - Displayed via swaybg (started in Hyprland)
@@ -354,6 +408,7 @@ System theming:
 ### To Add a Package
 
 Edit `packages.nix`:
+
 ```nix
 home.packages = with pkgs; [
   papirus-icon-theme
@@ -365,6 +420,7 @@ home.packages = with pkgs; [
 ### To Change Shell Alias
 
 Edit `shell.nix`:
+
 ```nix
 shellAliases = {
   ls = "eza";
@@ -376,6 +432,7 @@ shellAliases = {
 ### To Modify Eza Options
 
 Edit `shell.nix`:
+
 ```nix
 programs.eza = {
   enable = true;
@@ -393,6 +450,7 @@ programs.eza = {
 ### To Change Hyprland Keybinding
 
 Edit `hyprland.nix`:
+
 ```nix
 bind = [
   "$mainMod, Return, exec, ghostty"
@@ -404,6 +462,7 @@ bind = [
 ### To Modify Waybar Modules
 
 Edit `waybar.nix`:
+
 ```nix
 modules-right = ["tray" "network" "cpu" "memory" "battery" "clock"];
 # Or add your own modules
@@ -412,6 +471,7 @@ modules-right = ["tray" "network" "cpu" "memory" "battery" "clock"];
 ### To Customize Waybar Colors/Styling
 
 Edit `waybar-style.gtk.css`:
+
 ```css
 #clock {
   padding: 0 16px;
@@ -423,6 +483,7 @@ Edit `waybar-style.gtk.css`:
 ### To Change Rofi Size
 
 Edit `rofi.nix`:
+
 ```nix
 window = {
   width = mkLiteral "500px";  # Change width
@@ -432,6 +493,7 @@ window = {
 ### To Add Git Alias
 
 Edit `git.nix`:
+
 ```nix
 alias = {
   st = "status";
@@ -442,6 +504,7 @@ alias = {
 ### To Change Neovim Plugins
 
 Edit `neovim.nix`:
+
 ```nix
 -- Add to lazy.nvim spec
 { "author/plugin-name" },
@@ -450,6 +513,7 @@ Edit `neovim.nix`:
 ### To Modify Terminal Settings
 
 Edit `ghostty.nix`:
+
 ```nix
 settings = {
   font-size = 16;  # Larger font
@@ -459,11 +523,11 @@ settings = {
 
 ## Benefits of Modular Structure
 
-✅ **Organized** - Each app has its own file  
-✅ **Easy to find** - Know exactly where to look  
-✅ **Better git diffs** - Changes isolated per module  
-✅ **Reusable** - Easy to share specific configs  
-✅ **Scalable** - Add more modules without clutter  
+✅ **Organized** - Each app has its own file
+✅ **Easy to find** - Know exactly where to look
+✅ **Better git diffs** - Changes isolated per module
+✅ **Reusable** - Easy to share specific configs
+✅ **Scalable** - Add more modules without clutter
 ✅ **Maintainable** - Edit one thing without affecting others
 
 ## Catppuccin Theming
@@ -475,7 +539,7 @@ catppuccin = {
   enable = true;
   flavor = "mocha";  # mocha, macchiato, frappe, latte
   accent = "blue";   # blue, lavender, pink, mauve, red, etc.
-  
+
   # Per-app theming
   rofi.enable = true;
   waybar.enable = false;  # Using custom manual styling
@@ -496,11 +560,13 @@ sudo nixos-rebuild switch --flake .#guinea-pig
 ```
 
 Or use the shell alias:
+
 ```bash
-update
+nrs
 ```
 
 Then reload applications as needed:
+
 ```bash
 hyprctl reload              # Hyprland (or SUPER+SHIFT+R)
 pkill waybar && waybar &    # Waybar
@@ -514,6 +580,7 @@ To add a new program module:
 1. **Create the file**: `touch butcherrrr/newprogram.nix`
 
 2. **Add configuration**:
+
    ```nix
    { pkgs, ... }:
    {
@@ -525,6 +592,7 @@ To add a new program module:
    ```
 
 3. **Import in `../butcherrrr.nix`**:
+
    ```nix
    imports = [
      # ... existing imports
@@ -539,39 +607,52 @@ To add a new program module:
 Scripts are located in `../../scripts/` and installed to `~/.local/bin/`:
 
 ### toggle-terminal
+
 Bound to `Hyper+T` - Opens or focuses the terminal:
+
 - If ghostty is running: switches to workspace 1 and focuses it
 - If ghostty is not running: switches to workspace 1 and opens it
 - Ghostty is always bound to workspace 1 via window rules
 
 ### toggle-zed
+
 Bound to `Hyper+Z` - Opens or focuses Zed editor:
+
 - Same behavior as toggle-terminal but for workspace 2
 
 ### toggle-firefox
+
 Bound to `Hyper+F` - Opens or focuses Firefox:
+
 - Same behavior as toggle-terminal but for workspace 3
 
 ### volume
+
 Volume control with visual feedback:
+
 ```bash
 volume up     # Increase volume 5%
 volume down   # Decrease volume 5%
 volume mute   # Toggle mute
 ```
+
 Shows notification with current volume level and icon.
 
 ### brightness
+
 Brightness control with visual feedback:
+
 ```bash
 brightness up     # Increase brightness 5%
 brightness down   # Decrease brightness 5%
 ```
+
 Shows notification with current brightness level and icon.
 
 ## Shell Configuration
 
 ### Powerlevel10k
+
 The p10k theme configuration is NOT managed in the repo to avoid language detection issues on GitHub. Each machine configures its own prompt:
 
 1. Run `p10k configure` on the machine
@@ -579,23 +660,28 @@ The p10k theme configuration is NOT managed in the repo to avoid language detect
 3. It persists across rebuilds (not managed by home-manager)
 
 To reconfigure at any time:
+
 ```bash
 p10k configure
 ```
 
 ### Eza Configuration
+
 Eza is configured with sensible defaults and Zsh integration:
 
 **Built-in aliases** (from `enableZshIntegration`):
+
 - Additional helpful aliases beyond what's in shellAliases
 - Auto-completion for eza commands
 - Better integration with Zsh's file completion
 
 **Custom options**:
+
 - `--group-directories-first` - Directories listed before files
 - `--header` - Show column headers in long format
 
 **All features**:
+
 ```bash
 eza               # Basic listing with icons
 eza -l            # Long format with details
@@ -605,7 +691,9 @@ eza -l --git      # Show git status (auto-enabled)
 ```
 
 ### Syntax Highlighting
+
 Zsh syntax highlighting is enabled with custom colors:
+
 - **Paths**: No highlighting (to avoid the "red = error" association)
 - **Slashes**: No highlighting
 - **Other elements**: Use default colors from theme
@@ -615,6 +703,7 @@ This makes the shell cleaner and less visually noisy.
 ## Tips & Tricks
 
 ### Finding Home Manager Options
+
 ```bash
 # Search for available options
 home-manager option programs.ghostty
@@ -625,12 +714,14 @@ home-manager option programs.eza
 ```
 
 ### Testing Changes Without Committing
+
 ```bash
 sudo nixos-rebuild test --flake .#$(hostname)
 # Changes are temporary until reboot
 ```
 
 ### Viewing Logs
+
 ```bash
 # Hyprland logs
 cat ~/.local/share/hyprland/hyprland.log
@@ -644,6 +735,7 @@ journalctl -u greetd -b
 ```
 
 ### Conditional Configuration
+
 You can use Nix expressions for conditional config:
 
 ```nix

@@ -62,6 +62,7 @@ This file contains host-specific settings:
 - **Hardware settings**: GPU drivers, power management, etc.
 
 **Example:**
+
 ```nix
 { config, pkgs, lib, hostname, user, ... }:
 
@@ -99,7 +100,8 @@ This file is auto-generated and contains hardware-specific settings:
 - **Swap**: Swap file or partition configuration
 - **Network interfaces**: Detected network hardware
 
-**Important**: 
+**Important**:
+
 - Never manually edit unless you know what you're doing
 - Never copy between machines (each has unique hardware)
 - Regenerate if you change hardware: `sudo nixos-generate-config`
@@ -109,7 +111,9 @@ This file is auto-generated and contains hardware-specific settings:
 Choose which modules to import based on host type:
 
 ### Desktop/Laptop
+
 Full graphical environment with Hyprland:
+
 ```nix
 imports = [
   ./hardware-configuration.nix
@@ -120,7 +124,9 @@ imports = [
 ```
 
 ### Server
+
 Minimal setup without GUI:
+
 ```nix
 imports = [
   ./hardware-configuration.nix
@@ -129,13 +135,16 @@ imports = [
 ```
 
 Then add server-specific services in `default.nix`:
+
 ```nix
 services.openssh.enable = true;
 networking.firewall.allowedTCPPorts = [ 22 ];
 ```
 
 ### Laptop (with power management)
+
 Desktop setup plus power optimization:
+
 ```nix
 imports = [
   ./hardware-configuration.nix
@@ -154,9 +163,11 @@ services.libinput.enable = true;
 Located in `modules/`:
 
 ### core.nix
+
 **Required for all hosts**
 
 Provides:
+
 - User account configuration
 - Networking (iwd for WiFi)
 - Keyboard layout and keyd (Caps Lock → Hyper)
@@ -167,9 +178,11 @@ Provides:
 - Zsh system-wide
 
 ### greetd.nix
+
 **For desktop/laptop hosts**
 
 Provides:
+
 - Minimal display manager
 - Auto-login to Hyprland
 - Starts window manager automatically
@@ -177,9 +190,11 @@ Provides:
 Skip this for servers or if you want manual login.
 
 ### hyprland.nix
+
 **For desktop/laptop hosts**
 
 Provides:
+
 - Hyprland window manager (system-level)
 - XDG desktop portals (Hyprland + GTK)
 - Wayland utilities (wl-clipboard, grim, slurp)
@@ -189,12 +204,14 @@ User-specific Hyprland config is in `home/butcherrrr/hyprland.nix`.
 ## Host-Specific Configuration Examples
 
 ### Different Timezone
+
 ```nix
 # In hosts/YOUR-HOST/default.nix
 time.timeZone = "America/New_York";
 ```
 
 ### Different Kernel
+
 ```nix
 # Latest kernel
 boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -204,12 +221,14 @@ boot.kernelPackages = pkgs.linuxPackages_6_6;
 ```
 
 ### NVIDIA Graphics
+
 ```nix
 services.xserver.videoDrivers = [ "nvidia" ];
 hardware.nvidia.modesetting.enable = true;
 ```
 
 ### Static IP
+
 ```nix
 networking.interfaces.eth0.ipv4.addresses = [{
   address = "192.168.1.100";
@@ -218,6 +237,7 @@ networking.interfaces.eth0.ipv4.addresses = [{
 ```
 
 ### Encrypted Drive
+
 ```nix
 boot.initrd.luks.devices."cryptroot" = {
   device = "/dev/disk/by-uuid/YOUR-UUID";
@@ -247,6 +267,7 @@ nixosConfigurations = {
 ```
 
 **Important**: The hostname in three places must match:
+
 1. Directory name: `hosts/new-hostname/`
 2. Flake config: `new-hostname = mkSystem { hostname = "new-hostname"; ... }`
 3. Actual machine hostname (set by `networking.hostName`)
@@ -254,26 +275,31 @@ nixosConfigurations = {
 ## Rebuilding
 
 ### Current Host
+
 ```bash
 sudo nixos-rebuild switch --flake .#$(hostname)
 ```
 
 Or use the shell alias:
+
 ```bash
-update
+nrs
 ```
 
 ### Specific Host
+
 ```bash
 sudo nixos-rebuild switch --flake .#guinea-pig
 ```
 
 ### Test Without Committing
+
 ```bash
 sudo nixos-rebuild test --flake .#$(hostname)
 ```
 
 ### Build Only (Don't Activate)
+
 ```bash
 sudo nixos-rebuild build --flake .#$(hostname)
 ```
@@ -281,26 +307,32 @@ sudo nixos-rebuild build --flake .#$(hostname)
 ## Troubleshooting
 
 ### Can't Find Host Configuration
+
 **Error**: `error: attribute 'nixosConfigurations.YOUR-HOST' missing`
 
 **Solution**: Check that hostname matches in:
+
 - Directory name
 - `flake.nix` config
 - `networking.hostName` in `default.nix`
 
 ### Hardware Config Missing
+
 **Error**: `error: getting status of '/nix/store/.../hardware-configuration.nix': No such file or directory`
 
 **Solution**: Generate hardware config:
+
 ```bash
 sudo nixos-generate-config
 cp /etc/nixos/hardware-configuration.nix hosts/YOUR-HOST/
 ```
 
 ### Module Not Found
+
 **Error**: `error: path '/etc/nixos/modules/core.nix' does not exist`
 
 **Solution**: Check import paths use relative paths:
+
 ```nix
 imports = [
   ../../modules/core.nix  # Correct (relative)
@@ -308,6 +340,7 @@ imports = [
 ```
 
 Not:
+
 ```nix
 imports = [
   /etc/nixos/modules/core.nix  # Wrong (absolute)
@@ -315,7 +348,9 @@ imports = [
 ```
 
 ### Build Succeeds But System Won't Boot
+
 **Solution**: Boot into previous generation from bootloader, then:
+
 ```bash
 sudo nixos-rebuild switch --rollback
 ```

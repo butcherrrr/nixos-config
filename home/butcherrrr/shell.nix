@@ -29,7 +29,7 @@
       ll = "eza -l";
       la = "eza -la";
       lt = "eza --tree";
-      update = "sudo nixos-rebuild switch --flake .#$(hostname)";
+      nrs = "sudo nixos-rebuild switch --flake .#$(hostname)";
     };
 
     oh-my-zsh = {
