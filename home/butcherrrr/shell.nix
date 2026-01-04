@@ -5,6 +5,18 @@
   # Shell Configuration
   # ============================================================================
 
+  # Eza - modern ls replacement
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    git = true;
+    icons = true;
+    extraOptions = [
+      "--group-directories-first"
+      "--header"
+    ];
+  };
+
   # Zsh shell
   programs.zsh = {
     enable = true;
@@ -13,8 +25,10 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
+      ls = "eza";
+      ll = "eza -l";
+      la = "eza -la";
+      lt = "eza --tree";
       update = "sudo nixos-rebuild switch --flake .#$(hostname)";
     };
 
