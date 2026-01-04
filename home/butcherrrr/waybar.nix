@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   # ============================================================================
@@ -124,7 +124,7 @@
       };
     };
 
-    # Styles loaded from separate CSS file
-    style = builtins.readFile ./waybar-style.css;
+    # Styles loaded from separate GTK CSS file
+    style = builtins.readFile ./waybar-style.gtk.css;
   };
 }
