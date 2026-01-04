@@ -34,6 +34,7 @@
     ./butcherrrr/packages.nix    # User packages
     ./butcherrrr/shell.nix       # Zsh and zoxide
     ./butcherrrr/git.nix         # Git configuration
+    ./butcherrrr/neovim.nix      # Neovim with LazyVim
     ./butcherrrr/hyprland.nix    # Hyprland window manager
     ./butcherrrr/waybar.nix      # Status bar
     ./butcherrrr/rofi.nix        # Application launcher

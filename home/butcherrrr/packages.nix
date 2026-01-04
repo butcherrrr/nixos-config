@@ -25,7 +25,6 @@
     rustup
 
     # Applications
-    neovim
     firefox
   ];
 
