@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   # ============================================================================
@@ -14,7 +14,7 @@
 
       # Font configuration
       font-family = "JetBrainsMono Nerd Font";
-      font-size = 11;
+      font-size = 14;
 
       # Window configuration
       window-padding-x = 14;
