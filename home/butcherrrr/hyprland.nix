@@ -52,8 +52,8 @@
 
       # General settings
       general = {
-        gaps_in = 8;
-        gaps_out = 16;
+        gaps_in = 6;
+        gaps_out = 14;
         border_size = 1;
         layout = "dwindle";
         allow_tearing = false;
@@ -61,7 +61,7 @@
 
       # Decoration
       decoration = {
-        rounding = 5;
+        rounding = 2;
         blur = {
           enabled = true;
           size = 3;
