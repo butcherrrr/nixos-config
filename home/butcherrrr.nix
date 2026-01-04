@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # ============================================================================
@@ -33,6 +33,7 @@
   imports = [
     ./butcherrrr/packages.nix    # User packages
     ./butcherrrr/shell.nix       # Zsh and zoxide
+    ./butcherrrr/git.nix         # Git configuration
     ./butcherrrr/hyprland.nix    # Hyprland window manager
     ./butcherrrr/waybar.nix      # Status bar
     ./butcherrrr/rofi.nix        # Application launcher

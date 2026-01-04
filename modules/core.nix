@@ -150,7 +150,6 @@
 
   # Packages installed system-wide (available to all users)
   environment.systemPackages = with pkgs; [
-    git
     curl
     wget
     ripgrep
