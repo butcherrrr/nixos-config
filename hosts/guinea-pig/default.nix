@@ -1,6 +1,6 @@
 # Host-specific configuration for: nixos
 # This file defines settings unique to this particular machine
-{ hostname, user, ... }:
+{ hostname, ... }:
 
 {
   # ============================================================================

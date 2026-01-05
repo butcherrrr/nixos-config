@@ -7,7 +7,7 @@
 # 3. Customize the imports below (add/remove modules as needed)
 # 4. Update timezone, locale, and other settings for this specific machine
 # 5. Add your host to flake.nix in nixosConfigurations
-{ hostname, user, ... }:
+{ hostname, ... }:
 
 {
   # ============================================================================
