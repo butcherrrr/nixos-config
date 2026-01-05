@@ -3,6 +3,7 @@
 Multi-host NixOS configuration with Hyprland, managed through Nix flakes.
 
 For detailed information, see:
+
 - `HOSTS.md` - Advanced multi-host management topics
 - `hosts/README.md` - Quick host directory reference
 - `home/butcherrrr/README.md` - Home Manager modules documentation
@@ -50,6 +51,7 @@ nixos-config/
 ## Features
 
 ### Window Manager & Desktop
+
 - **Hyprland** - Wayland compositor with animations and effects
 - **Hyprlock** - Lock screen with auto-lock and power button integration
 - **Waybar** - Status bar with system information
@@ -58,6 +60,7 @@ nixos-config/
 - **Greetd** - Display manager with auto-login + hyprlock on boot
 
 ### Applications
+
 - **Ghostty** - Modern terminal emulator
 - **Neovim** - Text editor with LazyVim configuration
 - **Zed** - Modern code editor with Nix LSP
@@ -67,10 +70,12 @@ nixos-config/
 - **Obsidian** - Note-taking app
 - **imv** - Wayland-native image viewer
 - **mpv** - Video player
-</text>
+  </text>
 
 <old_text line=54>
+
 ### Shell & Tools
+
 - **Zsh** - Shell with oh-my-zsh and powerlevel10k
 - **Eza** - Modern `ls` replacement with icons and git integration
 - **Zoxide** - Smarter `cd` command
@@ -79,6 +84,7 @@ nixos-config/
 - **Bluetui** - Bluetooth manager (TUI)
 
 ### Shell & Tools
+
 - **Zsh** - Shell with oh-my-zsh and powerlevel10k
 - **Eza** - Modern `ls` replacement with icons and git integration
 - **Zoxide** - Smarter `cd` command
@@ -87,6 +93,7 @@ nixos-config/
 - **Bluetui** - Bluetooth manager (TUI)
 
 ### System Features
+
 - **PipeWire** - Modern audio server (PulseAudio + ALSA support)
 - **Bluetooth** - Full Bluetooth support with experimental features
 - **Docker** - Container runtime with on-demand startup
@@ -99,10 +106,11 @@ nixos-config/
 - **Home Manager** - Declarative user environment
 - **Multi-host** - Manage multiple machines from one repo
 - **LUKS encryption ready** - Secure disk encryption support
-</text>
+  </text>
 
 <old_text line=81>
 Or use the shell alias:
+
 ```bash
 update
 ```
@@ -116,6 +124,7 @@ sudo nixos-rebuild switch --flake .#guinea-pig
 Replace `guinea-pig` with your hostname.
 
 Or use the shell alias:
+
 ```bash
 update
 ```
@@ -182,9 +191,10 @@ nmcli device wifi connect "SSID" password "PASSWORD"
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
-# Clone your config
-git clone https://github.com/YOUR-USERNAME/nixos-config /etc/nixos/config
-cd /etc/nixos/config
+# Clone your config to home folder
+cd ~
+git clone https://github.com/YOUR-USERNAME/nixos-config
+cd nixos-config
 
 # Copy hardware config
 cp /etc/nixos/hardware-configuration.nix hosts/NEW-HOSTNAME/
@@ -216,7 +226,7 @@ sudo nixos-rebuild switch --flake .#$(hostname)
 
 In `hosts/YOUR-HOSTNAME/default.nix`:
 
-**Desktop/Laptop:** `core.nix` + `greetd.nix` + `hyprland.nix`  
+**Desktop/Laptop:** `core.nix` + `greetd.nix` + `hyprland.nix`
 **Server:** `core.nix` only
 
 See `HOSTS.md` for more host type examples.
@@ -225,8 +235,8 @@ See `HOSTS.md` for more host type examples.
 
 All configuration is managed through **home-manager modules** in `home/butcherrrr/`.
 
-**System packages:** Edit `modules/core.nix`  
-**User packages & config:** Edit files in `home/butcherrrr/`  
+**System packages:** Edit `modules/core.nix`
+**User packages & config:** Edit files in `home/butcherrrr/`
 **Per-host settings:** Edit `hosts/YOUR-HOSTNAME/default.nix`
 
 See `home/butcherrrr/README.md` for detailed module documentation.
@@ -234,30 +244,35 @@ See `home/butcherrrr/README.md` for detailed module documentation.
 ### Quick Customization Guide
 
 **Add a package:**
+
 ```bash
 nano home/butcherrrr/packages.nix
 # Add package to home.packages list
 ```
 
 **Add shell alias:**
+
 ```bash
 nano home/butcherrrr/shell.nix
 # Add to shellAliases section
 ```
 
 **Change Hyprland keybinding:**
+
 ```bash
 nano home/butcherrrr/hyprland.nix
 # Modify bind section
 ```
 
 **Change theme:**
+
 ```bash
 nano home/butcherrrr.nix
 # Edit catppuccin.flavor or catppuccin.accent
 ```
 
 After editing, rebuild:
+
 ```bash
 sudo nixos-rebuild switch --flake .#$(hostname)
 ```
@@ -265,12 +280,13 @@ sudo nixos-rebuild switch --flake .#$(hostname)
 ### Catppuccin Theming
 
 Change theme globally by editing `home/butcherrrr.nix`:
+
 ```nix
 catppuccin = {
   enable = true;
   flavor = "mocha";     # mocha, macchiato, frappe, latte
   accent = "blue";      # blue, lavender, pink, mauve, red, etc.
-  
+
   # Per-app theming
   rofi.enable = true;
   waybar.enable = false;  # Using custom CSS styling
@@ -295,59 +311,60 @@ All applications will automatically use consistent colors. Spotify is themed via
 
 ### Main Keybindings
 
-| Key | Action |
-|-----|--------|
-| `SUPER + Return` | Terminal (Ghostty) |
-| `SUPER + Space` | App launcher (Rofi) |
-| `SUPER + W` | Close window |
-| `SUPER + M` | Exit Hyprland |
-| `SUPER + F` | Fullscreen |
-| `SUPER + V` | Toggle floating |
-| `SUPER + 1-9` | Switch workspace |
-| `SUPER + SHIFT + 1-9` | Move window to workspace |
-| `SUPER + Arrows/HJKL` | Move focus |
-| `SUPER + SHIFT + Arrows/HJKL` | Move window |
-| `SUPER + Mouse` | Move/resize window |
-| `Print` | Screenshot (selection) |
+| Key                           | Action                   |
+| ----------------------------- | ------------------------ |
+| `SUPER + Return`              | Terminal (Ghostty)       |
+| `SUPER + Space`               | App launcher (Rofi)      |
+| `SUPER + W`                   | Close window             |
+| `SUPER + M`                   | Exit Hyprland            |
+| `SUPER + F`                   | Fullscreen               |
+| `SUPER + V`                   | Toggle floating          |
+| `SUPER + 1-9`                 | Switch workspace         |
+| `SUPER + SHIFT + 1-9`         | Move window to workspace |
+| `SUPER + Arrows/HJKL`         | Move focus               |
+| `SUPER + SHIFT + Arrows/HJKL` | Move window              |
+| `SUPER + Mouse`               | Move/resize window       |
+| `Print`                       | Screenshot (selection)   |
 
 ### Hyper Key Bindings (Caps Lock)
 
 Caps Lock is remapped to Hyper (Ctrl+Shift+Alt+Super) via keyd:
 
-| Key | Action |
-|-----|--------|
+| Key              | Action                        |
+| ---------------- | ----------------------------- |
 | `Hyper + Return` | Toggle terminal (workspace 1) |
-| `Hyper + E` | Toggle Zed (workspace 2) |
-| `Hyper + B` | Toggle Firefox (workspace 3) |
-| `Hyper + H/L` | Previous/Next workspace |
-| `Hyper + 1-9` | Switch to workspace 1-9 |
+| `Hyper + E`      | Toggle Zed (workspace 2)      |
+| `Hyper + B`      | Toggle Firefox (workspace 3)  |
+| `Hyper + H/L`    | Previous/Next workspace       |
+| `Hyper + 1-9`    | Switch to workspace 1-9       |
 
-Press Caps Lock alone = Escape  
+Press Caps Lock alone = Escape
 Hold Caps Lock + key = Hyper modifier
 </text>
 
 <old_text line=274>
+
 ### Media Keys
 
-| Key | Action |
-|-----|--------|
-| `F1` / `XF86AudioMute` | Mute/unmute |
-| `F2` / `XF86AudioLowerVolume` | Volume down |
-| `F3` / `XF86AudioRaiseVolume` | Volume up |
+| Key                            | Action          |
+| ------------------------------ | --------------- |
+| `F1` / `XF86AudioMute`         | Mute/unmute     |
+| `F2` / `XF86AudioLowerVolume`  | Volume down     |
+| `F3` / `XF86AudioRaiseVolume`  | Volume up       |
 | `F5` / `XF86MonBrightnessDown` | Brightness down |
-| `F6` / `XF86MonBrightnessUp` | Brightness up |
+| `F6` / `XF86MonBrightnessUp`   | Brightness up   |
 
 All media key actions show notifications with visual feedback.
 
 ### Media Keys
 
-| Key | Action |
-|-----|--------|
-| `F1` / `XF86AudioMute` | Mute/unmute |
-| `F2` / `XF86AudioLowerVolume` | Volume down |
-| `F3` / `XF86AudioRaiseVolume` | Volume up |
+| Key                            | Action          |
+| ------------------------------ | --------------- |
+| `F1` / `XF86AudioMute`         | Mute/unmute     |
+| `F2` / `XF86AudioLowerVolume`  | Volume down     |
+| `F3` / `XF86AudioRaiseVolume`  | Volume up       |
 | `F5` / `XF86MonBrightnessDown` | Brightness down |
-| `F6` / `XF86MonBrightnessUp` | Brightness up |
+| `F6` / `XF86MonBrightnessUp`   | Brightness up   |
 
 All media key actions show notifications with visual feedback.
 
@@ -365,6 +382,7 @@ lt      # eza --tree (tree view)
 ```
 
 Features enabled:
+
 - Icons for file types
 - Git status indicators
 - Directories listed first
@@ -385,6 +403,7 @@ Learns your most-used directories over time.
 ## Troubleshooting
 
 **Dirty git tree warning:**
+
 ```bash
 git status               # Check for uncommitted files
 git add flake.lock       # Commit flake.lock
@@ -392,17 +411,20 @@ git commit -m "Update flake.lock"
 ```
 
 **Build errors:**
+
 ```bash
 nix flake update         # Update dependencies
 sudo nixos-rebuild switch --flake .#$(hostname) --show-trace
 ```
 
 **Test without switching:**
+
 ```bash
 sudo nixos-rebuild test --flake .#$(hostname)
 ```
 
 **Hyprland not starting:**
+
 ```bash
 # Check logs
 journalctl -u greetd -b
@@ -412,6 +434,7 @@ Hyprland
 ```
 
 **Media keys not working:**
+
 ```bash
 # Check key detection
 wev
@@ -419,6 +442,7 @@ wev
 ```
 
 **WiFi not connecting:**
+
 ```bash
 # Use impala TUI
 impala
