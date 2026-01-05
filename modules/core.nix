@@ -25,7 +25,8 @@
     # "wheel" - allows using sudo for administrative tasks
     # "network" - allows managing network connections without sudo
     # "netdev" - allows managing network devices (required for iwd/impala)
-    extraGroups = [ "wheel" "network" "netdev" ];
+    # "docker" - allows using Docker without sudo
+    extraGroups = [ "wheel" "network" "netdev" "docker" ];
 
     # Default shell
     shell = pkgs.zsh;
@@ -142,6 +143,16 @@
   };
 
   # ============================================================================
+  # Docker Configuration
+  # ============================================================================
+
+  # Enable Docker
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;  # Start Docker daemon on boot
+  };
+
+  # ============================================================================
   # Fonts Configuration
   # ============================================================================
 
@@ -165,6 +176,7 @@
     bluetui  # Bluetooth manager
     btop  # System monitor
     libnotify
+    docker-compose
   ];
 
   # Enable zsh system-wide
