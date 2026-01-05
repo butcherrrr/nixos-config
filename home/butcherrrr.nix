@@ -25,6 +25,7 @@
     mako.enable = true;
     hyprland.enable = true;
     hyprlock.enable = false;  # Using custom configuration in hyprlock.nix
+    fzf.enable = true;
   };
 
   # ============================================================================

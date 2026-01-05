@@ -29,7 +29,7 @@
     firefox
     slack
     obsidian
-    
+
     # Media viewers
     imv    # Image viewer
     mpv    # Video player
@@ -44,22 +44,22 @@
     source = ../../scripts/toggle-terminal.sh;
     executable = true;
   };
-  
+
   home.file.".local/bin/toggle-zed" = {
     source = ../../scripts/toggle-zed.sh;
     executable = true;
   };
-  
+
   home.file.".local/bin/toggle-firefox" = {
     source = ../../scripts/toggle-firefox.sh;
     executable = true;
   };
-  
+
   home.file.".local/bin/volume" = {
     source = ../../scripts/volume.sh;
     executable = true;
   };
-  
+
   home.file.".local/bin/brightness" = {
     source = ../../scripts/brightness.sh;
     executable = true;
