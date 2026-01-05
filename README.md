@@ -34,7 +34,9 @@ nixos-config/
 │       ├── rofi.nix       # Application launcher
 │       ├── ghostty.nix    # Terminal emulator
 │       ├── zed.nix        # Zed editor
+│       ├── hyprlock.nix   # Lock screen configuration
 │       ├── services.nix   # Mako notifications
+│       ├── spicetify.nix  # Spotify theming
 │       └── theme.nix      # Cursor theme and wallpaper
 ├── scripts/               # Custom shell scripts
 ├── config/                # Additional config files (nvim)
@@ -49,16 +51,32 @@ nixos-config/
 
 ### Window Manager & Desktop
 - **Hyprland** - Wayland compositor with animations and effects
+- **Hyprlock** - Lock screen with auto-lock and power button integration
 - **Waybar** - Status bar with system information
 - **Rofi** - Application launcher with fuzzy search
 - **Mako** - Notification daemon
-- **Greetd + tuigreet** - TUI login screen with Catppuccin Mocha theme
+- **Greetd** - Display manager with auto-login + hyprlock on boot
 
 ### Applications
 - **Ghostty** - Modern terminal emulator
 - **Neovim** - Text editor with LazyVim configuration
-- **Zed** - Modern code editor
+- **Zed** - Modern code editor with Nix LSP
 - **Firefox** - Web browser
+- **Spotify** - Music player with Catppuccin theme (via Spicetify)
+- **Slack** - Team communication
+- **Obsidian** - Note-taking app
+- **imv** - Wayland-native image viewer
+- **mpv** - Video player
+</text>
+
+<old_text line=54>
+### Shell & Tools
+- **Zsh** - Shell with oh-my-zsh and powerlevel10k
+- **Eza** - Modern `ls` replacement with icons and git integration
+- **Zoxide** - Smarter `cd` command
+- **Git + Delta** - Version control with syntax-highlighted diffs
+- **Impala** - WiFi manager (TUI)
+- **Bluetui** - Bluetooth manager (TUI)
 
 ### Shell & Tools
 - **Zsh** - Shell with oh-my-zsh and powerlevel10k
@@ -71,10 +89,23 @@ nixos-config/
 ### System Features
 - **PipeWire** - Modern audio server (PulseAudio + ALSA support)
 - **Bluetooth** - Full Bluetooth support with experimental features
+- **Docker** - Container runtime with on-demand startup
 - **Keyd** - Caps Lock remapped to Hyper key (Ctrl+Shift+Alt+Super)
+- **Swayidle** - Auto-lock after inactivity, lock before sleep
+- **Power button** - Locks screen (hold to force shutdown)
+- **Webcam** - Built-in support with video group access
 - **Catppuccin** - Consistent theming across all applications
+- **Spicetify** - Spotify theming with Catppuccin Mocha
 - **Home Manager** - Declarative user environment
 - **Multi-host** - Manage multiple machines from one repo
+- **LUKS encryption ready** - Secure disk encryption support
+</text>
+
+<old_text line=81>
+Or use the shell alias:
+```bash
+update
+```
 
 ## Rebuilding
 
@@ -245,10 +276,20 @@ catppuccin = {
   waybar.enable = false;  # Using custom CSS styling
   mako.enable = true;
   hyprland.enable = true;
+  hyprlock.enable = false;  # Using custom config
+  fzf.enable = true;
 };
 ```
 
-All applications will automatically use consistent colors.
+All applications will automatically use consistent colors. Spotify is themed via Spicetify.
+</text>
+
+<old_text line=247>
+| `SUPER + Space` | App launcher (Rofi) |
+| `SUPER + W` | Close window |
+| `SUPER + M` | Exit Hyprland |
+| `SUPER + F` | Fullscreen |
+| `SUPER + V` | Toggle floating |
 
 ## Hyprland Keybindings
 
@@ -275,12 +316,28 @@ Caps Lock is remapped to Hyper (Ctrl+Shift+Alt+Super) via keyd:
 
 | Key | Action |
 |-----|--------|
-| `Hyper + T` | Toggle terminal (workspace 1) |
-| `Hyper + Z` | Toggle Zed (workspace 2) |
-| `Hyper + F` | Toggle Firefox (workspace 3) |
+| `Hyper + Return` | Toggle terminal (workspace 1) |
+| `Hyper + E` | Toggle Zed (workspace 2) |
+| `Hyper + B` | Toggle Firefox (workspace 3) |
+| `Hyper + H/L` | Previous/Next workspace |
+| `Hyper + 1-9` | Switch to workspace 1-9 |
 
 Press Caps Lock alone = Escape  
 Hold Caps Lock + key = Hyper modifier
+</text>
+
+<old_text line=274>
+### Media Keys
+
+| Key | Action |
+|-----|--------|
+| `F1` / `XF86AudioMute` | Mute/unmute |
+| `F2` / `XF86AudioLowerVolume` | Volume down |
+| `F3` / `XF86AudioRaiseVolume` | Volume up |
+| `F5` / `XF86MonBrightnessDown` | Brightness down |
+| `F6` / `XF86MonBrightnessUp` | Brightness up |
+
+All media key actions show notifications with visual feedback.
 
 ### Media Keys
 

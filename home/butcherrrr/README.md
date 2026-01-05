@@ -16,7 +16,9 @@ butcherrrr/
 ├── rofi.nix             # Application launcher configuration
 ├── ghostty.nix          # Terminal emulator configuration
 ├── zed.nix              # Zed editor configuration
+├── hyprlock.nix         # Lock screen configuration
 ├── services.nix         # Background services (mako notifications)
+├── spicetify.nix        # Spotify theming
 ├── theme.nix            # Cursor theming and wallpaper
 └── README.md            # This file
 ```
@@ -36,7 +38,9 @@ imports = [
   ./butcherrrr/rofi.nix
   ./butcherrrr/ghostty.nix
   ./butcherrrr/zed.nix
+  ./butcherrrr/hyprlock.nix
   ./butcherrrr/services.nix
+  ./butcherrrr/spicetify.nix
   ./butcherrrr/theme.nix
 ];
 ```
@@ -49,13 +53,15 @@ User packages and custom scripts:
 
 - **Packages**: Only packages WITHOUT home-manager modules
   - Development tools (nodejs, python3, go, rustup)
-  - Applications (firefox)
-  - System utilities (fastfetch, brightnessctl, swaybg)
+  - Applications (firefox, slack, obsidian)
+  - Media viewers (imv, mpv)
+  - Wayland utilities (swaybg, swayidle)
+  - System utilities (fastfetch, brightnessctl)
   - Icons (papirus-icon-theme)
 - **Scripts**: Custom scripts installed to `~/.local/bin/`
-  - `toggle-terminal` - Focus or launch terminal (Hyper+T)
-  - `toggle-zed` - Focus or launch Zed editor (Hyper+Z)
-  - `toggle-firefox` - Focus or launch Firefox (Hyper+F)
+  - `toggle-terminal` - Focus or launch terminal (Hyper+Return)
+  - `toggle-zed` - Focus or launch Zed editor (Hyper+E)
+  - `toggle-firefox` - Focus or launch Firefox (Hyper+B)
   - `volume` - Volume control with notifications
   - `brightness` - Brightness control with notifications
 
@@ -88,6 +94,14 @@ Shell configuration with modern tools:
 - Jump to directories with `z <pattern>`
 - Interactive selection with `zi`
 - Full Zsh integration
+
+**fzf** - Fuzzy finder:
+
+- Ctrl+R - Fuzzy search command history
+- Ctrl+T - Fuzzy find files
+- Alt+C - Fuzzy find and cd into directories
+- Catppuccin Mocha colors
+- Integrated with Zsh and other tools
 
 ### git.nix
 
@@ -230,6 +244,8 @@ Hyprland window manager configuration:
 - Waybar (status bar)
 - Swaybg (wallpaper)
 - Mako (notifications)
+- Swayidle (auto-lock and power management)
+- Hyprlock (immediate lock on boot for auto-login)
 
 ### waybar.nix
 
@@ -369,7 +385,31 @@ Modern code editor:
 
 - Telemetry disabled (diagnostics & metrics)
 
-**Vim mode**: Disabled (can be enabled)
+**Vim mode**: Enabled
+
+### hyprlock.nix
+
+Lock screen configuration:
+
+**Features**:
+
+- Blurred wallpaper background
+- Large clock display (time only)
+- Date display below clock
+- Password input field
+- Catppuccin Mocha colors
+- No fade animations (instant appearance)
+
+**Behavior**:
+
+- Runs immediately on boot (for auto-login security)
+- Triggered by power button press
+- Auto-locks after 5 minutes of inactivity (via swayidle)
+- Locks before system sleep/suspend
+
+**Keybinding**:
+
+- `Super+L` - Manual lock
 
 ### services.nix
 
@@ -377,15 +417,29 @@ Background services:
 
 **Mako** - Notification daemon:
 
-- Size: 300x150px
+- Size: 350x100px
 - Position: top-right corner
-- Margin: 30px from edges
-- Padding: 10px
-- Border: 1px, 5px radius
-- Font: JetBrainsMono Nerd Font 9pt
-- Timeout: 5 seconds (critical: no timeout)
+- Margin: 20px from edges
+- Padding: 15px vertical, 20px horizontal
+- Border: 2px, 2px radius
+- Font: JetBrainsMono Nerd Font 11pt
+- Timeout: 3 seconds (critical: no timeout)
 - Layer: overlay (above waybar)
 - Colors: Catppuccin Mocha (auto-applied)
+- Progress bar support for volume/brightness
+
+### spicetify.nix
+
+Spotify theming with Spicetify:
+
+**Theme**: Catppuccin Mocha
+
+**Extensions**:
+
+- Hide Podcasts - Cleaner interface
+- Better Shuffle - Improved shuffle algorithm
+
+**Note**: Spotify package is managed by spicetify, not in packages.nix
 
 ### theme.nix
 
@@ -608,7 +662,7 @@ Scripts are located in `../../scripts/` and installed to `~/.local/bin/`:
 
 ### toggle-terminal
 
-Bound to `Hyper+T` - Opens or focuses the terminal:
+Bound to `Hyper+Return` - Opens or focuses the terminal:
 
 - If ghostty is running: switches to workspace 1 and focuses it
 - If ghostty is not running: switches to workspace 1 and opens it
@@ -616,13 +670,13 @@ Bound to `Hyper+T` - Opens or focuses the terminal:
 
 ### toggle-zed
 
-Bound to `Hyper+Z` - Opens or focuses Zed editor:
+Bound to `Hyper+E` - Opens or focuses Zed editor:
 
 - Same behavior as toggle-terminal but for workspace 2
 
 ### toggle-firefox
 
-Bound to `Hyper+F` - Opens or focuses Firefox:
+Bound to `Hyper+B` - Opens or focuses Firefox:
 
 - Same behavior as toggle-terminal but for workspace 3
 
