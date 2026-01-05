@@ -27,7 +27,6 @@
 
     # Applications
     firefox
-    spotify
     slack
     obsidian
     

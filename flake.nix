@@ -26,6 +26,10 @@
 
     # Catppuccin theme for automatic theming across 70+ applications
     catppuccin.url = "github:catppuccin/nix";
+
+    # Spicetify - Spotify theming
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # ============================================================================
@@ -33,7 +37,7 @@
   # ============================================================================
 
   # Outputs - what this flake produces (your system configurations)
-  outputs = { self, nixpkgs, home-manager, catppuccin, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, spicetify-nix, ... }:
     let
       # ========================================================================
       # Helper Function: mkSystem
@@ -55,6 +59,7 @@
           # Makes these values accessible in all your configuration files
           specialArgs = {
             inherit hostname user;
+            inherit spicetify-nix;
           };
 
           # Modules that make up this system configuration
@@ -81,6 +86,7 @@
               # Makes hostname and user available in home-manager config
               home-manager.extraSpecialArgs = {
                 inherit hostname user;
+                inherit spicetify-nix;
               };
 
               # User-specific home-manager configuration
@@ -89,6 +95,7 @@
                 imports = [
                   ./home/${user}.nix
                   catppuccin.homeModules.catppuccin
+                  spicetify-nix.homeManagerModules.default
                 ];
               };
             }

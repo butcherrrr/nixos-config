@@ -44,5 +44,6 @@
     ./butcherrrr/zed.nix         # Zed editor
     ./butcherrrr/services.nix    # Mako and Hyprpaper
     ./butcherrrr/theme.nix       # GTK and cursor theming
+    ./butcherrrr/spicetify.nix   # Spotify theming
   ];
 }
