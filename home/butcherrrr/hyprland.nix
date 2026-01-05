@@ -95,6 +95,9 @@
       dwindle = {
         pseudotile = true;
         preserve_split = true;
+        # Force split to the right (natural direction)
+        force_split = 2;  # 0 = follow mouse, 1 = left, 2 = right
+        split_width_multiplier = 1.0;
       };
 
       # Misc settings
