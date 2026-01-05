@@ -8,6 +8,9 @@
   # Enable experimental Nix features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Allow unfree (proprietary) packages
+  nixpkgs.config.allowUnfree = true;
+
   # ============================================================================
   # User Configuration
   # ============================================================================
