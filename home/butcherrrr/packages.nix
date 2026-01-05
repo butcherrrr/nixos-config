@@ -29,6 +29,10 @@
     spotify
     slack
     obsidian
+    
+    # Media viewers
+    imv    # Image viewer
+    mpv    # Video player
   ];
 
   # ============================================================================
