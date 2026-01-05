@@ -119,6 +119,12 @@
           user = "butcherrrr";
         };
 
+        x1 = mkSystem {
+          hostname = "x1";
+          system = "x86_64-linux";
+          user = "butcherrrr";
+        };
+
         # Example: Add more systems as needed
         # Uncomment and customize these templates for additional machines:
 
