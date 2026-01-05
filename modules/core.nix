@@ -26,7 +26,8 @@
     # "network" - allows managing network connections without sudo
     # "netdev" - allows managing network devices (required for iwd/impala)
     # "docker" - allows using Docker without sudo
-    extraGroups = [ "wheel" "network" "netdev" "docker" ];
+    # "video" - allows access to webcam and video devices
+    extraGroups = [ "wheel" "network" "netdev" "docker" "video" ];
 
     # Default shell
     shell = pkgs.zsh;
