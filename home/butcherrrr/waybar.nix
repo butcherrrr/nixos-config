@@ -68,7 +68,7 @@
           tooltip-format-disconnected = "Disconnected";
           interval = 3;
           spacing = 1;
-          on-click = "ghostty -e impala";
+          on-click = "ghostty --class=com.mitchellh.ghostty.floating -e impala";
         };
 
         battery = {
@@ -97,7 +97,7 @@
           tooltip-format = "{controller_alias}\t{controller_address}";
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-          on-click = "ghostty -e bluetui";
+          on-click = "ghostty --class=com.mitchellh.ghostty.floating -e bluetui";
         };
 
         pulseaudio = {

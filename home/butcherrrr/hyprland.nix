@@ -72,7 +72,12 @@
       # Window rules
       windowrulev2 = [
         "opacity 0.95 0.95,class:.*"
-        "workspace 1,class:(com.mitchellh.ghostty)"
+        # Floating TUI utilities (bluetui, impala)
+        "float,class:(com.mitchellh.ghostty.floating)"
+        "center,class:(com.mitchellh.ghostty.floating)"
+        "size 900 600,class:(com.mitchellh.ghostty.floating)"
+        # Workspace assignments
+        "workspace 1,class:(com.mitchellh.ghostty)$"
         "workspace 2,class:(dev.zed.Zed)"
         "workspace 3,class:(firefox)"
       ];
