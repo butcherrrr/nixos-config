@@ -17,8 +17,11 @@ send_notification() {
     
     if is_muted; then
         icon="󰖁"
-        notify-send -a "volume" -u low -h string:x-canonical-private-synchronous:volume \
-            -h int:value:0 "Volume Muted" "$icon"
+        notify-send -a "volume" \
+            -u low \
+            -h string:x-canonical-private-synchronous:volume \
+            -h int:value:0 \
+            "Volume" "${icon}  Muted"
     else
         # Select icon based on volume level
         if [ "$volume" -ge 70 ]; then
@@ -29,23 +32,23 @@ send_notification() {
             icon="󰕿"
         fi
         
-        notify-send -a "volume" -u low -h string:x-canonical-private-synchronous:volume \
-            -h int:value:"$volume" "Volume: ${volume}%" "$icon"
+        notify-send -a "volume" \
+            -u low \
+            -h string:x-canonical-private-synchronous:volume \
+            -h int:value:"$volume" \
+            "Volume" "${icon}  ${volume}%"
     fi
 }
 
 case "$1" in
     up)
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0
-        send_notification
         ;;
     down)
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        send_notification
         ;;
     mute)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-        send_notification
         ;;
     *)
         echo "Usage: $0 {up|down|mute}"

@@ -21,18 +21,19 @@ send_notification() {
         icon="󰃞"
     fi
     
-    notify-send -a "brightness" -u low -h string:x-canonical-private-synchronous:brightness \
-        -h int:value:"$brightness" "Brightness: ${brightness}%" "$icon"
+    notify-send -a "brightness" \
+        -u low \
+        -h string:x-canonical-private-synchronous:brightness \
+        -h int:value:"$brightness" \
+        "Brightness" "${icon}  ${brightness}%"
 }
 
 case "$1" in
     up)
         brightnessctl set 5%+
-        send_notification
         ;;
     down)
         brightnessctl set 5%-
-        send_notification
         ;;
     *)
         echo "Usage: $0 {up|down}"
