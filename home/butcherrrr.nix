@@ -24,6 +24,7 @@
     waybar.enable = false;  # Using custom manual styling in waybar.nix
     mako.enable = true;
     hyprland.enable = true;
+    hyprlock.enable = false;  # Using custom configuration in hyprlock.nix
   };
 
   # ============================================================================
@@ -36,6 +37,7 @@
     ./butcherrrr/git.nix         # Git configuration
     ./butcherrrr/neovim.nix      # Neovim with LazyVim
     ./butcherrrr/hyprland.nix    # Hyprland window manager
+    ./butcherrrr/hyprlock.nix    # Lock screen
     ./butcherrrr/waybar.nix      # Status bar
     ./butcherrrr/rofi.nix        # Application launcher
     ./butcherrrr/ghostty.nix     # Terminal emulator

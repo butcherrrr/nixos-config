@@ -172,6 +172,9 @@
         # Reload configuration
         "$mainMod SHIFT, R, exec, hyprctl reload"
 
+        # Lock screen
+        "$mainMod, L, exec, hyprlock"
+
         # Volume control
         ", XF86AudioRaiseVolume, exec, ~/.local/bin/volume up"
         ", XF86AudioLowerVolume, exec, ~/.local/bin/volume down"
@@ -206,6 +209,7 @@
         "waybar"
         "mako"
         "swaybg -i ~/.config/hypr/wallpaper.jpg -m fill"
+        "hyprlock"  # Lock screen immediately on boot (for auto-login)
       ];
     };
   };

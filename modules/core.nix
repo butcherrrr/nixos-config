@@ -40,6 +40,17 @@
   security.sudo.enable = true;
 
   # ============================================================================
+  # Power Button Configuration
+  # ============================================================================
+
+  # Configure power button to lock screen instead of shutdown
+  # Short press = lock screen
+  # Long press (hold) = force shutdown (handled by hardware/kernel)
+  services.logind.extraConfig = ''
+    HandlePowerKey=lock
+  '';
+
+  # ============================================================================
   # Networking Configuration
   # ============================================================================
 

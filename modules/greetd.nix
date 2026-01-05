@@ -5,24 +5,22 @@
   # Greetd Display Manager Configuration (Login Screen)
   # ============================================================================
 
+  # Auto-login and immediately lock with hyprlock
+  # This gives you a hyprlock login experience
   services.greetd = {
     enable = true;
-
     settings = {
       default_session = {
-        # tuigreet - TUI login screen with Catppuccin Mocha colors
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --asterisks --greeting 'Welcome to NixOS' --cmd Hyprland";
-        user = "greeter";
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "butcherrrr";
       };
     };
   };
 
   # ============================================================================
-  # Console Colors - Catppuccin Mocha (matches Ghostty theme)
+  # Console Colors - Catppuccin Mocha
   # ============================================================================
 
-  # Set VT/TTY colors to Catppuccin Mocha
-  # This makes tuigreet use the same colors as your Ghostty terminal
   console.colors = [
     # Normal colors (0-7)
     "1e1e2e"  # 0: Black (Base)
@@ -44,6 +42,4 @@
     "94e2d5"  # 14: Bright Cyan
     "cdd6f4"  # 15: Bright White
   ];
-
-
 }
