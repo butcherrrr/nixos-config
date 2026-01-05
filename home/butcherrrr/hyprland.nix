@@ -183,6 +183,9 @@
         # Brightness control
         ", XF86MonBrightnessUp, exec, ~/.local/bin/brightness up"
         ", XF86MonBrightnessDown, exec, ~/.local/bin/brightness down"
+
+        # Power button
+        ", XF86PowerOff, exec, hyprlock"
       ];
 
       # Hyper key bindings

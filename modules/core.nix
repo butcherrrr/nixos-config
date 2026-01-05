@@ -40,14 +40,15 @@
   security.sudo.enable = true;
 
   # ============================================================================
-  # Power Button Configuration
+  # Power/Sleep Configuration
   # ============================================================================
 
-  # Configure power button to lock screen instead of shutdown
-  # Short press = lock screen
-  # Long press (hold) = force shutdown (handled by hardware/kernel)
+  # Let Hyprland handle power button directly (via XF86PowerOff binding)
+  # But still handle sleep/suspend normally for swayidle before-sleep hook
   services.logind.settings.Login = {
-    HandlePowerKey = "lock";
+    HandlePowerKey = "ignore";  # Hyprland binds XF86PowerOff instead
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
   };
 
   # ============================================================================
