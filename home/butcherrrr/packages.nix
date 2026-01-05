@@ -13,6 +13,7 @@
 
     # Wayland utilities
     swaybg
+    swayidle
 
     # System utilities
     fastfetch

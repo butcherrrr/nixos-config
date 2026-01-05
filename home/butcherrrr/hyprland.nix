@@ -209,7 +209,9 @@
         "waybar"
         "mako"
         "swaybg -i ~/.config/hypr/wallpaper.jpg -m fill"
-        "hyprlock"  # Lock screen immediately on boot (for auto-login)
+        # Start swayidle first so it can handle lock events
+        "swayidle -w timeout 300 'hyprlock' lock 'hyprlock' before-sleep 'hyprlock'"
+        "sleep 1 && hyprlock"  # Lock screen after swayidle starts (for auto-login)
       ];
     };
   };
