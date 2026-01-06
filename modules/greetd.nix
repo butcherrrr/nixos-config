@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'Hyprland > /dev/null 2>&1'";
       };
     };
   };
@@ -20,7 +20,7 @@
 
   # Install required packages for theming
   environment.systemPackages = with pkgs; [
-    greetd.tuigreet
+    tuigreet
     gnome-themes-extra
     adwaita-icon-theme
     (catppuccin-gtk.override {
