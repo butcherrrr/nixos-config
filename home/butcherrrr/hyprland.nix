@@ -46,7 +46,7 @@
         numlock_by_default = true;
 
         follow_mouse = 1;
-        touchpad.natural_scroll = false;
+        touchpad.natural_scroll = true;
         sensitivity = 0;
       };
 

@@ -40,6 +40,11 @@
   # Enable sudo
   security.sudo.enable = true;
 
+  # Enable gnome-keyring PAM integration
+  # This allows gnome-keyring to unlock automatically when you log in
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
   # ============================================================================
   # Power/Sleep Configuration
   # ============================================================================
