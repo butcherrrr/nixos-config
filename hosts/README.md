@@ -10,7 +10,7 @@ Each subdirectory represents one machine configuration. Current hosts:
 Each host directory contains:
 
 ```
-hosts/YOUR-HOSTNAME/
+hosts/HOSTNAME/
 ├── default.nix                 # Host-specific configuration
 └── hardware-configuration.nix  # Auto-generated hardware config
 ```
@@ -35,7 +35,7 @@ sudo nixos-generate-config --root /mnt  # During installation
 # Or after first boot:
 sudo nixos-generate-config
 
-# 5. Copy hardware config to your repo
+# 5. Copy hardware config to the repo
 cp /etc/nixos/hardware-configuration.nix hosts/NEW-HOSTNAME/
 
 # 6. Commit and push
@@ -103,9 +103,9 @@ This file is auto-generated and contains hardware-specific settings:
 
 **Important**:
 
-- Never manually edit unless you know what you're doing
+- Never manually edit unless necessary and understood
 - Never copy between machines (each has unique hardware)
-- Regenerate if you change hardware: `sudo nixos-generate-config`
+- Regenerate if hardware changes: `sudo nixos-generate-config`
 
 ## Module Selection
 
@@ -191,7 +191,7 @@ Provides:
 - Automatic Hyprland startup after login
 - Gnome-keyring integration via PAM (unlocks with login password)
 
-Skip this for servers or if you want manual login.
+Skip this for servers or for manual login.
 
 ### console.nix
 
@@ -223,7 +223,7 @@ User-specific Hyprland config is in `home/butcherrrr/hyprland.nix`.
 ### Different Timezone
 
 ```nix
-# In hosts/YOUR-HOST/default.nix
+# In hosts/HOSTNAME/default.nix
 time.timeZone = "America/New_York";
 ```
 
@@ -257,7 +257,7 @@ networking.interfaces.eth0.ipv4.addresses = [{
 
 ```nix
 boot.initrd.luks.devices."cryptroot" = {
-  device = "/dev/disk/by-uuid/YOUR-UUID";
+  device = "/dev/disk/by-uuid/ACTUAL-UUID";
   preLVM = true;
 };
 ```
@@ -274,7 +274,7 @@ nixosConfigurations = {
     user = "butcherrrr";
   };
 
-  # Add your new host here
+  # Add new host here
   new-hostname = mkSystem {
     hostname = "new-hostname";
     system = "x86_64-linux";
@@ -325,7 +325,7 @@ sudo nixos-rebuild build --flake .#$(hostname)
 
 ### Can't Find Host Configuration
 
-**Error**: `error: attribute 'nixosConfigurations.YOUR-HOST' missing`
+**Error**: `error: attribute 'nixosConfigurations.HOSTNAME' missing`
 
 **Solution**: Check that hostname matches in:
 
@@ -341,7 +341,7 @@ sudo nixos-rebuild build --flake .#$(hostname)
 
 ```bash
 sudo nixos-generate-config
-cp /etc/nixos/hardware-configuration.nix hosts/YOUR-HOST/
+cp /etc/nixos/hardware-configuration.nix hosts/HOSTNAME/
 ```
 
 ### Module Not Found

@@ -1,15 +1,17 @@
 # Backgrounds
 
-Place your background images in this directory.
+Place background images in this directory.
 
 ## Adding a Background
 
-1. Copy your background file here:
+1. Copy the background file here:
+
    ```bash
    cp ~/Downloads/my-background.jpg backgrounds/
    ```
 
 2. Update the symlink in `home/butcherrrr/theme.nix`:
+
    ```nix
    home.file.".config/hypr/wallpaper.jpg" = {
      source = ../../backgrounds/my-background.jpg;
@@ -17,6 +19,7 @@ Place your background images in this directory.
    ```
 
 3. The background is automatically loaded by swaybg (configured in `home/butcherrrr/hyprland.nix`):
+
    ```nix
    exec-once = [
      "swaybg -i ~/.config/hypr/wallpaper.jpg -m fill"
@@ -34,8 +37,8 @@ For different backgrounds per host, use conditional logic in `home/butcherrrr/th
 
 ```nix
 home.file.".config/hypr/wallpaper.jpg" = {
-  source = 
-    if hostname == "laptop" 
+  source =
+    if hostname == "laptop"
     then ../../backgrounds/laptop-background.jpg
     else ../../backgrounds/desktop-background.jpg;
 };

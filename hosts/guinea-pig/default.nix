@@ -23,7 +23,7 @@
   # System Configuration
   # ============================================================================
 
-  # State version - should match your NixOS release when first installed
+  # State version - should match NixOS release when first installed
   # DO NOT CHANGE this on an existing system
   system.stateVersion = "25.11";
 

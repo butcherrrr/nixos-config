@@ -1,12 +1,18 @@
 # Hardware Configuration Template
 #
-# This file should be replaced with your actual hardware configuration
-# Generate your hardware configuration with:
-#   sudo nixos-generate-config --show-hardware-config > hosts/YOUR-HOSTNAME/hardware-configuration.nix
+# This file should be replaced with actual hardware configuration
+# Generate hardware configuration with:
+#   sudo nixos-generate-config --show-hardware-config > hosts/HOSTNAME/hardware-configuration.nix
 #
 # This is just a placeholder to show the structure
 
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -23,7 +29,13 @@
   #   - "nvme" "sd_mod" - NVMe and SCSI disk support
   #   - "usb_storage" - USB storage devices
   #   - "thunderbolt" - Thunderbolt support
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
 
   # Kernel modules to load in initrd
   boot.initrd.kernelModules = [ ];
@@ -41,25 +53,28 @@
   # ============================================================================
 
   # Root filesystem
-  # Replace with your actual UUID from: lsblk -f
+  # Replace with actual UUID from: lsblk -f
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
-    fsType = "ext4";  # or "btrfs", "xfs", "zfs", etc.
+    fsType = "ext4"; # or "btrfs", "xfs", "zfs", etc.
   };
 
   # Boot partition (EFI System Partition)
-  # Replace with your actual boot partition UUID
+  # Replace with actual boot partition UUID
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/XXXX-XXXX";
     fsType = "vfat";
-    options = [ "fmask=0077" "dmask=0077" ];  # Security: only root can read
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ]; # Security: only root can read
   };
 
   # ============================================================================
   # Swap Configuration
   # ============================================================================
 
-  # Swap devices (if you have a swap partition or swap file)
+  # Swap devices (if swap partition or swap file exists)
   # swapDevices = [
   #   { device = "/dev/disk/by-uuid/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"; }
   # ];

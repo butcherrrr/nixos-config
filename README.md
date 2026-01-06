@@ -121,7 +121,7 @@ update
 sudo nixos-rebuild switch --flake .#guinea-pig
 ```
 
-Replace `guinea-pig` with your hostname.
+Replace `guinea-pig` with the hostname.
 
 Or use the shell alias:
 
@@ -133,7 +133,7 @@ update
 
 See `HOSTS.md` for advanced scenarios. Basic process:
 
-### 1. On Your Current Machine
+### 1. On the Current Machine
 
 ```bash
 cd ~/nixos-config
@@ -191,9 +191,9 @@ nmcli device wifi connect "SSID" password "PASSWORD"
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
-# Clone your config to home folder
+# Clone config to home folder
 cd ~
-git clone https://github.com/YOUR-USERNAME/nixos-config
+git clone https://github.com/USERNAME/nixos-config
 cd nixos-config
 
 # Copy hardware config
@@ -204,14 +204,14 @@ git add hosts/NEW-HOSTNAME/hardware-configuration.nix
 git commit -m "Add NEW-HOSTNAME hardware config"
 git push
 
-# Rebuild with your config
+# Rebuild with the config
 sudo nixos-rebuild switch --flake .#NEW-HOSTNAME
 
 # Reboot
 reboot
 ```
 
-After reboot, login as your user (created automatically).
+After reboot, login as the user (created automatically).
 
 ## Updating
 
@@ -224,7 +224,7 @@ sudo nixos-rebuild switch --flake .#$(hostname)
 
 ## Module Selection
 
-In `hosts/YOUR-HOSTNAME/default.nix`:
+In `hosts/HOSTNAME/default.nix`:
 
 **Desktop/Laptop:** `core.nix` + `greetd.nix` + `console.nix` + `hyprland.nix`
 **Server:** `core.nix` only
@@ -237,7 +237,7 @@ All configuration is managed through **home-manager modules** in `home/butcherrr
 
 **System packages:** Edit `modules/core.nix`
 **User packages & config:** Edit files in `home/butcherrrr/`
-**Per-host settings:** Edit `hosts/YOUR-HOSTNAME/default.nix`
+**Per-host settings:** Edit `hosts/HOSTNAME/default.nix`
 
 See `home/butcherrrr/README.md` for detailed module documentation.
 
@@ -398,7 +398,7 @@ z <pattern>     # Jump to directory matching pattern
 zi              # Interactive directory selection
 ```
 
-Learns your most-used directories over time.
+Learns most-used directories over time.
 
 ## Troubleshooting
 
@@ -438,7 +438,7 @@ Hyprland
 ```bash
 # Check key detection
 wev
-# Press your volume/brightness keys and verify output
+# Press volume/brightness keys and verify output
 ```
 
 **WiFi not connecting:**

@@ -1,4 +1,4 @@
-{ pkgs, user, ...}:
+{ pkgs, user, ... }:
 
 {
   # ============================================================================
@@ -6,7 +6,10 @@
   # ============================================================================
 
   # Enable experimental Nix features
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Allow unfree (proprietary) packages
   nixpkgs.config.allowUnfree = true;
@@ -27,7 +30,13 @@
     # "netdev" - allows managing network devices (required for iwd/impala)
     # "docker" - allows using Docker without sudo
     # "video" - allows access to webcam and video devices
-    extraGroups = [ "wheel" "network" "netdev" "docker" "video" ];
+    extraGroups = [
+      "wheel"
+      "network"
+      "netdev"
+      "docker"
+      "video"
+    ];
 
     # Default shell
     shell = pkgs.zsh;
@@ -41,7 +50,7 @@
   security.sudo.enable = true;
 
   # Enable gnome-keyring PAM integration
-  # This allows gnome-keyring to unlock automatically when you log in
+  # This allows gnome-keyring to unlock automatically on login
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
 
@@ -52,7 +61,7 @@
   # Let Hyprland handle power button directly (via XF86PowerOff binding)
   # But still handle sleep/suspend normally for swayidle before-sleep hook
   services.logind.settings.Login = {
-    HandlePowerKey = "ignore";  # Hyprland binds XF86PowerOff instead
+    HandlePowerKey = "ignore"; # Hyprland binds XF86PowerOff instead
     HandleLidSwitch = "suspend";
     HandleLidSwitchExternalPower = "suspend";
   };
@@ -106,7 +115,7 @@
     enable = true;
     keyboards = {
       default = {
-        ids = ["*"];
+        ids = [ "*" ];
         settings = {
           main = {
             # Remap Caps Lock to Hyper (Ctrl+Shift+Alt+Super)
@@ -156,11 +165,11 @@
   # Enable Bluetooth support
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;  # Power on Bluetooth adapter on boot
+    powerOnBoot = true; # Power on Bluetooth adapter on boot
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
-        Experimental = true;  # Enable experimental features
+        Experimental = true; # Enable experimental features
       };
     };
   };
@@ -172,7 +181,7 @@
   # Enable Docker
   virtualisation.docker = {
     enable = true;
-    enableOnBoot = true;  # Start Docker daemon on boot
+    enableOnBoot = true; # Start Docker daemon on boot
   };
 
   # ============================================================================
@@ -194,10 +203,10 @@
     wget
     ripgrep
     jq
-    keyd  # Keyboard remapping daemon
-    impala  # WiFi manager
-    bluetui  # Bluetooth manager
-    btop  # System monitor
+    keyd # Keyboard remapping daemon
+    impala # WiFi manager
+    bluetui # Bluetooth manager
+    btop # System monitor
     libnotify
     docker-compose
   ];

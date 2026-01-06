@@ -469,7 +469,7 @@ Edit `packages.nix`:
 home.packages = with pkgs; [
   papirus-icon-theme
   firefox
-  your-new-package  # Add here
+  new-package  # Add here
 ];
 ```
 
@@ -481,7 +481,7 @@ Edit `shell.nix`:
 shellAliases = {
   ls = "eza";
   ll = "eza -l";
-  myalias = "your-command";  # Add new alias
+  myalias = "command-here";  # Add new alias
 };
 ```
 
@@ -521,7 +521,7 @@ Edit `waybar.nix`:
 
 ```nix
 modules-right = ["tray" "network" "cpu" "memory" "battery" "clock"];
-# Or add your own modules
+# Or add custom modules
 ```
 
 ### To Customize Waybar Colors/Styling
@@ -553,7 +553,7 @@ Edit `git.nix`:
 ```nix
 alias = {
   st = "status";
-  myalias = "your-git-command";  # Add new alias
+  myalias = "git-command-here";  # Add new alias
 };
 ```
 
@@ -564,10 +564,10 @@ Edit `neovim.nix` and add to the `plugins` attribute set:
 ```nix
 plugins = {
   # Add new plugin
-  your-plugin-name.enable = true;
+  plugin-name.enable = true;
 
   # Or configure with settings
-  your-plugin-name = {
+  plugin-name = {
     enable = true;
     settings = {
       # plugin options here
@@ -722,7 +722,7 @@ Shows notification with current brightness level and icon.
 The p10k theme configuration is NOT managed in the repo to avoid language detection issues on GitHub. Each machine configures its own prompt:
 
 1. Run `p10k configure` on the machine
-2. The `.p10k.zsh` file is saved locally in your home directory
+2. The `.p10k.zsh` file is saved locally in the home directory
 3. It persists across rebuilds (not managed by home-manager)
 
 To reconfigure at any time:
@@ -802,7 +802,7 @@ journalctl -u greetd -b
 
 ### Conditional Configuration
 
-You can use Nix expressions for conditional config:
+Nix expressions can be used for conditional config:
 
 ```nix
 home.packages = with pkgs; [

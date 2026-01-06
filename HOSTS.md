@@ -180,7 +180,7 @@ Desktop with Steam and GPU acceleration:
 
 ### Single User Across Multiple Hosts
 
-If you use the same username on all machines, you can share the same home-manager configuration:
+If the same username is used on all machines, the same home-manager configuration can be shared:
 
 ```nix
 # In flake.nix, all hosts use the same user
@@ -369,7 +369,7 @@ Note: Apple Silicon Macs require Asahi Linux for NixOS support.
 Build ARM64 system on x86_64:
 
 ```nix
-# In your host's default.nix
+# In the host's default.nix
 nixpkgs.config.allowUnsupportedSystem = true;
 ```
 
@@ -380,7 +380,7 @@ This is slower but useful for preparing configs before deploying to ARM hardware
 ### Using Latest Kernel
 
 ```nix
-# In your host's default.nix
+# In the host's default.nix
 boot.kernelPackages = pkgs.linuxPackages_latest;
 ```
 
@@ -401,7 +401,7 @@ boot.kernelPackages = pkgs.linuxPackages_6_6;  # Specific version
 ### NVIDIA Graphics
 
 ```nix
-# hosts/YOUR-HOST/default.nix
+# hosts/HOSTNAME/default.nix
 services.xserver.videoDrivers = [ "nvidia" ];
 
 hardware.nvidia = {
@@ -425,7 +425,7 @@ environment.sessionVariables = {
 ### AMD Graphics
 
 ```nix
-# hosts/YOUR-HOST/default.nix
+# hosts/HOSTNAME/default.nix
 hardware.graphics = {
   enable = true;
   enable32Bit = true;
@@ -438,7 +438,7 @@ boot.initrd.kernelModules = [ "amdgpu" ];
 ### Intel Graphics
 
 ```nix
-# hosts/YOUR-HOST/default.nix
+# hosts/HOSTNAME/default.nix
 hardware.graphics = {
   enable = true;
   extraPackages = with pkgs; [
@@ -457,7 +457,7 @@ hardware.graphics = {
 ```nix
 # In hardware-configuration.nix or default.nix
 boot.initrd.luks.devices."cryptroot" = {
-  device = "/dev/disk/by-uuid/YOUR-UUID";
+  device = "/dev/disk/by-uuid/ACTUAL-UUID";
   preLVM = true;
 };
 ```
@@ -516,13 +516,13 @@ Regenerate hardware configuration:
 sudo nixos-generate-config --show-hardware-config
 ```
 
-Compare with your `hosts/*/hardware-configuration.nix` and update as needed.
+Compare with `hosts/*/hardware-configuration.nix` and update as needed.
 
 ### Module Conflicts
 
 **Problem**: Conflicting display managers.
 
-**Solution**: Only import greetd.nix once per host. Check your imports in `hosts/*/default.nix`.
+**Solution**: Only import greetd.nix once per host. Check imports in `hosts/*/default.nix`.
 
 ### Build Failures
 
@@ -559,8 +559,8 @@ sudo nix-env --delete-generations 10 --profile /nix/var/nix/profiles/system
 5. **Never share hardware-configuration.nix** - Each machine needs its own
 6. **Commit before major changes** - Easy to rollback if something breaks
 7. **Use descriptive hostnames** - Makes managing multiple hosts easier
-8. **Backup your config** - Push to GitHub/GitLab regularly
-9. **Test rollback** - Verify you can rollback to previous generation
+8. **Backup the config** - Push to GitHub/GitLab regularly
+9. **Test rollback** - Verify rollback to previous generation works
 10. **Monitor disk usage** - Clean old generations periodically
 
 ## Deployment Workflow
@@ -569,7 +569,7 @@ sudo nix-env --delete-generations 10 --profile /nix/var/nix/profiles/system
 
 1. Install NixOS on target machine
 2. Generate hardware config: `sudo nixos-generate-config`
-3. Clone your config repo
+3. Clone the config repo
 4. Copy `hardware-configuration.nix` to `hosts/NEW-HOST/`
 5. Create `hosts/NEW-HOST/default.nix` (copy from example)
 6. Add host to `flake.nix`
@@ -599,7 +599,7 @@ git push
 
 1. Reboot into previous generation from bootloader
 2. Or manually rollback: `sudo nixos-rebuild switch --rollback`
-3. Fix the issue in your config
+3. Fix the issue in the config
 4. Test: `sudo nixos-rebuild test --flake .#$(hostname)`
 5. Apply: `sudo nixos-rebuild switch --flake .#$(hostname)`
 

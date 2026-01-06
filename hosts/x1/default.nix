@@ -21,8 +21,8 @@
   # System Configuration
   # ============================================================================
 
-  # State version - should match your NixOS release when first installed
-  # DO NOT CHANGE this on an existing system - it's used for compatibility
+  # State version - should match NixOS release when first installed
+  # DO NOT CHANGE this on an existing system - used for compatibility
   # Only set this when first installing NixOS
   system.stateVersion = "25.11";
 
@@ -31,7 +31,7 @@
   networking.hostName = hostname;
 
   # System timezone - affects system clock and date display
-  # Find your timezone: ls /usr/share/zoneinfo/
+  # Find timezone with: ls /usr/share/zoneinfo/
   time.timeZone = "Europe/Stockholm";
 
   # Default system locale - affects language, date format, currency, etc.

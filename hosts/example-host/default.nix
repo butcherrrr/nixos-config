@@ -2,11 +2,11 @@
 # Copy this directory to create a new host configuration
 #
 # Steps to add a new host:
-# 1. Copy this directory: cp -r hosts/example-host hosts/YOUR-HOSTNAME
-# 2. Update the hardware-configuration.nix with your actual hardware config
+# 1. Copy this directory: cp -r hosts/example-host hosts/NEW-HOSTNAME
+# 2. Update the hardware-configuration.nix with actual hardware config
 # 3. Customize the imports below (add/remove modules as needed)
 # 4. Update timezone, locale, and other settings for this specific machine
-# 5. Add your host to flake.nix in nixosConfigurations
+# 5. Add the host to flake.nix in nixosConfigurations
 { hostname, ... }:
 
 {
@@ -30,8 +30,8 @@
   # System Configuration
   # ============================================================================
 
-  # State version - should match your NixOS release when first installed
-  # DO NOT CHANGE this on an existing system - it's used for compatibility
+  # State version - should match NixOS release when first installed
+  # DO NOT CHANGE this on an existing system - used for compatibility
   # Only set this when first installing NixOS
   system.stateVersion = "25.11";
 
@@ -40,7 +40,7 @@
   networking.hostName = hostname;
 
   # System timezone - affects system clock and date display
-  # Find your timezone: ls /usr/share/zoneinfo/
+  # Find timezone with: ls /usr/share/zoneinfo/
   time.timeZone = "Europe/Stockholm";
 
   # Default system locale - affects language, date format, currency, etc.
@@ -70,21 +70,21 @@
     ../../modules/core.nix
 
     # -------------------------------------------------------------------------
-    # Optional Modules (comment out what you don't need)
+    # Optional Modules (comment out what is not needed)
     # -------------------------------------------------------------------------
 
     # greetd + tuigreet display manager configuration (login screen)
-    # Only import this if you want a graphical login
-    # For servers, you might skip this
+    # Import this for graphical login
+    # For servers, skip this
     ../../modules/greetd.nix
 
     # Hyprland window manager system-level configuration
-    # Only import this if this machine will use Hyprland
-    # For servers or different desktop environments, skip this or replace
+    # Import this if this machine will use Hyprland
+    # For servers or different desktop environments, skip or replace this
     ../../modules/hyprland.nix
 
     # -------------------------------------------------------------------------
-    # Add your own host-specific modules here
+    # Add host-specific modules here
     # -------------------------------------------------------------------------
 
     # Examples:
@@ -115,7 +115,7 @@
 
   # Mount additional filesystems
   # fileSystems."/mnt/data" = {
-  #   device = "/dev/disk/by-uuid/YOUR-UUID";
+  #   device = "/dev/disk/by-uuid/ACTUAL-UUID";
   #   fsType = "ext4";
   # };
 }

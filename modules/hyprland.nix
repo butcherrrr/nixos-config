@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 
 {
   # ============================================================================
@@ -50,8 +50,8 @@
     # Works with Wayland compositors
     grim
 
-    # Screen region selector - lets you select an area of the screen
-    # Used together with grim for selective screenshots
+    # Screen region selector - allows selecting an area of the screen
+    # Used with grim for selective screenshots
     slurp
   ];
 }

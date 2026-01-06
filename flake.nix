@@ -9,7 +9,7 @@
   # Input Sources
   # ============================================================================
 
-  # Input sources - these are external dependencies for your configuration
+  # Input sources - external dependencies for this configuration
   inputs = {
     # NixOS package repository - using the stable 25.11 release
     # This determines which versions of packages are available
@@ -17,7 +17,7 @@
 
     # Home Manager - manages user-level configuration and packages
     # Must use the same release branch as nixpkgs to avoid version mismatches
-    # Allows you to configure dotfiles, user packages, and user services declaratively
+    # Allows declarative configuration of dotfiles, user packages, and user services
     home-manager.url = "github:nix-community/home-manager/release-25.11";
 
     # Makes home-manager use the same nixpkgs version as the system
@@ -40,8 +40,17 @@
   # Outputs
   # ============================================================================
 
-  # Outputs - what this flake produces (your system configurations)
-  outputs = { self, nixpkgs, home-manager, catppuccin, spicetify-nix, nixvim, ... }:
+  # Outputs - what this flake produces (system configurations)
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      catppuccin,
+      spicetify-nix,
+      nixvim,
+      ...
+    }:
     let
       # ========================================================================
       # Helper Function: mkSystem
@@ -54,13 +63,18 @@
       #   hostname - Name of the host (e.g., "nixos", "laptop", "desktop")
       #   system   - System architecture (e.g., "x86_64-linux", "aarch64-linux")
       #   user     - Primary username for home-manager configuration
-      mkSystem = { hostname, system, user }:
+      mkSystem =
+        {
+          hostname,
+          system,
+          user,
+        }:
         nixpkgs.lib.nixosSystem {
           # System architecture for this host
           inherit system;
 
           # Special arguments passed to all modules
-          # Makes these values accessible in all your configuration files
+          # Makes these values accessible in all configuration files
           specialArgs = {
             inherit hostname user;
             inherit spicetify-nix;
@@ -73,7 +87,7 @@
             ./hosts/${hostname}/default.nix
 
             # Home Manager as a NixOS module
-            # This integrates home-manager into your system configuration
+            # This integrates home-manager into the system configuration
             home-manager.nixosModules.home-manager
 
             # Home Manager configuration
@@ -113,11 +127,11 @@
       # NixOS System Configurations
       # ========================================================================
 
-      # Define all your systems here
+      # Define all systems here
       # Each system can be built with: nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
 
-        # Primary desktop/laptop - your current system
+        # Primary desktop/laptop
         # Rebuild with: sudo nixos-rebuild switch --flake .#guinea-pig
         guinea-pig = mkSystem {
           hostname = "guinea-pig";
