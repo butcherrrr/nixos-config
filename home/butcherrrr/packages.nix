@@ -24,6 +24,7 @@
     python3
     go
     rustup
+    nil  # Nix language server
 
     # Applications
     firefox

@@ -18,8 +18,11 @@
 
       tab_size = 2;
       hard_tabs = false;
-      soft_wrap = "editor_width";
+      soft_wrap = "none";
       show_whitespaces = "selection";
+      project_panel = {
+        dock = "right";
+      };
       remove_trailing_whitespace_on_save = true;
       ensure_final_newline_on_save = true;
 
