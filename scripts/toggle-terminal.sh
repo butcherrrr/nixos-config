@@ -7,8 +7,6 @@ TERMINAL_WINDOW=$(hyprctl clients -j | jq -r '.[] | select(.class | test("ghostt
 
 if [ -n "$TERMINAL_WINDOW" ]; then
     hyprctl dispatch focuswindow "address:$TERMINAL_WINDOW"
-    hyprctl dispatch workspace 1
 else
-    $TERMINAL_CMD &
-    hyprctl dispatch workspace 1
+    exec setsid $TERMINAL_CMD
 fi

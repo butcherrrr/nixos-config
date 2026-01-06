@@ -7,8 +7,6 @@ FIREFOX_WINDOW=$(hyprctl clients -j | jq -r '.[] | select(.class | test("firefox
 
 if [ -n "$FIREFOX_WINDOW" ]; then
     hyprctl dispatch focuswindow "address:$FIREFOX_WINDOW"
-    hyprctl dispatch workspace 3
 else
-    $FIREFOX_CMD &
-    hyprctl dispatch workspace 3
+    exec setsid $FIREFOX_CMD
 fi
