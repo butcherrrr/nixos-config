@@ -9,7 +9,7 @@ butcherrrr/
 ├── packages.nix         # User packages and custom scripts
 ├── shell.nix            # Zsh, zoxide, and eza configuration
 ├── git.nix              # Git and delta configuration
-├── neovim.nix           # Neovim with LazyVim
+├── neovim.nix           # Neovim with Nixvim
 ├── hyprland.nix         # Hyprland window manager settings
 ├── waybar.nix           # Status bar configuration
 ├── waybar-style.gtk.css # Waybar styling (Catppuccin Mocha)
@@ -137,11 +137,11 @@ Git configuration with modern tooling:
 
 ### neovim.nix
 
-Neovim with LazyVim distribution:
+Neovim with Nixvim (declarative configuration):
 
 **Configuration**:
 
-- LazyVim as base configuration
+- Fully declarative configuration in Nix
 - Catppuccin Mocha colorscheme
 - Default editor for system
 - Aliases: `vi`, `vim`, `vimdiff` → `nvim`
@@ -174,16 +174,18 @@ Neovim with LazyVim distribution:
 - Clipboard integration
 - Persistent undo
 
-**LazyVim Extras**:
+**Plugins**:
 
-- TypeScript/JavaScript support
-- JSON support
-- Python support
-- Rust support
-- Go support
-- Prettier integration
-- ESLint integration
-- Animations (mini.animate)
+- LSP (Language Server Protocol) integration
+- nvim-cmp (completion)
+- Telescope (fuzzy finder)
+- Neo-tree (file explorer)
+- Gitsigns (git integration)
+- Lualine (status line)
+- Bufferline (buffer tabs)
+- Which-key (keybinding hints)
+- Alpha (dashboard)
+- Conform.nvim (formatting)
 
 ### hyprland.nix
 
@@ -557,11 +559,21 @@ alias = {
 
 ### To Change Neovim Plugins
 
-Edit `neovim.nix`:
+Edit `neovim.nix` and add to the `plugins` attribute set:
 
 ```nix
--- Add to lazy.nvim spec
-{ "author/plugin-name" },
+plugins = {
+  # Add new plugin
+  your-plugin-name.enable = true;
+
+  # Or configure with settings
+  your-plugin-name = {
+    enable = true;
+    settings = {
+      # plugin options here
+    };
+  };
+};
 ```
 
 ### To Modify Terminal Settings

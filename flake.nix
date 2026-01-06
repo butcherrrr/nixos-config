@@ -30,6 +30,10 @@
     # Spicetify - Spotify theming
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nixvim - Neovim configuration in Nix
+    nixvim.url = "github:nix-community/nixvim/nixos-25.11";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # ============================================================================
@@ -37,7 +41,7 @@
   # ============================================================================
 
   # Outputs - what this flake produces (your system configurations)
-  outputs = { self, nixpkgs, home-manager, catppuccin, spicetify-nix, ... }:
+  outputs = { self, nixpkgs, home-manager, catppuccin, spicetify-nix, nixvim, ... }:
     let
       # ========================================================================
       # Helper Function: mkSystem
@@ -87,6 +91,7 @@
               home-manager.extraSpecialArgs = {
                 inherit hostname user;
                 inherit spicetify-nix;
+                inputs = { inherit nixvim; };
               };
 
               # User-specific home-manager configuration
@@ -96,6 +101,7 @@
                   ./home/${user}.nix
                   catppuccin.homeModules.catppuccin
                   spicetify-nix.homeManagerModules.default
+                  nixvim.homeModules.nixvim
                 ];
               };
             }

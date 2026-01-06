@@ -2,143 +2,346 @@
 
 {
   # ============================================================================
-  # Neovim Configuration with LazyVim
+  # Nixvim Configuration
   # ============================================================================
 
-  programs.neovim = {
+  programs.nixvim = {
     enable = true;
-    defaultEditor = true;  # Set as default EDITOR
-    viAlias = true;        # alias vi to nvim
-    vimAlias = true;       # alias vim to nvim
-    vimdiffAlias = true;   # alias vimdiff to nvim -d
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
 
-    # Extra packages available to Neovim
-    extraPackages = with pkgs; [
-      # Language servers
-      lua-language-server
-      nil  # Nix LSP
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted  # HTML, CSS, JSON
-      pyright  # Python
-      gopls    # Go
-      rust-analyzer  # Rust
+    # ============================================================================
+    # Core Settings
+    # ============================================================================
 
-      # Formatters
-      stylua    # Lua
-      nixpkgs-fmt  # Nix
-      nodePackages.prettier  # JS, TS, JSON, YAML, Markdown
-      black     # Python
+    opts = {
+      number = true;
+      relativenumber = true;
+      clipboard = "unnamedplus";
+      termguicolors = true;
+      undofile = true;
+      ignorecase = true;
+      smartcase = true;
+      updatetime = 250;
+      signcolumn = "yes";
+      splitright = true;
+      splitbelow = true;
+      scrolloff = 8;
+      sidescrolloff = 8;
+      wrap = false;
+      expandtab = true;
+      shiftwidth = 2;
+      tabstop = 2;
+      smartindent = true;
+      conceallevel = 0;
+    };
 
-      # Tools (ripgrep and git already in system/home-manager)
-      fd        # Telescope dependency
-      gcc       # Treesitter compiler
-      gnumake   # Build tool
-      unzip     # Mason dependency
+    # ============================================================================
+    # Colorscheme
+    # ============================================================================
+
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "mocha";
+        transparent_background = false;
+        integrations = {
+          cmp = true;
+          gitsigns = true;
+          nvimtree = true;
+          treesitter = true;
+          notify = false;
+          mini = {
+            enabled = true;
+            indentscope_color = "";
+          };
+        };
+      };
+    };
+
+    # ============================================================================
+    # Plugins
+    # ============================================================================
+
+    plugins = {
+      # LSP
+      lsp = {
+        enable = true;
+        servers = {
+          lua_ls.enable = true;
+          nil_ls.enable = true;
+          ts_ls.enable = true;
+          html.enable = true;
+          cssls.enable = true;
+          jsonls.enable = true;
+          pyright.enable = true;
+          gopls.enable = true;
+          rust_analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
+        };
+      };
+
+      # Completion
+      cmp = {
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "path"; }
+            { name = "buffer"; }
+            { name = "luasnip"; }
+          ];
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-e>" = "cmp.mapping.close()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          };
+        };
+      };
+
+      # Snippets
+      luasnip.enable = true;
+
+      # Treesitter
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
+      };
+
+      # Telescope
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<leader>ff" = "find_files";
+          "<leader>fg" = "live_grep";
+          "<leader>fb" = "buffers";
+          "<leader>fh" = "help_tags";
+        };
+      };
+
+      # File explorer
+      neo-tree = {
+        enable = true;
+        settings = {
+          close_if_last_window = true;
+          window.width = 30;
+        };
+      };
+
+      # Git
+      gitsigns = {
+        enable = true;
+        settings.current_line_blame = true;
+      };
+
+      # Status line
+      lualine = {
+        enable = true;
+        settings = {
+          options = {
+            theme = "catppuccin";
+            section_separators = {
+              left = "";
+              right = "";
+            };
+            component_separators = {
+              left = "";
+              right = "";
+            };
+          };
+        };
+      };
+
+      # Buffer line
+      bufferline = {
+        enable = true;
+        settings = {
+          options = {
+            diagnostics = "nvim_lsp";
+            separator_style = "slant";
+          };
+        };
+      };
+
+      # Which-key
+      which-key.enable = true;
+
+      # Auto pairs
+      nvim-autopairs.enable = true;
+
+      # Comments
+      comment.enable = true;
+
+      # Indent guides
+      indent-blankline.enable = true;
+
+      # Dashboard
+      alpha = {
+        enable = true;
+        settings = {
+          layout = [
+            {
+              type = "padding";
+              val = 2;
+            }
+            {
+              type = "text";
+              val = [
+                "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+                "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+                "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+                "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+                "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+                "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+              ];
+              opts = {
+                position = "center";
+                hl = "Type";
+              };
+            }
+          ];
+        };
+      };
+
+      # Formatting
+      conform-nvim = {
+        enable = true;
+        settings = {
+          formatters_by_ft = {
+            lua = [ "stylua" ];
+            nix = [ "nixpkgs_fmt" ];
+            javascript = [ "prettier" ];
+            typescript = [ "prettier" ];
+            json = [ "prettier" ];
+            yaml = [ "prettier" ];
+            markdown = [ "prettier" ];
+            python = [ "black" ];
+          };
+          format_on_save = {
+            lsp_fallback = true;
+            timeout_ms = 500;
+          };
+        };
+      };
+
+      # Notifications
+      notify.enable = true;
+
+      # Web devicons (explicitly enable to avoid deprecation warning)
+      web-devicons.enable = true;
+    };
+
+    # ============================================================================
+    # Keymaps
+    # ============================================================================
+
+    globals.mapleader = " ";
+    globals.maplocalleader = "\\";
+
+    keymaps = [
+      # File explorer
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>Neotree toggle<cr>";
+        options.desc = "Toggle file explorer";
+      }
+
+      # Window navigation
+      {
+        mode = "n";
+        key = "<C-h>";
+        action = "<C-w>h";
+        options.desc = "Move to left window";
+      }
+      {
+        mode = "n";
+        key = "<C-j>";
+        action = "<C-w>j";
+        options.desc = "Move to bottom window";
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action = "<C-w>k";
+        options.desc = "Move to top window";
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action = "<C-w>l";
+        options.desc = "Move to right window";
+      }
+
+      # Buffer navigation
+      {
+        mode = "n";
+        key = "<S-h>";
+        action = "<cmd>bprevious<cr>";
+        options.desc = "Previous buffer";
+      }
+      {
+        mode = "n";
+        key = "<S-l>";
+        action = "<cmd>bnext<cr>";
+        options.desc = "Next buffer";
+      }
+
+      # Save and quit
+      {
+        mode = "n";
+        key = "<leader>w";
+        action = "<cmd>w<cr>";
+        options.desc = "Save file";
+      }
+      {
+        mode = "n";
+        key = "<leader>q";
+        action = "<cmd>q<cr>";
+        options.desc = "Quit";
+      }
+
+      # Better indenting
+      {
+        mode = "v";
+        key = "<";
+        action = "<gv";
+      }
+      {
+        mode = "v";
+        key = ">";
+        action = ">gv";
+      }
     ];
 
-    # Environment variables
-    extraLuaConfig = ''
-      -- Bootstrap lazy.nvim
-      local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-      if not vim.loop.fs_stat(lazypath) then
-        vim.fn.system({
-          "git",
-          "clone",
-          "--filter=blob:none",
-          "https://github.com/folke/lazy.nvim.git",
-          "--branch=stable",
-          lazypath,
-        })
-      end
-      vim.opt.rtp:prepend(lazypath)
+    # ============================================================================
+    # Extra Packages
+    # ============================================================================
 
-      -- Set leader key before loading lazy.nvim
-      vim.g.mapleader = " "
-      vim.g.maplocalleader = "\\"
+    extraPackages = with pkgs; [
+      # Language servers (already provided by nixvim LSP config)
 
-      -- LazyVim setup
-      require("lazy").setup({
-        spec = {
-          -- Import LazyVim
-          { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+      # Formatters
+      stylua
+      nixpkgs-fmt
+      nodePackages.prettier
+      black
 
-          -- Catppuccin colorscheme
-          {
-            "catppuccin/nvim",
-            name = "catppuccin",
-            priority = 1000,
-            lazy = false,
-            opts = {
-              flavour = "mocha",
-              integrations = {
-                cmp = true,
-                gitsigns = true,
-                nvimtree = true,
-                treesitter = true,
-                notify = false,
-                mini = {
-                  enabled = true,
-                  indentscope_color = "",
-                },
-              },
-            },
-          },
-
-          -- Import LazyVim extras
-          { import = "lazyvim.plugins.extras.lang.typescript" },
-          { import = "lazyvim.plugins.extras.lang.json" },
-          { import = "lazyvim.plugins.extras.lang.python" },
-          { import = "lazyvim.plugins.extras.lang.rust" },
-          { import = "lazyvim.plugins.extras.lang.go" },
-          { import = "lazyvim.plugins.extras.formatting.prettier" },
-          { import = "lazyvim.plugins.extras.linting.eslint" },
-          { import = "lazyvim.plugins.extras.ui.mini-animate" },
-        },
-        defaults = {
-          lazy = false,
-          version = false,
-        },
-        install = { colorscheme = { "catppuccin-mocha" } },
-        checker = { enabled = true },
-        performance = {
-          rtp = {
-            disabled_plugins = {
-              "gzip",
-              "tarPlugin",
-              "tohtml",
-              "tutor",
-              "zipPlugin",
-            },
-          },
-        },
-      })
-
-      -- Basic settings
-      vim.opt.number = true
-      vim.opt.relativenumber = true
-      vim.opt.clipboard = "unnamedplus"
-      vim.opt.termguicolors = true
-      vim.opt.undofile = true
-      vim.opt.ignorecase = true
-      vim.opt.smartcase = true
-      vim.opt.updatetime = 250
-      vim.opt.signcolumn = "yes"
-      vim.opt.splitright = true
-      vim.opt.splitbelow = true
-
-      -- Force Catppuccin theme after everything loads
-      vim.cmd.colorscheme "catppuccin-mocha"
-    '';
-  };
-
-  # Symlink LazyVim config directory
-  home.file.".config/nvim/lua/config" = {
-    source = ../../config/nvim/lua/config;
-    recursive = true;
-  };
-
-  home.file.".config/nvim/lua/plugins" = {
-    source = ../../config/nvim/lua/plugins;
-    recursive = true;
+      # Tools
+      fd
+      ripgrep
+      git
+    ];
   };
 }

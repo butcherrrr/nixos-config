@@ -30,7 +30,7 @@ nixos-config/
 │       ├── packages.nix   # User packages and scripts
 │       ├── shell.nix      # Zsh, zoxide, and eza
 │       ├── git.nix        # Git and delta configuration
-│       ├── neovim.nix     # Neovim with LazyVim
+│       ├── neovim.nix     # Neovim with Nixvim
 │       ├── hyprland.nix   # Hyprland settings and keybinds
 │       ├── waybar.nix     # Status bar configuration
 │       ├── rofi.nix       # Application launcher
@@ -41,7 +41,6 @@ nixos-config/
 │       ├── spicetify.nix  # Spotify theming
 │       └── theme.nix      # Cursor theme and wallpaper
 ├── scripts/               # Custom shell scripts
-├── config/                # Additional config files (nvim)
 └── backgrounds/           # Wallpaper images
 ```
 
@@ -63,7 +62,7 @@ nixos-config/
 ### Applications
 
 - **Ghostty** - Modern terminal emulator
-- **Neovim** - Text editor with LazyVim configuration
+- **Neovim** - Text editor with Nixvim configuration
 - **Zed** - Modern code editor with Nix LSP
 - **Firefox** - Web browser
 - **Spotify** - Music player with Catppuccin theme (via Spicetify)
