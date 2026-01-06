@@ -8,11 +8,11 @@ TERMINAL_CMD="zeditor"
 ZED_WINDOW=$(hyprctl clients -j | jq -r '.[] | select(.class | test("zed"; "i")) | .address' | head -n1)
 
 if [ -n "$ZED_WINDOW" ]; then
-    # Zed exists, switch to workspace 2 and focus it
-    hyprctl dispatch workspace 2
+    # Zed exists, focus it then switch to workspace 2
     hyprctl dispatch focuswindow "address:$ZED_WINDOW"
-else
-    # No Zed found, switch to workspace 2 and launch a new one
     hyprctl dispatch workspace 2
+else
+    # No Zed found, launch it then switch to workspace 2
     $TERMINAL_CMD &
+    hyprctl dispatch workspace 2
 fi

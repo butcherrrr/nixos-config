@@ -6,9 +6,9 @@ FIREFOX_CMD="firefox"
 FIREFOX_WINDOW=$(hyprctl clients -j | jq -r '.[] | select(.class | test("firefox"; "i")) | .address' | head -n1)
 
 if [ -n "$FIREFOX_WINDOW" ]; then
-    hyprctl dispatch workspace 3
     hyprctl dispatch focuswindow "address:$FIREFOX_WINDOW"
-else
     hyprctl dispatch workspace 3
+else
     $FIREFOX_CMD &
+    hyprctl dispatch workspace 3
 fi
