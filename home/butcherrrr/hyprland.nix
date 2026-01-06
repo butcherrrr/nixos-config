@@ -118,9 +118,9 @@
         # Applications
         "$hyper, Return, exec, ghostty"
         "$mainMod, Space, exec, rofi -show drun"
-        "$hyper, T, exec, ~/.local/bin/toggle-terminal"
-        "$hyper, E, exec, ~/.local/bin/toggle-zed"
-        "$hyper, B, exec, ~/.local/bin/toggle-firefox"
+        "$hyper, T, exec, ~/.local/bin/toggle-app ghostty ghostty"
+        "$hyper, E, exec, ~/.local/bin/toggle-app zed zeditor"
+        "$hyper, B, exec, ~/.local/bin/toggle-app firefox firefox"
 
         # Window management
         "$mainMod, W, killactive"

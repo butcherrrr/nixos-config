@@ -40,18 +40,8 @@
   # ============================================================================
 
   # Install custom scripts
-  home.file.".local/bin/toggle-terminal" = {
-    source = ../../scripts/toggle-terminal.sh;
-    executable = true;
-  };
-
-  home.file.".local/bin/toggle-zed" = {
-    source = ../../scripts/toggle-zed.sh;
-    executable = true;
-  };
-
-  home.file.".local/bin/toggle-firefox" = {
-    source = ../../scripts/toggle-firefox.sh;
+  home.file.".local/bin/toggle-app" = {
+    source = ../../scripts/toggle-app.sh;
     executable = true;
   };
 
