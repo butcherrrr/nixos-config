@@ -17,6 +17,7 @@ Full Hyprland desktop environment:
     ./hardware-configuration.nix
     ../../modules/core.nix
     ../../modules/greetd.nix
+    ../../modules/console.nix
     ../../modules/hyprland.nix
   ];
 
@@ -52,7 +53,7 @@ Minimal setup without GUI, with SSH enabled:
   imports = [
     ./hardware-configuration.nix
     ../../modules/core.nix
-    # Skip greetd.nix and hyprland.nix
+    # Skip greetd.nix, console.nix, and hyprland.nix
   ];
 
   networking.hostName = hostname;
@@ -98,6 +99,7 @@ Desktop setup with power management and Bluetooth:
     ./hardware-configuration.nix
     ../../modules/core.nix
     ../../modules/greetd.nix
+    ../../modules/console.nix
     ../../modules/hyprland.nix
   ];
 
@@ -141,6 +143,7 @@ Desktop with Steam and GPU acceleration:
     ./hardware-configuration.nix
     ../../modules/core.nix
     ../../modules/greetd.nix
+    ../../modules/console.nix
     ../../modules/hyprland.nix
   ];
 
@@ -237,13 +240,13 @@ Use the `hostname` variable for conditional configuration:
   home.packages = with pkgs; [
     firefox
     neovim
-    
+
     # Server-specific packages
   ] ++ (if hostname == "server" then [
     htop
     tmux
   ] else [])
-  
+
   # Laptop-specific packages
   ++ (if hostname == "laptop" then [
     brightnessctl
@@ -270,7 +273,7 @@ Or create separate module files:
     ./butcherrrr/rofi.nix
     ./butcherrrr/ghostty.nix
   ] else []);
-  
+
   home.stateVersion = "25.11";
 }
 ```
@@ -517,9 +520,9 @@ Compare with your `hosts/*/hardware-configuration.nix` and update as needed.
 
 ### Module Conflicts
 
-**Problem**: Two display managers or conflicting services.
+**Problem**: Conflicting display managers.
 
-**Solution**: Only import one display manager per host. Check your imports in `hosts/*/default.nix`.
+**Solution**: Only import greetd.nix once per host. Check your imports in `hosts/*/default.nix`.
 
 ### Build Failures
 

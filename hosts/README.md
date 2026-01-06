@@ -70,7 +70,8 @@ This file contains host-specific settings:
   imports = [
     ./hardware-configuration.nix
     ../../modules/core.nix        # Base system
-    ../../modules/greetd.nix      # Display manager
+    ../../modules/greetd.nix      # Greetd + tuigreet login
+    ../../modules/console.nix     # Console configuration
     ../../modules/hyprland.nix    # Window manager
   ];
 
@@ -118,7 +119,8 @@ Full graphical environment with Hyprland:
 imports = [
   ./hardware-configuration.nix
   ../../modules/core.nix        # Base system (required)
-  ../../modules/greetd.nix      # Display manager
+  ../../modules/greetd.nix      # Greetd + tuigreet login
+  ../../modules/console.nix     # Console configuration
   ../../modules/hyprland.nix    # Hyprland + portals
 ];
 ```
@@ -150,6 +152,7 @@ imports = [
   ./hardware-configuration.nix
   ../../modules/core.nix
   ../../modules/greetd.nix
+  ../../modules/console.nix
   ../../modules/hyprland.nix
 ];
 
@@ -183,11 +186,25 @@ Provides:
 
 Provides:
 
-- Minimal display manager
-- Auto-login to Hyprland
-- Starts window manager automatically
+- Greetd display manager with tuigreet (text-based login)
+- Password-based login with Catppuccin theming
+- Automatic Hyprland startup after login
+- Gnome-keyring integration via PAM (unlocks with login password)
 
 Skip this for servers or if you want manual login.
+
+### console.nix
+
+**For desktop/laptop hosts**
+
+Provides:
+
+- Large console font configuration (ter-v32n)
+- Lower resolution for bigger text (consoleMode = "1")
+- Quieted boot messages
+- Intel graphics driver early loading
+
+Skip this for servers or if console appearance doesn't matter.
 
 ### hyprland.nix
 

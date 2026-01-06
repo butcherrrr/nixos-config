@@ -2,20 +2,36 @@
 
 {
   # ============================================================================
-  # Greetd Display Manager Configuration (Login Screen)
+  # Greetd + tuigreet Display Manager Configuration (Login Screen)
   # ============================================================================
 
-  # Auto-login and immediately lock with hyprlock
-  # This gives you a hyprlock login experience
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "butcherrrr";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
       };
     };
   };
+
+  # Enable GNOME Keyring for credential storage
+  # Will be unlocked automatically when you log in with your password
+  services.gnome.gnome-keyring.enable = true;
+
+  # Install required packages for theming
+  environment.systemPackages = with pkgs; [
+    greetd.tuigreet
+    gnome-themes-extra
+    adwaita-icon-theme
+    (catppuccin-gtk.override {
+      accents = [ "blue" ];
+      variant = "mocha";
+    })
+    banana-cursor
+  ];
+
+  # Install wallpaper to system location
+  environment.etc."backgrounds/nixos-config/minimalist-black-hole.png".source = ../backgrounds/minimalist-black-hole.png;
 
   # ============================================================================
   # Console Colors - Catppuccin Mocha

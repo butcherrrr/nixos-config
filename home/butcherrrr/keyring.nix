@@ -17,7 +17,9 @@
   };
 
   # Add libsecret for Secret Service API support
+  # seahorse provides a GUI to manage keyring passwords
   home.packages = with pkgs; [
     libsecret
+    seahorse
   ];
 }

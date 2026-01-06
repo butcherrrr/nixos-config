@@ -73,9 +73,9 @@
     # Optional Modules (comment out what you don't need)
     # -------------------------------------------------------------------------
 
-    # Greetd display manager configuration (login screen)
+    # greetd + tuigreet display manager configuration (login screen)
     # Only import this if you want a graphical login
-    # For servers or auto-login systems, you might skip this
+    # For servers, you might skip this
     ../../modules/greetd.nix
 
     # Hyprland window manager system-level configuration

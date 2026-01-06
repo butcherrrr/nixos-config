@@ -52,6 +52,7 @@
     # Generate with: sudo nixos-generate-config --show-hardware-config
     ./hardware-configuration.nix
     ../../modules/core.nix
+    ../../modules/console.nix
     ../../modules/greetd.nix
     ../../modules/hyprland.nix
   ];

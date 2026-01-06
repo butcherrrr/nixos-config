@@ -85,8 +85,13 @@
   # Console keyboard layout (for TTY/virtual console)
   console.keyMap = "sv-latin1";
 
-  # Console font for better readability in tuigreet
-  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v16n.psf.gz";
+  # Console font for better readability at TTY login
+  # Available sizes: ter-v12n, ter-v14n, ter-v16n, ter-v20n, ter-v22n, ter-v24n, ter-v28n, ter-v32n
+  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
+
+  # Force console font to apply early
+  console.earlySetup = true;
+  console.packages = [ pkgs.terminus_font ];
 
   # X11 keyboard layout (also used by Wayland compositors as fallback)
   services.xserver.xkb = {

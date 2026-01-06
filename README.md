@@ -21,7 +21,8 @@ nixos-config/
 │   └── example-host/      # Template for new hosts
 ├── modules/               # Shared system modules
 │   ├── core.nix           # Base system (users, audio, networking, keyd)
-│   ├── greetd.nix         # Display manager with auto-login
+│   ├── greetd.nix         # Greetd + tuigreet display manager
+│   ├── console.nix        # Console configuration (large font, resolution)
 │   └── hyprland.nix       # Hyprland window manager + portals
 ├── home/                  # Home-manager user configs
 │   ├── butcherrrr.nix     # Main user configuration
@@ -57,7 +58,7 @@ nixos-config/
 - **Waybar** - Status bar with system information
 - **Rofi** - Application launcher with fuzzy search
 - **Mako** - Notification daemon
-- **Greetd** - Display manager with auto-login + hyprlock on boot
+- **Greetd + tuigreet** - Text-based login manager with Catppuccin theming
 
 ### Applications
 
@@ -226,7 +227,7 @@ sudo nixos-rebuild switch --flake .#$(hostname)
 
 In `hosts/YOUR-HOSTNAME/default.nix`:
 
-**Desktop/Laptop:** `core.nix` + `greetd.nix` + `hyprland.nix`
+**Desktop/Laptop:** `core.nix` + `greetd.nix` + `console.nix` + `hyprland.nix`
 **Server:** `core.nix` only
 
 See `HOSTS.md` for more host type examples.
@@ -429,7 +430,7 @@ sudo nixos-rebuild test --flake .#$(hostname)
 # Check logs
 journalctl -u greetd -b
 
-# Try manual start
+# Try manual start from TTY
 Hyprland
 ```
 
