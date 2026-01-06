@@ -60,7 +60,7 @@
           bothlock_color = -1;
           invert_numlock = false;
           swap_font_color = false;
-          position = "0, -120";
+          position = "0, -400";
           halign = "center";
           valign = "center";
         }
@@ -74,7 +74,7 @@
           color = "rgb(cdd6f4)";  # Catppuccin text
           font_size = 120;
           font_family = "JetBrainsMono Nerd Font";
-          position = "0, 150";
+          position = "0, 350";
           halign = "center";
           valign = "center";
         }
@@ -85,7 +85,18 @@
           color = "rgb(cdd6f4)";  # Catppuccin text
           font_size = 24;
           font_family = "JetBrainsMono Nerd Font";
-          position = "0, 50";
+          position = "0, 250";
+          halign = "center";
+          valign = "center";
+        }
+        # Username
+        {
+          monitor = "";
+          text = "$USER";
+          color = "rgb(cdd6f4)";  # Catppuccin text
+          font_size = 18;
+          font_family = "JetBrainsMono Nerd Font";
+          position = "0, -320";
           halign = "center";
           valign = "center";
         }
