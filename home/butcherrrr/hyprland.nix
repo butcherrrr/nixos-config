@@ -77,7 +77,8 @@
         # Workspace assignments
         "workspace 1,class:(com.mitchellh.ghostty)$"
         "workspace 2,class:(dev.zed.Zed)"
-        "workspace 3,class:(firefox)"
+        "workspace 3,class:(chromium-browser)"
+        "workspace 4,class:(firefox)"
       ];
 
       # Animations
@@ -120,6 +121,7 @@
         "$mainMod, Space, exec, rofi -show drun"
         "$hyper, T, exec, ~/.local/bin/toggle-app ghostty ghostty"
         "$hyper, E, exec, ~/.local/bin/toggle-app zed zeditor"
+        "$hyper, C, exec, ~/.local/bin/toggle-app chromium-browser chromium"
         "$hyper, B, exec, ~/.local/bin/toggle-app firefox firefox"
 
         # Window management

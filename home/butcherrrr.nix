@@ -43,6 +43,7 @@
     ./butcherrrr/rofi.nix        # Application launcher
     ./butcherrrr/ghostty.nix     # Terminal emulator
     ./butcherrrr/zed.nix         # Zed editor
+    ./butcherrrr/chromium.nix    # Chromium browser
     ./butcherrrr/keyring.nix     # GNOME Keyring for secret storage
     ./butcherrrr/services.nix    # Mako and Hyprpaper
     ./butcherrrr/theme.nix       # GTK and cursor theming
