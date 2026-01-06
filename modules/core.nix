@@ -1,9 +1,7 @@
 { pkgs, user, ... }:
 
 {
-  # ============================================================================
   # Nix Configuration
-  # ============================================================================
 
   # Enable experimental Nix features
   nix.settings.experimental-features = [
@@ -14,14 +12,11 @@
   # Allow unfree (proprietary) packages
   nixpkgs.config.allowUnfree = true;
 
-  # ============================================================================
   # User Configuration
-  # ============================================================================
 
   # Define the main user account using the variable passed from flake.nix
   # This allows different hosts to have different primary users
   users.users.${user} = {
-    # This is a regular user account (not a system account)
     isNormalUser = true;
 
     # Add user to important groups:
@@ -42,36 +37,22 @@
     shell = pkgs.zsh;
   };
 
-  # ============================================================================
   # Security Configuration
-  # ============================================================================
-
-  # Enable sudo
   security.sudo.enable = true;
-
   # Enable gnome-keyring PAM integration
   # This allows gnome-keyring to unlock automatically on login
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
 
-  # ============================================================================
   # Power/Sleep Configuration
-  # ============================================================================
-
-  # Let Hyprland handle power button directly (via XF86PowerOff binding)
-  # But still handle sleep/suspend normally for swayidle before-sleep hook
   services.logind.settings.Login = {
     HandlePowerKey = "ignore"; # Hyprland binds XF86PowerOff instead
     HandleLidSwitch = "suspend";
     HandleLidSwitchExternalPower = "suspend";
   };
 
-  # ============================================================================
   # Networking Configuration
-  # ============================================================================
-
   # Enable iwd (iwd wireless daemon) for WiFi management
-  # Required for impala WiFi manager
   networking.wireless.iwd = {
     enable = true;
     settings = {
@@ -87,18 +68,12 @@
   # Enable D-Bus for iwd user access (required for impala)
   services.dbus.enable = true;
 
-  # ============================================================================
   # Console Configuration
-  # ============================================================================
-
   # Console keyboard layout (for TTY/virtual console)
   console.keyMap = "sv-latin1";
 
-  # Console font for better readability at TTY login
-  # Available sizes: ter-v12n, ter-v14n, ter-v16n, ter-v20n, ter-v22n, ter-v24n, ter-v28n, ter-v32n
+  # Large console font for better readability
   console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
-
-  # Force console font to apply early
   console.earlySetup = true;
   console.packages = [ pkgs.terminus_font ];
 
@@ -118,14 +93,12 @@
         ids = [ "*" ];
         settings = {
           main = {
-            # Remap Caps Lock to Hyper (Ctrl+Shift+Alt+Super)
             # Tapped alone = Escape, held with other keys = Hyper modifier
             capslock = "overload(hyper, esc)";
           };
           # Hyper layer - when Caps Lock is held
           "hyper:C-S-M-A" = {
             # C-S-M-A = Ctrl+Shift+Meta(Alt)+Super
-            # All keys pressed with Caps Lock will have all 4 modifiers
             # Example: Caps+h = Ctrl+Shift+Alt+Super+h
           };
         };
@@ -133,9 +106,7 @@
     };
   };
 
-  # ============================================================================
   # Audio Configuration
-  # ============================================================================
 
   # Enable RealtimeKit
   # Reduces audio latency and prevents crackling/stuttering
@@ -158,11 +129,7 @@
     alsa.support32Bit = true;
   };
 
-  # ============================================================================
   # Bluetooth Configuration
-  # ============================================================================
-
-  # Enable Bluetooth support
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true; # Power on Bluetooth adapter on boot
@@ -174,29 +141,18 @@
     };
   };
 
-  # ============================================================================
-  # Docker Configuration
-  # ============================================================================
-
   # Enable Docker
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true; # Start Docker daemon on boot
   };
 
-  # ============================================================================
-  # Fonts Configuration
-  # ============================================================================
-
   # Enable font configuration
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
 
-  # ============================================================================
   # System Packages
-  # ============================================================================
-
   # Packages installed system-wide (available to all users)
   environment.systemPackages = with pkgs; [
     curl

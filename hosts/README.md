@@ -1,9 +1,9 @@
-# Hosts Directory
+# Multi-Host Management
 
-Each subdirectory represents one machine configuration. Current hosts:
+## Current Hosts
 
-- `guinea-pig/` - Primary host (desktop/laptop)
-- `example-host/` - Template (copy this for new hosts)
+- `x1/` - Primary laptop
+- `guinea-pig/` - Test/build laptop
 
 ## Directory Structure
 
@@ -15,20 +15,41 @@ hosts/HOSTNAME/
 └── hardware-configuration.nix  # Auto-generated hardware config
 ```
 
-## Quick Reference
+---
 
-### Adding a New Host
+## Bootstrap on Fresh NixOS Install
+
+After installing NixOS from USB, the minimal installation doesn't include git. Bootstrap the system to clone this repo:
 
 ```bash
-# 1. Copy template
-cp -r hosts/example-host hosts/NEW-HOSTNAME
+# Enable networking (if needed)
+# For WiFi via NetworkManager (if available in minimal install)
+nmcli device wifi connect "SSID" password "PASSWORD"
+
+# Use nix-shell to temporarily get git and vim
+nix-shell -p git vim
+
+# Clone the repo via HTTPS
+git clone https://github.com/butcherrrr/nixos-config
+cd nixos-config
+```
+
+Once the repo is cloned, proceed with adding the new host configuration.
+
+---
+
+## Adding a New Host
+
+```bash
+# 1. Copy an existing host as a template
+cp -r hosts/x1 hosts/NEW-HOSTNAME
 
 # 2. Edit hosts/NEW-HOSTNAME/default.nix
-nano hosts/NEW-HOSTNAME/default.nix
+vim hosts/NEW-HOSTNAME/default.nix
 # Adjust: hostname, timezone, locale, which modules to import
 
 # 3. Add to flake.nix under nixosConfigurations
-nano flake.nix
+vim flake.nix
 
 # 4. On target machine after NixOS install:
 sudo nixos-generate-config --root /mnt  # During installation
@@ -46,6 +67,8 @@ git push
 # 7. Rebuild on target machine
 sudo nixos-rebuild switch --flake .#NEW-HOSTNAME
 ```
+
+---
 
 ## Host Configuration Files
 
@@ -93,13 +116,7 @@ This file contains host-specific settings:
 
 ### hardware-configuration.nix
 
-This file is auto-generated and contains hardware-specific settings:
-
-- **File systems**: Partitions and mount points
-- **Boot configuration**: initrd modules, kernel modules
-- **CPU**: Microcode updates (Intel/AMD)
-- **Swap**: Swap file or partition configuration
-- **Network interfaces**: Detected network hardware
+This file is auto-generated and contains hardware-specific settings.
 
 **Important**:
 
@@ -107,45 +124,35 @@ This file is auto-generated and contains hardware-specific settings:
 - Never copy between machines (each has unique hardware)
 - Regenerate if hardware changes: `sudo nixos-generate-config`
 
-## Module Selection
+---
 
-Choose which modules to import based on host type:
+## Host Type Examples
 
 ### Desktop/Laptop
-
-Full graphical environment with Hyprland:
 
 ```nix
 imports = [
   ./hardware-configuration.nix
-  ../../modules/core.nix        # Base system (required)
-  ../../modules/greetd.nix      # Greetd + tuigreet login
-  ../../modules/console.nix     # Console configuration
-  ../../modules/hyprland.nix    # Hyprland + portals
+  ../../modules/core.nix
+  ../../modules/greetd.nix
+  ../../modules/console.nix
+  ../../modules/hyprland.nix
 ];
 ```
 
 ### Server
 
-Minimal setup without GUI:
-
 ```nix
 imports = [
   ./hardware-configuration.nix
-  ../../modules/core.nix        # Base system only
+  ../../modules/core.nix
+  # Skip greetd.nix, console.nix, hyprland.nix
 ];
-```
 
-Then add server-specific services in `default.nix`:
-
-```nix
 services.openssh.enable = true;
-networking.firewall.allowedTCPPorts = [ 22 ];
 ```
 
 ### Laptop (with power management)
-
-Desktop setup plus power optimization:
 
 ```nix
 imports = [
@@ -156,14 +163,15 @@ imports = [
   ../../modules/hyprland.nix
 ];
 
-# Laptop-specific
 services.tlp.enable = true;
 services.libinput.enable = true;
 ```
 
+---
+
 ## Available System Modules
 
-Located in `modules/`:
+Located in `../modules/`:
 
 ### core.nix
 
@@ -216,55 +224,13 @@ Provides:
 - XDG desktop portals (Hyprland + GTK)
 - Wayland utilities (wl-clipboard, grim, slurp)
 
-User-specific Hyprland config is in `home/butcherrrr/hyprland.nix`.
+User-specific Hyprland config is in `../home/butcherrrr/hyprland.nix`.
 
-## Host-Specific Configuration Examples
-
-### Different Timezone
-
-```nix
-# In hosts/HOSTNAME/default.nix
-time.timeZone = "America/New_York";
-```
-
-### Different Kernel
-
-```nix
-# Latest kernel
-boot.kernelPackages = pkgs.linuxPackages_latest;
-
-# Specific version
-boot.kernelPackages = pkgs.linuxPackages_6_6;
-```
-
-### NVIDIA Graphics
-
-```nix
-services.xserver.videoDrivers = [ "nvidia" ];
-hardware.nvidia.modesetting.enable = true;
-```
-
-### Static IP
-
-```nix
-networking.interfaces.eth0.ipv4.addresses = [{
-  address = "192.168.1.100";
-  prefixLength = 24;
-}];
-```
-
-### Encrypted Drive
-
-```nix
-boot.initrd.luks.devices."cryptroot" = {
-  device = "/dev/disk/by-uuid/ACTUAL-UUID";
-  preLVM = true;
-};
-```
+---
 
 ## Flake Integration
 
-Each host must be defined in `flake.nix`:
+Each host must be defined in `../flake.nix`:
 
 ```nix
 nixosConfigurations = {
@@ -288,105 +254,3 @@ nixosConfigurations = {
 1. Directory name: `hosts/new-hostname/`
 2. Flake config: `new-hostname = mkSystem { hostname = "new-hostname"; ... }`
 3. Actual machine hostname (set by `networking.hostName`)
-
-## Rebuilding
-
-### Current Host
-
-```bash
-sudo nixos-rebuild switch --flake .#$(hostname)
-```
-
-Or use the shell alias:
-
-```bash
-nrs
-```
-
-### Specific Host
-
-```bash
-sudo nixos-rebuild switch --flake .#guinea-pig
-```
-
-### Test Without Committing
-
-```bash
-sudo nixos-rebuild test --flake .#$(hostname)
-```
-
-### Build Only (Don't Activate)
-
-```bash
-sudo nixos-rebuild build --flake .#$(hostname)
-```
-
-## Troubleshooting
-
-### Can't Find Host Configuration
-
-**Error**: `error: attribute 'nixosConfigurations.HOSTNAME' missing`
-
-**Solution**: Check that hostname matches in:
-
-- Directory name
-- `flake.nix` config
-- `networking.hostName` in `default.nix`
-
-### Hardware Config Missing
-
-**Error**: `error: getting status of '/nix/store/.../hardware-configuration.nix': No such file or directory`
-
-**Solution**: Generate hardware config:
-
-```bash
-sudo nixos-generate-config
-cp /etc/nixos/hardware-configuration.nix hosts/HOSTNAME/
-```
-
-### Module Not Found
-
-**Error**: `error: path '/etc/nixos/modules/core.nix' does not exist`
-
-**Solution**: Check import paths use relative paths:
-
-```nix
-imports = [
-  ../../modules/core.nix  # Correct (relative)
-];
-```
-
-Not:
-
-```nix
-imports = [
-  /etc/nixos/modules/core.nix  # Wrong (absolute)
-];
-```
-
-### Build Succeeds But System Won't Boot
-
-**Solution**: Boot into previous generation from bootloader, then:
-
-```bash
-sudo nixos-rebuild switch --rollback
-```
-
-Check `hardware-configuration.nix` for correct boot settings.
-
-## Best Practices
-
-1. **One host, one directory** - Keep each machine's config separate
-2. **Commit hardware config** - Track hardware-configuration.nix in git
-3. **Document quirks** - Add comments for host-specific workarounds
-4. **Use example-host** - Copy from template for consistency
-5. **Test before push** - Rebuild successfully before committing
-6. **Keep it simple** - Put shared config in modules/, not per-host
-7. **Regular backups** - Push to GitHub/GitLab after major changes
-
-## See Also
-
-- `../README.md` - Main documentation and setup guide
-- `../HOSTS.md` - Advanced multi-host management (servers, laptops, etc.)
-- `../home/butcherrrr/README.md` - Home Manager modules documentation
-- `../modules/` - System-wide modules documentation

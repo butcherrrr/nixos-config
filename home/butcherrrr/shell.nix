@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  # ============================================================================
   # Shell Configuration
-  # ============================================================================
 
   # Eza - modern ls replacement
   programs.eza = {
@@ -35,8 +33,12 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" "docker" ];
-      theme = "";  # Empty - using powerlevel10k instead
+      plugins = [
+        "git"
+        "sudo"
+        "docker"
+      ];
+      theme = ""; # Empty - using powerlevel10k instead
     };
 
     initContent = ''

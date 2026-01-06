@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  # ============================================================================
   # User Packages
-  # ============================================================================
 
   # Packages installed for this user (not system-wide)
   # Only include packages WITHOUT home-manager modules
@@ -24,7 +22,7 @@
     python3
     go
     rustup
-    nil  # Nix language server
+    nil # Nix language server
 
     # Applications
     firefox
@@ -32,15 +30,11 @@
     obsidian
 
     # Media viewers
-    imv    # Image viewer
-    mpv    # Video player
+    imv # Image viewer
+    mpv # Video player
   ];
 
-  # ============================================================================
   # Scripts
-  # ============================================================================
-
-  # Install custom scripts
   home.file.".local/bin/toggle-app" = {
     source = ../../scripts/toggle-app.sh;
     executable = true;

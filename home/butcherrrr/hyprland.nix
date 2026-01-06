@@ -1,21 +1,13 @@
 { ... }:
 
 {
-  # ============================================================================
   # Hyprland Configuration
-  # ============================================================================
-
   wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
       # Monitor configuration
       # Format: monitor = "NAME,RESOLUTION,POSITION,SCALE"
-      # Examples:
-      #   - ",preferred,auto,1"        # Auto detect, 100% scale
-      #   - ",preferred,auto,1.25"     # Auto detect, 125% scale
-      #   - ",preferred,auto,1.5"      # Auto detect, 150% scale
-      #   - "eDP-1,1920x1080,0x0,1"    # Specific monitor, 1080p, 100% scale
       monitor = [
         "HDMI-A-1,3840x2160@60,0x0,2"
         "eDP-1,1920x1080@60,1920x0,1.5"
@@ -31,7 +23,6 @@
         "7,monitor:eDP-1"
         "8,monitor:eDP-1"
       ];
-
 
       # Input configuration
       input = {
@@ -100,7 +91,7 @@
         pseudotile = true;
         preserve_split = true;
         # Force split to the right (natural direction)
-        force_split = 2;  # 0 = follow mouse, 1 = left, 2 = right
+        force_split = 2; # 0 = follow mouse, 1 = left, 2 = right
         split_width_multiplier = 1.0;
       };
 

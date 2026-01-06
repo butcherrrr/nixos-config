@@ -1,11 +1,7 @@
-# Host-specific configuration for: nixos
-# This file defines settings unique to this particular machine
 { hostname, ... }:
 
 {
-  # ============================================================================
   # Boot Configuration
-  # ============================================================================
 
   # Use systemd-boot as the bootloader (modern, simple UEFI bootloader)
   boot.loader.systemd-boot.enable = true;
@@ -19,16 +15,13 @@
   # Disable GRUB (we're using systemd-boot instead)
   boot.loader.grub.enable = false;
 
-  # ============================================================================
   # System Configuration
-  # ============================================================================
 
   # State version - should match NixOS release when first installed
   # DO NOT CHANGE this on an existing system
   system.stateVersion = "25.11";
 
   # Hostname - using the variable passed from flake.nix
-  # This makes it easy to reuse this configuration structure for other hosts
   networking.hostName = hostname;
 
   time.timeZone = "Europe/Stockholm";
@@ -37,10 +30,7 @@
 
   # Console keymap is configured in modules/core.nix
 
-  # ============================================================================
   # Module Imports
-  # ============================================================================
-
   imports = [
     ./hardware-configuration.nix
     ../../modules/core.nix

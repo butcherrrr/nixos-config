@@ -5,45 +5,32 @@
 
   description = "NixOS config";
 
-  # ============================================================================
-  # Input Sources
-  # ============================================================================
-
-  # Input sources - external dependencies for this configuration
+  # Input sources - external dependencies
   inputs = {
-    # NixOS package repository - using the stable 25.11 release
-    # This determines which versions of packages are available
+    # Determines which versions of packages are available
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # Home Manager - manages user-level configuration and packages
-    # Must use the same release branch as nixpkgs to avoid version mismatches
-    # Allows declarative configuration of dotfiles, user packages, and user services
     home-manager.url = "github:nix-community/home-manager/release-25.11";
 
     # Makes home-manager use the same nixpkgs version as the system
-    # This prevents version conflicts between system and user packages
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Catppuccin theme for automatic theming across 70+ applications
+    # Catppuccin theme for automatic theming
     catppuccin.url = "github:catppuccin/nix";
 
     # Spicetify - Spotify theming
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Nixvim - Neovim configuration in Nix
+    # Nixvim
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  # ============================================================================
-  # Outputs
-  # ============================================================================
-
   # Outputs - what this flake produces (system configurations)
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       catppuccin,
@@ -52,29 +39,18 @@
       ...
     }:
     let
-      # ========================================================================
-      # Helper Function: mkSystem
-      # ========================================================================
-
-      # Helper function to create a system configuration
-      # This reduces duplication when defining multiple hosts
-      #
-      # Parameters:
-      #   hostname - Name of the host (e.g., "nixos", "laptop", "desktop")
-      #   system   - System architecture (e.g., "x86_64-linux", "aarch64-linux")
-      #   user     - Primary username for home-manager configuration
+      # Creates a system configuration
       mkSystem =
         {
-          hostname,
-          system,
-          user,
+          hostname, # name of the host
+          system, # system architecture
+          user, # username for home-manager config
         }:
         nixpkgs.lib.nixosSystem {
           # System architecture for this host
           inherit system;
 
           # Special arguments passed to all modules
-          # Makes these values accessible in all configuration files
           specialArgs = {
             inherit hostname user;
             inherit spicetify-nix;
@@ -93,7 +69,6 @@
             # Home Manager configuration
             {
               # Use system-level packages instead of separate user-level ones
-              # More efficient and ensures consistency
               home-manager.useGlobalPkgs = true;
 
               # Install user packages to /etc/profiles instead of ~/.nix-profile
@@ -101,7 +76,6 @@
               home-manager.useUserPackages = true;
 
               # Pass extra arguments to home-manager modules
-              # Makes hostname and user available in home-manager config
               home-manager.extraSpecialArgs = {
                 inherit hostname user;
                 inherit spicetify-nix;
@@ -123,16 +97,7 @@
         };
     in
     {
-      # ========================================================================
-      # NixOS System Configurations
-      # ========================================================================
-
-      # Define all systems here
-      # Each system can be built with: nixos-rebuild switch --flake .#<hostname>
       nixosConfigurations = {
-
-        # Primary desktop/laptop
-        # Rebuild with: sudo nixos-rebuild switch --flake .#guinea-pig
         guinea-pig = mkSystem {
           hostname = "guinea-pig";
           system = "x86_64-linux";
@@ -144,34 +109,6 @@
           system = "x86_64-linux";
           user = "butcherrrr";
         };
-
-        # Example: Add more systems as needed
-        # Uncomment and customize these templates for additional machines:
-
-        # laptop = mkSystem {
-        #   hostname = "laptop";
-        #   system = "x86_64-linux";
-        #   user = "butcherrrr";
-        # };
-
-        # workstation = mkSystem {
-        #   hostname = "workstation";
-        #   system = "x86_64-linux";
-        #   user = "butcherrrr";
-        # };
-
-        # server = mkSystem {
-        #   hostname = "server";
-        #   system = "x86_64-linux";
-        #   user = "admin";
-        # };
-
-        # ARM-based system example (e.g., Raspberry Pi, M1/M2 Mac via Asahi)
-        # rpi = mkSystem {
-        #   hostname = "rpi";
-        #   system = "aarch64-linux";
-        #   user = "butcherrrr";
-        # };
       };
     };
 }

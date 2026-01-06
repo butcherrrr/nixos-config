@@ -1,10 +1,7 @@
 { ... }:
 
 {
-  # ============================================================================
   # Waybar Configuration
-  # ============================================================================
-
   programs.waybar = {
     enable = true;
 
@@ -16,9 +13,17 @@
         height = 26;
         spacing = 0;
 
-        modules-left = ["hyprland/workspaces"];
-        modules-center = [];
-        modules-right = ["tray" "bluetooth" "network" "pulseaudio" "cpu" "battery" "clock"];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ ];
+        modules-right = [
+          "tray"
+          "bluetooth"
+          "network"
+          "pulseaudio"
+          "cpu"
+          "battery"
+          "clock"
+        ];
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -36,11 +41,11 @@
             "10" = "0";
           };
           persistent-workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
+            "1" = [ ];
+            "2" = [ ];
+            "3" = [ ];
+            "4" = [ ];
+            "5" = [ ];
           };
         };
 
@@ -58,7 +63,13 @@
         };
 
         network = {
-          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           format = "{icon}";
           format-wifi = "{icon}";
           format-ethernet = "󰀂";
@@ -77,8 +88,30 @@
           format-charging = "{icon}";
           format-plugged = "";
           format-icons = {
-            charging = ["󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂅"];
-            default = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+            charging = [
+              "󰢜"
+              "󰂆"
+              "󰂇"
+              "󰂈"
+              "󰢝"
+              "󰂉"
+              "󰢞"
+              "󰂊"
+              "󰂋"
+              "󰂅"
+            ];
+            default = [
+              "󰁺"
+              "󰁻"
+              "󰁼"
+              "󰁽"
+              "󰁾"
+              "󰁿"
+              "󰂀"
+              "󰂁"
+              "󰂂"
+              "󰁹"
+            ];
           };
           format-full = "󰂅";
           tooltip-format-discharging = "{power:>1.0f}W↓ {capacity}%";
@@ -112,7 +145,11 @@
             phone = "󰄜";
             portable = "󰄜";
             car = "󰄋";
-            default = [ " " " " " "];
+            default = [
+              " "
+              " "
+              " "
+            ];
           };
           on-click = "pavucontrol";
         };

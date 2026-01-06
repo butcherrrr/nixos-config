@@ -1,6 +1,4 @@
-/* =============================================================================
- * Waybar Catppuccin Mocha Styling
- * ============================================================================= */
+/* Waybar Catppuccin Mocha Styling */
 
 @define-color rosewater #f5e0dc;
 @define-color flamingo #f2cdcd;
@@ -53,8 +51,12 @@ window#waybar {
   min-width: 0;
 }
 
-.modules-left { margin-left: 10px; }
-.modules-right { margin-right: 10px; }
+.modules-left {
+  margin-left: 10px;
+}
+.modules-right {
+  margin-right: 10px;
+}
 
 /* Default module spacing + underline hover */
 .modules-left > widget > *,
@@ -68,7 +70,7 @@ window#waybar {
 .modules-left > widget > *:hover,
 .modules-right > widget > *:hover {
   border-bottom: 2px solid rgba(127, 132, 156, 0.65); /* @overlay1 */
-  background: rgba(49, 50, 68, 0.18);                 /* @surface0 */
+  background: rgba(49, 50, 68, 0.18); /* @surface0 */
 }
 
 /* Workspaces */
@@ -112,16 +114,32 @@ window#waybar {
 }
 
 /* Semantic colors */
-#network { color: @sky; }
-#bluetooth { color: @sapphire; }
-#pulseaudio { color: @teal; }
-#cpu { color: @mauve; }
+#network {
+  color: @sky;
+}
+#bluetooth {
+  color: @sapphire;
+}
+#pulseaudio {
+  color: @teal;
+}
+#cpu {
+  color: @mauve;
+}
 
-#battery { color: @green; }
-#battery.warning { color: @yellow; }
-#battery.critical { color: @red; }
+#battery {
+  color: @green;
+}
+#battery.warning {
+  color: @yellow;
+}
+#battery.critical {
+  color: @red;
+}
 
-#clock { color: @text; }
+#clock {
+  color: @text;
+}
 
 #tray {
   padding: 0 8px;
@@ -137,10 +155,12 @@ window#waybar {
 
 /* Tooltip */
 tooltip {
-  background: rgba(17, 17, 27, 0.96);              /* @crust */
-  border: 1px solid rgba(127, 132, 156, 0.30);     /* @overlay1 */
+  background: rgba(17, 17, 27, 0.96); /* @crust */
+  border: 1px solid rgba(127, 132, 156, 0.3); /* @overlay1 */
   border-radius: 10px;
   padding: 8px 10px;
 }
 
-tooltip label { color: @text; }
+tooltip label {
+  color: @text;
+}

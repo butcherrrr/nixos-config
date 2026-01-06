@@ -1,10 +1,7 @@
 { ... }:
 
 {
-  # ============================================================================
   # Git Configuration
-  # ============================================================================
-
   programs.git = {
     enable = true;
 
@@ -80,10 +77,10 @@
   programs.delta = {
     enable = true;
     options = {
-      navigate = true;         # use n and N to move between diff sections
-      light = false;           # dark theme (set to true for light terminals)
-      side-by-side = true;     # split view
-      line-numbers = true;     # show line numbers
+      navigate = true; # use n and N to move between diff sections
+      light = false; # dark theme (set to true for light terminals)
+      side-by-side = true; # split view
+      line-numbers = true; # show line numbers
     };
   };
 }

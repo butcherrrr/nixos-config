@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
 {
-  # ============================================================================
   # Greetd + tuigreet Display Manager Configuration (Login Screen)
-  # ============================================================================
-
   services.greetd = {
     enable = true;
     settings = {
@@ -15,7 +12,6 @@
   };
 
   # Enable GNOME Keyring for credential storage
-  # Will be unlocked automatically on login with password
   services.gnome.gnome-keyring.enable = true;
 
   # Install required packages for theming
@@ -30,14 +26,7 @@
     banana-cursor
   ];
 
-  # Install wallpaper to system location
-  environment.etc."backgrounds/nixos-config/minimalist-black-hole.png".source =
-    ../backgrounds/minimalist-black-hole.png;
-
-  # ============================================================================
   # Console Colors - Catppuccin Mocha
-  # ============================================================================
-
   console.colors = [
     # Normal colors (0-7)
     "1e1e2e" # 0: Black (Base)
