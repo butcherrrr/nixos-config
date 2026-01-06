@@ -104,7 +104,7 @@
           format = "{icon}";
           format-bluetooth = "󰂯";
           format-bluetooth-muted = "󰂲";
-          format-muted = "󰖁";
+          format-muted = " ";
           format-icons = {
             headphone = "󰋋";
             hands-free = "󰋎";
@@ -112,7 +112,7 @@
             phone = "󰄜";
             portable = "󰄜";
             car = "󰄋";
-            default = ["󰕿" "󰖀" "󰕾"];
+            default = [ " " " " " "];
           };
           on-click = "pavucontrol";
         };
