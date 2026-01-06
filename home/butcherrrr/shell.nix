@@ -30,6 +30,7 @@
       la = "eza -la";
       lt = "eza --tree";
       nrs = "sudo nixos-rebuild switch --flake .#$(hostname)";
+      zed = "zeditor";
     };
 
     oh-my-zsh = {
@@ -63,7 +64,7 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    
+
     # Default options
     defaultOptions = [
       "--height 40%"
