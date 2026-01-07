@@ -23,6 +23,7 @@
     hyprlock.enable = false; # Using custom configuration in hyprlock.nix
     fzf.enable = true;
     tmux.enable = true;
+    yazi.enable = true;
   };
 
   # Module Imports
@@ -37,6 +38,7 @@
     ./butcherrrr/waybar.nix # Status bar
     ./butcherrrr/rofi.nix # Application launcher
     ./butcherrrr/ghostty.nix # Terminal emulator
+    ./butcherrrr/yazi.nix # Terminal file manager
     ./butcherrrr/zed.nix # Zed editor
     ./butcherrrr/chromium.nix # Chromium browser
     ./butcherrrr/keyring.nix # GNOME Keyring for secret storage
