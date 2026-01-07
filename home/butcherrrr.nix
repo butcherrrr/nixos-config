@@ -22,6 +22,7 @@
     hyprland.enable = true;
     hyprlock.enable = false; # Using custom configuration in hyprlock.nix
     fzf.enable = true;
+    tmux.enable = true;
   };
 
   # Module Imports
@@ -30,6 +31,7 @@
     ./butcherrrr/shell.nix # Zsh and zoxide
     ./butcherrrr/git.nix # Git configuration
     ./butcherrrr/neovim.nix # Neovim with Nixvim
+    ./butcherrrr/tmux.nix # Tmux terminal multiplexer
     ./butcherrrr/hyprland.nix # Hyprland window manager
     ./butcherrrr/hyprlock.nix # Lock screen
     ./butcherrrr/waybar.nix # Status bar

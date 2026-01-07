@@ -32,6 +32,7 @@ nixos-config/
 │       ├── shell.nix      # Zsh, zoxide, and eza
 │       ├── git.nix        # Git and delta configuration
 │       ├── neovim.nix     # Neovim with Nixvim
+│       ├── tmux.nix       # Tmux terminal multiplexer
 │       ├── hyprland.nix   # Hyprland settings and keybinds
 │       ├── waybar.nix     # Status bar configuration
 │       ├── rofi.nix       # Application launcher

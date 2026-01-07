@@ -10,6 +10,7 @@ butcherrrr/
 ├── shell.nix            # Zsh, zoxide, and eza configuration
 ├── git.nix              # Git and delta configuration
 ├── neovim.nix           # Neovim with Nixvim
+├── tmux.nix             # Tmux terminal multiplexer
 ├── hyprland.nix         # Hyprland window manager settings
 ├── waybar.nix           # Status bar configuration
 ├── waybar-style.gtk.css # Waybar styling (Catppuccin Mocha)
@@ -35,6 +36,7 @@ imports = [
   ./butcherrrr/shell.nix
   ./butcherrrr/git.nix
   ./butcherrrr/neovim.nix
+  ./butcherrrr/tmux.nix
   ./butcherrrr/hyprland.nix
   ./butcherrrr/hyprlock.nix
   ./butcherrrr/waybar.nix
