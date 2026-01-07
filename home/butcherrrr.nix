@@ -24,6 +24,7 @@
     fzf.enable = true;
     tmux.enable = true;
     yazi.enable = true;
+    zed.enable = false; # Using custom configuration in zed.nix
   };
 
   # Module Imports

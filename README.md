@@ -41,6 +41,8 @@ nixos-config/
 │       ├── zed.nix        # Zed editor
 │       ├── chromium.nix   # Chromium browser
 │       ├── hyprlock.nix   # Lock screen configuration
+│       ├── themes/        # Custom themes
+│       │   └── zed-custom-catppuccin.nix  # Catppuccin Mocha theme for Zed
 │       ├── keyring.nix    # GNOME Keyring for secret storage
 │       ├── services.nix   # Mako notifications
 │       ├── spicetify.nix  # Spotify theming

@@ -1,5 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Import custom theme from separate file
+  customTheme = import ./themes/zed-custom-catppuccin.nix;
+in
 {
   # Zed Editor Configuration
   programs.zed-editor = {
@@ -126,9 +130,16 @@
       };
 
       icon_theme = "Catppuccin Mocha";
-      theme = {
-        dark = "Catppuccin Mocha (blue)";
-        light = "Catppuccin Mocha (blue)";
+
+      # Custom theme definitions
+      # Catppuccin Mocha theme loaded from ./themes/zed-custom-catppuccin.nix
+      themes = customTheme.themes;
+
+      # Theme selection - using custom Catppuccin Mocha theme
+      # Using lib.mkForce to override any other theme definitions
+      theme = lib.mkForce {
+        dark = "Catppuccin Mocha";
+        light = "Catppuccin Mocha";
       };
 
       # Telemetry
@@ -154,7 +165,6 @@
 
     extensions = [
       "nix"
-      "catppuccin"
       "catppuccin-icons"
     ];
   };

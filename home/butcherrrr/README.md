@@ -24,6 +24,8 @@ butcherrrr/
 ├── services.nix         # Background services (mako notifications)
 ├── spicetify.nix        # Spotify theming
 ├── theme.nix            # Cursor theming and wallpaper
+├── themes/              # Custom themes
+│   └── zed-custom-catppuccin.nix  # Custom Catppuccin Mocha theme for Zed
 └── README.md            # You are here
 ```
 
