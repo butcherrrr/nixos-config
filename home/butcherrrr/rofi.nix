@@ -16,9 +16,10 @@
       disable-history = false;
       sorting-method = "fzf";
       matching = "fuzzy";
-      modes = "drun,run,window";
+      modes = "drun,run,window,filebrowser,keys";
       drun-display-format = "{name}";
-      lines = 6;
+      lines = 10;
+      sidebar-mode = false;
     };
 
     theme =
@@ -27,39 +28,40 @@
       in
       {
         "*" = {
-          font = "JetBrainsMono Nerd Font 14";
+          font = "JetBrainsMono Nerd Font 18";
         };
 
         window = {
           transparency = "real";
           border = mkLiteral "1px";
           border-radius = mkLiteral "6px";
-          width = mkLiteral "420px";
+          width = mkLiteral "600px";
           padding = mkLiteral "8px";
         };
 
         mainbox = {
           background-color = mkLiteral "transparent";
           children = map mkLiteral [
+            "prompt"
             "inputbar"
             "listview"
           ];
           spacing = mkLiteral "6px";
         };
 
+        prompt = {
+          background-color = mkLiteral "transparent";
+          font = "JetBrainsMono Nerd Font 12";
+          padding = mkLiteral "6px 8px 2px 8px";
+        };
+
         inputbar = {
           border-radius = mkLiteral "4px";
           padding = mkLiteral "6px 8px";
           children = map mkLiteral [
-            "prompt"
             "entry"
           ];
           spacing = mkLiteral "6px";
-        };
-
-        prompt = {
-          background-color = mkLiteral "transparent";
-          font = "JetBrainsMono Nerd Font Bold 14";
         };
 
         entry = {
@@ -71,7 +73,7 @@
         listview = {
           background-color = mkLiteral "transparent";
           columns = 1;
-          lines = 6;
+          lines = 10;
           spacing = mkLiteral "1px";
           cycle = false;
           dynamic = true;
@@ -83,12 +85,12 @@
           background-color = mkLiteral "transparent";
           orientation = mkLiteral "horizontal";
           border-radius = mkLiteral "3px";
-          padding = mkLiteral "4px 6px";
+          padding = mkLiteral "8px 10px";
         };
 
         element-icon = {
           background-color = mkLiteral "transparent";
-          size = mkLiteral "27px";
+          size = mkLiteral "36px";
           margin = mkLiteral "0px 6px 0px 0px";
         };
 
