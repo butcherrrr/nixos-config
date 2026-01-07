@@ -9,8 +9,8 @@
       # Monitor configuration
       # Format: monitor = "NAME,RESOLUTION,POSITION,SCALE"
       monitor = [
-        "HDMI-A-1,3840x2160@60,0x0,2"
-        "eDP-1,1920x1080@60,1920x0,1.5"
+        "HDMI-A-1,3840x2160@60,0x0,1.5"
+        "eDP-1,1920x1080@60,2560x0,1"
       ];
 
       workspace = [

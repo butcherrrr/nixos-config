@@ -18,7 +18,7 @@
       border-radius = 2;
 
       # Font
-      font = "JetBrainsMono Nerd Font 11";
+      font = "JetBrainsMono Nerd Font 17";
 
       # Behavior
       default-timeout = 3000; # 3 seconds

@@ -11,7 +11,7 @@
 
       # Font configuration
       font-family = "JetBrainsMono Nerd Font";
-      font-size = 12;
+      font-size = 18;
 
       # Window configuration
       window-padding-x = 14;

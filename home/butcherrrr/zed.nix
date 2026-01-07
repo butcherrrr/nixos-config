@@ -6,8 +6,8 @@
     enable = true;
 
     userSettings = {
-      ui_font_size = 16;
-      buffer_font_size = 14;
+      ui_font_size = 24;
+      buffer_font_size = 21;
       buffer_font_family = "JetBrainsMono Nerd Font";
       buffer_font_features = {
         calt = true;
@@ -53,7 +53,7 @@
 
       terminal = {
         font_family = "JetBrainsMono Nerd Font";
-        font_size = 14;
+        font_size = 21;
         shell = {
           program = "zsh";
         };

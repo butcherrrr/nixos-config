@@ -27,7 +27,7 @@
       in
       {
         "*" = {
-          font = "JetBrainsMono Nerd Font 9";
+          font = "JetBrainsMono Nerd Font 14";
         };
 
         window = {
@@ -59,7 +59,7 @@
 
         prompt = {
           background-color = mkLiteral "transparent";
-          font = "JetBrainsMono Nerd Font Bold 9";
+          font = "JetBrainsMono Nerd Font Bold 14";
         };
 
         entry = {
@@ -88,7 +88,7 @@
 
         element-icon = {
           background-color = mkLiteral "transparent";
-          size = mkLiteral "18px";
+          size = mkLiteral "27px";
           margin = mkLiteral "0px 6px 0px 0px";
         };
 

@@ -10,7 +10,7 @@
         reload_style_on_change = true;
         layer = "top";
         position = "top";
-        height = 26;
+        height = 39;
         spacing = 0;
 
         modules-left = [ "hyprland/workspaces" ];
@@ -155,7 +155,7 @@
         };
 
         tray = {
-          icon-size = 12;
+          icon-size = 18;
           spacing = 17;
         };
       };
