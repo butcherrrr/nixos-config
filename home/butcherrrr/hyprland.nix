@@ -83,15 +83,15 @@
 
       # Animations
       animations = {
-        enabled = false;
+        enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 0, 7, myBezier"
-          "windowsOut, 0, 7, default, popin 80%"
+          "windows, 1, 3, myBezier"
+          "windowsOut, 1, 3, default, popin 80%"
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 0, 6, default"
+          "fade, 1, 1, default"
+          "workspaces, 1, 3, default"
         ];
       };
 
