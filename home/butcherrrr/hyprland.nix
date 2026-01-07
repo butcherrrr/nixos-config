@@ -52,17 +52,26 @@
 
       # Decoration
       decoration = {
-        rounding = 2;
+        rounding = 10;
         blur = {
           enabled = true;
           size = 3;
           passes = 1;
         };
+        shadow = {
+          enabled = true;
+          range = 20;
+          render_power = 3;
+          offset = "0 4";
+          color = "rgba(0000004D)";
+          color_inactive = "rgba(00000026)";
+        };
+        active_opacity = 0.95;
+        inactive_opacity = 0.80;
       };
 
       # Window rules
       windowrulev2 = [
-        "opacity 0.95 0.95,class:.*"
         # TUI utilities (btop, bluetui, impala) - fullscreen
         "fullscreen,class:(com.mitchellh.ghostty.tui)"
         # Workspace assignments
