@@ -33,6 +33,7 @@
 
       # Misc
       confirm-close-surface = false;
+      resize-overlay = "never";
     };
   };
 }
