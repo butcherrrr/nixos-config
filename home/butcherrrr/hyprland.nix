@@ -78,7 +78,7 @@
         "workspace 1,class:(com.mitchellh.ghostty)$"
         "workspace 2,class:(dev.zed.Zed)"
         "workspace 3,class:(chromium-browser)"
-        "workspace 4,class:(firefox)"
+        "workspace 3,class:(firefox)"
       ];
 
       # Animations
