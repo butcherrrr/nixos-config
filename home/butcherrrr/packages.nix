@@ -23,6 +23,9 @@
     go
     rustup
     nil # Nix language server
+    lazygit
+    lazydocker
+    lazysql
 
     # Applications
     firefox
