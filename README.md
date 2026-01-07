@@ -37,6 +37,7 @@ nixos-config/
 │       ├── waybar.nix     # Status bar configuration
 │       ├── rofi.nix       # Application launcher
 │       ├── ghostty.nix    # Terminal emulator
+│       ├── yazi.nix       # Terminal file manager
 │       ├── zed.nix        # Zed editor
 │       ├── chromium.nix   # Chromium browser
 │       ├── hyprlock.nix   # Lock screen configuration

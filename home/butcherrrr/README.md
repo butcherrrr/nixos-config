@@ -16,6 +16,7 @@ butcherrrr/
 ├── waybar-style.gtk.css # Waybar styling (Catppuccin Mocha)
 ├── rofi.nix             # Application launcher configuration
 ├── ghostty.nix          # Terminal emulator configuration
+├── yazi.nix             # Terminal file manager configuration
 ├── zed.nix              # Zed editor configuration
 ├── chromium.nix         # Chromium browser configuration
 ├── hyprlock.nix         # Lock screen configuration
@@ -42,6 +43,7 @@ imports = [
   ./butcherrrr/waybar.nix
   ./butcherrrr/rofi.nix
   ./butcherrrr/ghostty.nix
+  ./butcherrrr/yazi.nix
   ./butcherrrr/zed.nix
   ./butcherrrr/chromium.nix
   ./butcherrrr/keyring.nix
