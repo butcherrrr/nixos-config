@@ -15,13 +15,13 @@
         no_fade_out = true; # Disable fade-out for instant appearance
       };
 
-      # Background
+      # Background (applies to all monitors)
       background = [
         {
           monitor = "";
           path = "~/.config/hypr/wallpaper.jpg";
-          blur_passes = 2;
-          blur_size = 7;
+          blur_passes = 4;
+          blur_size = 10;
           noise = 0.0117;
           contrast = 0.8916;
           brightness = 0.8172;
@@ -34,7 +34,7 @@
       input-field = [
         {
           monitor = "";
-          size = "400, 60";
+          size = "25%, 5%";
           outline_thickness = 2;
           dots_size = 0.2;
           dots_spacing = 0.15;
@@ -43,7 +43,7 @@
           outer_color = "rgb(89b4fa)"; # Catppuccin blue
           inner_color = "rgb(1e1e2e)"; # Catppuccin base
           font_color = "rgb(cdd6f4)"; # Catppuccin text
-          font_size = 16;
+          font_size = 28;
           fade_on_empty = false;
           placeholder_text = "<span foreground='##cdd6f4'>Password...</span>";
           hide_input = false;
@@ -57,21 +57,22 @@
           bothlock_color = -1;
           invert_numlock = false;
           swap_font_color = false;
-          position = "0, -400";
+          position = "0, -8%";
           halign = "center";
           valign = "center";
         }
       ];
 
-      # Time and Date
+      # Time and Date labels
       label = [
+        # Time
         {
           monitor = "";
           text = "cmd[update:1000] echo \"$(date +'%H:%M')\"";
           color = "rgb(cdd6f4)"; # Catppuccin text
-          font_size = 120;
+          font_size = 150;
           font_family = "JetBrainsMono Nerd Font";
-          position = "0, 350";
+          position = "0, 12%";
           halign = "center";
           valign = "center";
         }
@@ -80,20 +81,9 @@
           monitor = "";
           text = "cmd[update:1000] echo \"$(date +'%A, %B %d')\"";
           color = "rgb(cdd6f4)"; # Catppuccin text
-          font_size = 24;
+          font_size = 28;
           font_family = "JetBrainsMono Nerd Font";
-          position = "0, 250";
-          halign = "center";
-          valign = "center";
-        }
-        # Username
-        {
-          monitor = "";
-          text = "$USER";
-          color = "rgb(cdd6f4)"; # Catppuccin text
-          font_size = 18;
-          font_family = "JetBrainsMono Nerd Font";
-          position = "0, -320";
+          position = "0, 2%";
           halign = "center";
           valign = "center";
         }
