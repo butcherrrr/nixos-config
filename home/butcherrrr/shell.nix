@@ -20,7 +20,19 @@
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+    syntaxHighlighting = {
+      enable = true;
+      # To specify a version, you can override the package:
+      # package = pkgs.zsh-syntax-highlighting.overrideAttrs (oldAttrs: {
+      #   version = "0.7.1";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "zsh-users";
+      #     repo = "zsh-syntax-highlighting";
+      #     rev = "0.7.1";
+      #     sha256 = "sha256-here";
+      #   };
+      # });
+    };
 
     shellAliases = {
       ls = "eza";
@@ -53,6 +65,10 @@
       ZSH_HIGHLIGHT_STYLES[path]='none'
       ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
       ZSH_HIGHLIGHT_STYLES[path_pathseparator]='none'
+
+      # Disable highlighting on command options/arguments
+      ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='none'
+      ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='none'
     '';
   };
 

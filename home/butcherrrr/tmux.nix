@@ -84,6 +84,9 @@
       # Enable continuum auto-save
       set -g @continuum-restore 'on'
       set -g @continuum-save-interval '15'
+
+      # Move status bar to top
+      set -g status-position top
     '';
   };
 
