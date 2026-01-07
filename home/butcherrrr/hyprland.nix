@@ -175,7 +175,7 @@
         "$mainMod SHIFT, R, exec, hyprctl reload"
 
         # Lock screen
-        "$mainMod, L, exec, hyprlock"
+        "$mainMod, Escape, exec, hyprlock"
 
         # Volume control
         ", XF86AudioRaiseVolume, exec, ~/.local/bin/volume up"
@@ -204,8 +204,6 @@
         "$hyper, code:17, Switch to workspace 8, workspace, 8"
         "$hyper, code:18, Switch to workspace 9, workspace, 9"
         "$hyper, code:19, Switch to workspace 10, workspace, 10"
-        "ALT, L, Cycle to next window, cyclenext"
-        "ALT, H, Cycle to prev window, cyclenext, prev"
         "$hyper, F, Full width, fullscreen, 1"
       ];
 
