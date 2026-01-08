@@ -29,6 +29,65 @@ butcherrrr/
 └── README.md            # You are here
 ```
 
+## Hyprland Keybindings
+
+### Modifier Keys
+
+- `$mainMod` = SUPER (Windows key)
+- `$hyper` = CTRL + ALT + SHIFT + SUPER (mapped from Caps Lock via keyd)
+
+### Applications
+
+| Keybind          | Action                      |
+| ---------------- | --------------------------- |
+| `Hyper + Return` | Open Ghostty terminal       |
+| `Super + Space`  | Open Rofi launcher          |
+| `Hyper + T`      | Toggle Ghostty (scratchpad) |
+| `Hyper + E`      | Toggle Zed editor           |
+| `Hyper + C`      | Toggle Chromium browser     |
+| `Hyper + B`      | Toggle Firefox browser      |
+
+### Window Management
+
+| Keybind     | Action                                          |
+| ----------- | ----------------------------------------------- |
+| `Super + W` | Kill active window                              |
+| `Super + M` | Exit Hyprland                                   |
+| `Super + V` | Toggle floating mode                            |
+| `Super + P` | Toggle pseudo-tiling                            |
+| `Super + S` | Toggle split direction                          |
+| `Super + F` | Toggle fullscreen (real fullscreen, hides bar)  |
+| `Hyper + F` | Toggle maximize (full width, keeps bar visible) |
+
+### Focus Movement
+
+| Keybind           | Action                  |
+| ----------------- | ----------------------- |
+| `Super + ←/→/↑/↓` | Move focus (arrow keys) |
+| `Super + h/j/k/l` | Move focus (vim keys)   |
+
+### Workspace Management
+
+| Keybind                 | Action                                 |
+| ----------------------- | -------------------------------------- |
+| `Super + 1-9/0`         | Switch to workspace 1-10               |
+| `Super + Shift + 1-9/0` | Move window to workspace 1-10          |
+| `Hyper + 1-9/0`         | Switch to workspace 1-10 (alternative) |
+| `Hyper + H`             | Switch to previous workspace           |
+| `Hyper + L`             | Switch to next workspace               |
+
+### System Controls
+
+| Keybind             | Action                 |
+| ------------------- | ---------------------- |
+| `Super + Escape`    | Lock screen (hyprlock) |
+| `Super + Shift + R` | Reload Hyprland config |
+
+### Notes
+
+- Caps Lock is remapped to Hyper key (CTRL+ALT+SHIFT+SUPER) via keyd in `modules/core.nix`
+- Screenshots are copied to clipboard automatically
+
 ## Main Configuration
 
 The main file `../butcherrrr.nix` imports all modules:

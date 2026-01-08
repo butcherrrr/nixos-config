@@ -129,7 +129,7 @@
         "$mainMod, M, exit"
         "$mainMod, V, togglefloating"
         "$mainMod, P, pseudo"
-        "$mainMod, J, togglesplit"
+        "$mainMod, S, togglesplit"
         "$mainMod, F, fullscreen"
 
         # Move focus (arrow keys)
