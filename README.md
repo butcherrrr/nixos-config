@@ -25,7 +25,8 @@ nixos-config/
 │   ├── greetd.nix         # Greetd + tuigreet display manager
 │   ├── console.nix        # Console configuration (large font, resolution)
 │   ├── hyprland.nix       # Hyprland window manager + portals
-│   └── power.nix          # Power management and battery thresholds (laptops)
+│   ├── power.nix          # Power management and battery thresholds (laptops)
+│   └── fingerprint.nix    # Fingerprint authentication (laptops with readers)
 ├── home/                  # Home-manager user configs
 │   ├── butcherrrr.nix     # Main user configuration
 │   └── butcherrrr/        # Modular user configurations

@@ -2,6 +2,7 @@
 
 {
   # Hyprlock Configuration (Lock Screen)
+  # Parallel authentication: fingerprint OR password (configured in modules/fingerprint.nix)
   programs.hyprlock = {
     enable = true;
 
@@ -45,7 +46,7 @@
           font_color = "rgb(cdd6f4)"; # Catppuccin text
           font_size = 28;
           fade_on_empty = false;
-          placeholder_text = "<span foreground='##cdd6f4'>Password...</span>";
+          placeholder_text = "<span foreground='##cdd6f4'>Password or Fingerprint...</span>";
           hide_input = false;
           rounding = 2;
           check_color = "rgb(f9e2af)"; # Catppuccin yellow
@@ -88,6 +89,11 @@
           valign = "center";
         }
       ];
+
+      # Authentication - enable parallel fingerprint authentication
+      auth = {
+        "fingerprint:enabled" = true;
+      };
     };
   };
 }

@@ -225,6 +225,22 @@ Provides:
 - Wayland utilities (wl-clipboard, grim, slurp)
 
 User-specific Hyprland config is in `../home/butcherrrr/hyprland.nix`.
+Skip this for desktops or if full battery charging without limits is preferred.
+
+### fingerprint.nix
+
+**For laptop hosts with fingerprint readers**
+
+Provides:
+
+- Fingerprint authentication using fprintd
+- PAM integration for login, sudo, hyprlock, and polkit
+- Support for modern touch/swipe fingerprint readers
+- Enrollment and verification tools
+
+After enabling, enroll fingerprints with: `fprintd-enroll`
+
+Skip this for systems without fingerprint readers.
 
 ---
 
