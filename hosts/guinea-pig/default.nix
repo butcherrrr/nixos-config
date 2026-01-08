@@ -37,5 +37,6 @@
     ../../modules/console.nix
     ../../modules/greetd.nix
     ../../modules/hyprland.nix
+    ../../modules/power.nix
   ];
 }
