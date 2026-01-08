@@ -43,8 +43,8 @@
 
       # General settings
       general = {
-        gaps_in = 6;
-        gaps_out = 14;
+        gaps_in = 12;
+        gaps_out = 26;
         border_size = 1;
         layout = "dwindle";
         allow_tearing = false;
