@@ -24,7 +24,8 @@ nixos-config/
 │   ├── core.nix           # Base system (users, audio, networking, keyd)
 │   ├── greetd.nix         # Greetd + tuigreet display manager
 │   ├── console.nix        # Console configuration (large font, resolution)
-│   └── hyprland.nix       # Hyprland window manager + portals
+│   ├── hyprland.nix       # Hyprland window manager + portals
+│   └── power.nix          # Power management and battery thresholds (laptops)
 ├── home/                  # Home-manager user configs
 │   ├── butcherrrr.nix     # Main user configuration
 │   └── butcherrrr/        # Modular user configurations

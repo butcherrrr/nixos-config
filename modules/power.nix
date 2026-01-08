@@ -4,6 +4,18 @@
   ...
 }:
 
+# Power Management Configuration
+#
+# This module configures TLP for optimal battery health and power efficiency.
+#
+# BATTERY CHARGE THRESHOLDS (20%-80%):
+# The laptop will show "plugged" but not "charging" when between 20-80%.
+# This is intentional and extends battery lifespan by 2-3x by reducing
+# high-voltage stress. Charging to 100% constantly degrades batteries faster.
+#
+# To temporarily charge to 100%, run: sudo tlp fullcharge BAT0
+# To adjust thresholds, modify START_CHARGE_THRESH_BAT0 and STOP_CHARGE_THRESH_BAT0
+
 {
   # TLP - Advanced power management for Linux
   # Optimizes battery life and power consumption on laptops
