@@ -1,7 +1,32 @@
-{ ... }:
+{ pkgs, lib, ... }:
 
 {
   # Services Configuration
+
+  # SwayOSD - OSD overlay for volume and brightness
+  # Styled with Catppuccin Mocha colors
+  services.swayosd = {
+    enable = true;
+
+    # Catppuccin Mocha styling - green background, purple text/progress
+    stylePath = pkgs.writeText "swayosd.css" ''
+      window {
+        background: rgba(166, 227, 161, 0.95); /* Catppuccin Mocha green */
+      }
+
+      progress {
+        background: #1e1e2e; /* Catppuccin Mocha base */
+      }
+
+      label {
+        color: #1e1e2e; /* Catppuccin Mocha base */
+      }
+
+      image {
+        color: #1e1e2e; /* Catppuccin Mocha base */
+      }
+    '';
+  };
 
   # Mako notification daemon
   # Colors are managed by catppuccin.mako.enable in butcherrrr.nix
@@ -45,12 +70,14 @@
       [urgency=critical]
       default-timeout=0
       border-color=#f38ba8
-
-      [app-name=volume]
-      format=<b>%s</b>\n%b
-
-      [app-name=brightness]
-      format=<b>%s</b>\n%b
     '';
   };
+
+  # SwayOSD configuration file for top-center positioning and vertical orientation
+  home.file.".config/swayosd/swayosd.conf".text = ''
+    [osd]
+    display = vertical
+    anchor = top-center
+    margin-top = 50
+  '';
 }
