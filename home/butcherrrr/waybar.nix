@@ -92,7 +92,7 @@
           interval = 10;
           format = "󰍛";
           tooltip = true;
-          on-click = "ghostty --class=com.mitchellh.ghostty.tui -e btop";
+          on-click = "~/.local/bin/toggle-tui btop 'btop'";
         };
 
         network = {
@@ -111,7 +111,7 @@
           tooltip-format-ethernet = "{ifname}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
           tooltip-format-disconnected = "Disconnected";
           interval = 5;
-          on-click = "ghostty --class=com.mitchellh.ghostty.tui -e impala";
+          on-click = "~/.local/bin/toggle-tui impala 'impala'";
         };
 
         bluetooth = {
@@ -124,7 +124,7 @@
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
-          on-click = "ghostty --class=com.mitchellh.ghostty.tui -e bluetui";
+          on-click = "~/.local/bin/toggle-tui bluetui 'bluetui'";
         };
 
         battery = {
@@ -180,7 +180,7 @@
         "custom/nix" = {
           format = "󱄅";
           tooltip-format = "NixOS";
-          on-click = "ghostty --class=com.mitchellh.ghostty.tui -e sh -c 'fastfetch; read -p \"Press enter to close...\"'";
+          on-click = "~/.local/bin/toggle-tui fastfetch 'fastfetch; echo; read -p \"Press enter to close...\"'";
         };
       };
     };

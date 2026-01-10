@@ -40,6 +40,11 @@
     executable = true;
   };
 
+  home.file.".local/bin/toggle-tui" = {
+    source = ../../scripts/toggle-tui.sh;
+    executable = true;
+  };
+
   home.file.".local/bin/volume" = {
     source = ../../scripts/volume.sh;
     executable = true;

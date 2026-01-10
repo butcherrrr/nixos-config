@@ -14,7 +14,8 @@ WINDOW_PATTERN="$1"
 LAUNCH_COMMAND="$2"
 
 # Find window matching the pattern (case-insensitive search in class)
-WINDOW_ADDRESS=$(hyprctl clients -j | jq -r --arg pattern "$WINDOW_PATTERN" '.[] | select(.class | test($pattern; "i")) | .address' | head -n1)
+# Exclude TUI windows (com.mitchellh.ghostty.tui) so Hyper+T doesn't focus them
+WINDOW_ADDRESS=$(hyprctl clients -j | jq -r --arg pattern "$WINDOW_PATTERN" '.[] | select(.class | test($pattern; "i")) | select(.class != "com.mitchellh.ghostty.tui") | .address' | head -n1)
 
 if [ -n "$WINDOW_ADDRESS" ]; then
     # Window exists, focus it

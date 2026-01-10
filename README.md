@@ -52,6 +52,10 @@ nixos-config/
 │       ├── spicetify.nix  # Spotify theming
 │       └── theme.nix      # Cursor theme and wallpaper
 ├── scripts/               # Custom shell scripts
+│   ├── toggle-app.sh      # Toggle/focus regular applications
+│   ├── toggle-tui.sh      # Toggle/focus TUI applications in floating windows
+│   ├── volume.sh          # Volume control script
+│   └── brightness.sh      # Brightness control script
 └── backgrounds/           # Wallpaper images
 ```
 
