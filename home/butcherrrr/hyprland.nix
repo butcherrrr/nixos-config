@@ -126,6 +126,7 @@
 
       # Keybindings
       bind = [
+
         # Applications
         "$hyper, Return, exec, ghostty"
         "$mainMod, Space, exec, rofi -show drun"
@@ -137,7 +138,7 @@
         # Window management
         "$mainMod, W, killactive"
         "$mainMod, M, exit"
-        "$mainMod, V, togglefloating"
+        "$mainMod SHIFT, Space, togglefloating"
         "$mainMod, P, pseudo"
         "$mainMod, S, togglesplit"
         "$mainMod, F, fullscreen"
@@ -205,6 +206,9 @@
 
       # Hyper key bindings
       bindd = [
+        "$mainMod, C, Universal copy, sendshortcut, CTRL, Insert,"
+        "$mainMod, V, Universal paste, sendshortcut, SHIFT, Insert,"
+        "$mainMod, X, Universal cut, sendshortcut, CTRL, X,"
         "$hyper, H, Switch to previous active workspace, workspace, m-1"
         "$hyper, L, Switch to next active workspace, workspace, m+1"
         "$hyper, code:10, Switch to workspace 1, workspace, 1"

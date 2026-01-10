@@ -38,6 +38,14 @@ butcherrrr/
 - `$mainMod` = SUPER (Windows key)
 - `$hyper` = CTRL + ALT + SHIFT + SUPER (mapped from Caps Lock via keyd)
 
+### Universal Clipboard
+
+| Keybind     | Action                         |
+| ----------- | ------------------------------ |
+| `Super + C` | Universal copy (Ctrl+Insert)   |
+| `Super + V` | Universal paste (Shift+Insert) |
+| `Super + X` | Universal cut (Ctrl+X)         |
+
 ### Applications
 
 | Keybind          | Action                      |
@@ -51,15 +59,15 @@ butcherrrr/
 
 ### Window Management
 
-| Keybind     | Action                                          |
-| ----------- | ----------------------------------------------- |
-| `Super + W` | Kill active window                              |
-| `Super + M` | Exit Hyprland                                   |
-| `Super + V` | Toggle floating mode                            |
-| `Super + P` | Toggle pseudo-tiling                            |
-| `Super + S` | Toggle split direction                          |
-| `Super + F` | Toggle fullscreen (real fullscreen, hides bar)  |
-| `Hyper + F` | Toggle maximize (full width, keeps bar visible) |
+| Keybind                 | Action                                          |
+| ----------------------- | ----------------------------------------------- |
+| `Super + W`             | Kill active window                              |
+| `Super + M`             | Exit Hyprland                                   |
+| `Super + Shift + Space` | Toggle floating mode                            |
+| `Super + P`             | Toggle pseudo-tiling                            |
+| `Super + S`             | Toggle split direction                          |
+| `Super + F`             | Toggle fullscreen (real fullscreen, hides bar)  |
+| `Hyper + F`             | Toggle maximize (full width, keeps bar visible) |
 
 ### Focus Movement
 
