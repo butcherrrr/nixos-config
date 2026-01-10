@@ -89,7 +89,7 @@
         };
 
         cpu = {
-          interval = 5;
+          interval = 10;
           format = "󰍛";
           tooltip = true;
           on-click = "ghostty --class=com.mitchellh.ghostty.tui -e btop";
@@ -110,7 +110,7 @@
           tooltip-format-wifi = "{essid} ({frequency} GHz)\nSignal: {signalStrength}%\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
           tooltip-format-ethernet = "{ifname}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}";
           tooltip-format-disconnected = "Disconnected";
-          interval = 3;
+          interval = 5;
           on-click = "ghostty --class=com.mitchellh.ghostty.tui -e impala";
         };
 
@@ -128,7 +128,7 @@
         };
 
         battery = {
-          interval = 10;
+          interval = 30;
           format = "{icon}";
           format-discharging = "{icon}";
           format-charging = "󰂄";

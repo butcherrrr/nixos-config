@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 
@@ -23,28 +22,28 @@
     enable = true;
     settings = {
       # CPU Settings
-      # Use "powersave" governor when on battery for better battery life
+      # Use "schedutil" for dynamic scaling based on load
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
 
       # Energy Performance Preference (for Intel CPUs with HWP)
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
       # Minimum and maximum CPU frequency
-      # On battery: limit max frequency to save power
+      # On battery: limit max frequency to save power (increased to 85% for better performance)
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 30;
+      CPU_MAX_PERF_ON_BAT = 85;
 
-      # Enable CPU boost on AC, disable on battery
+      # Enable CPU boost on AC and battery (set to 1 to reduce lag)
       CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
+      CPU_BOOST_ON_BAT = 1;
 
       # Platform Profile (for newer laptops with platform_profile support)
       PLATFORM_PROFILE_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_BAT = "low-power";
+      PLATFORM_PROFILE_ON_BAT = "balanced";
 
       # Battery Charge Thresholds (helps preserve battery health)
       # Start charging when below 20%, stop at 80% to reduce wear
@@ -86,10 +85,10 @@
   # Power management settings
   powerManagement = {
     enable = true;
-    # Enable CPU frequency scaling
-    cpuFreqGovernor = lib.mkDefault "powersave";
-    # Powertop auto-tune on startup (applies power saving tweaks)
-    powertop.enable = true;
+    # CPU frequency scaling is handled by TLP settings above
+    # Don't set cpuFreqGovernor here as it conflicts with TLP
+    # Powertop auto-tune disabled - can cause lag and performance issues
+    powertop.enable = false;
   };
 
   # Note: Power button and lid switch behavior is configured in modules/core.nix

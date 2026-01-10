@@ -50,11 +50,18 @@
         allow_tearing = false;
       };
 
+      # Render settings for Intel GPU optimization
+      render = {
+        # Direct scanout when possible (reduces compositing overhead)
+        direct_scanout = true;
+      };
+
       # Decoration
       decoration = {
         rounding = 10;
         blur = {
-          enabled = true;
+          # Disable blur on battery to reduce GPU load
+          enabled = false;
           size = 3;
           passes = 1;
         };
@@ -66,8 +73,9 @@
           color = "rgba(0000004D)";
           color_inactive = "rgba(00000026)";
         };
-        active_opacity = 0.95;
-        inactive_opacity = 0.80;
+        # Reduce opacity effects to minimize compositing overhead
+        active_opacity = 1.0;
+        inactive_opacity = 0.90;
       };
 
       # Window rules
@@ -86,12 +94,12 @@
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 1, 3, myBezier"
-          "windowsOut, 1, 3, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 1, default"
-          "workspaces, 1, 3, default"
+          "windows, 1, 5, myBezier"
+          "windowsOut, 1, 5, default, popin 80%"
+          "border, 1, 5, default"
+          "borderangle, 1, 5, default"
+          "fade, 1, 5, default"
+          "workspaces, 1, 5, default"
         ];
       };
 
@@ -108,6 +116,8 @@
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
+        # VRR (Variable Refresh Rate) - 0 = off, 1 = on, 2 = fullscreen only
+        vrr = 0;
       };
 
       # Variables
