@@ -19,7 +19,7 @@
         "3,monitor:HDMI-A-1"
         "4,monitor:HDMI-A-1"
         "5,monitor:HDMI-A-1"
-        "6,monitor:eDP-1,default:true"
+        "6,monitor:eDP-1"
         "7,monitor:eDP-1"
         "8,monitor:eDP-1"
       ];
