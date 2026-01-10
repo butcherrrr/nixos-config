@@ -9,6 +9,15 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    # Performance: Disable startup messages and hide UI until loaded
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        nvimRuntime = true;
+        plugins = true;
+      };
+    };
+
     # Core Settings
     opts = {
       number = true;
@@ -30,7 +39,28 @@
       tabstop = 2;
       smartindent = true;
       conceallevel = 0;
+      # Hide command line to prevent flickering
+      cmdheight = 0;
+      # Faster screen updates
+      lazyredraw = false;
     };
+
+    # Load colorscheme first with extraConfigLuaPre
+    extraConfigLuaPre = ''
+      -- Disable netrw to prevent it from loading before neo-tree
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      -- Hide statusline and tabline until plugins load to prevent black bar
+      vim.opt.laststatus = 0
+      vim.opt.showtabline = 0
+
+      -- Hide UI elements during startup to prevent flickering
+      vim.opt.shortmess:append("I")
+
+      -- Set background before loading colorscheme
+      vim.opt.background = "dark"
+    '';
 
     # Colorscheme
     colorschemes.catppuccin = {
@@ -174,34 +204,6 @@
       # Indent guides
       indent-blankline.enable = true;
 
-      # Dashboard
-      alpha = {
-        enable = true;
-        settings = {
-          layout = [
-            {
-              type = "padding";
-              val = 2;
-            }
-            {
-              type = "text";
-              val = [
-                "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
-                "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
-                "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
-                "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
-                "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
-                "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
-              ];
-              opts = {
-                position = "center";
-                hl = "Type";
-              };
-            }
-          ];
-        };
-      };
-
       # Formatting
       conform-nvim = {
         enable = true;
@@ -309,6 +311,18 @@
         action = ">gv";
       }
     ];
+
+    # Additional configuration to ensure smooth loading
+    extraConfigLua = ''
+      -- Re-enable statusline and tabline after plugins load
+      vim.opt.laststatus = 3  -- Global statusline
+      vim.opt.showtabline = 2  -- Always show tabline
+
+      -- Prevent flash of unstyled content
+      vim.schedule(function()
+        vim.cmd("redraw")
+      end)
+    '';
 
     extraPackages = with pkgs; [
       # Language servers (already provided by nixvim LSP config)
