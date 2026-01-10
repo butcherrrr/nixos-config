@@ -65,8 +65,8 @@
       ];
     };
 
-    # Catppuccin Mocha styling handled by catppuccin module in butcherrrr.nix
-    # Remove manual style setting to avoid conflict
+    # Catppuccin Mocha styling
+    style = builtins.readFile ./swaync.css;
   };
 
   # SwayOSD configuration file for top-center positioning and vertical orientation
