@@ -15,13 +15,15 @@ butcherrrr/
 ├── waybar.nix           # Status bar configuration
 ├── waybar-style.gtk.css # Waybar styling (Catppuccin Mocha)
 ├── rofi.nix             # Application launcher configuration
+├── services.nix         # Background services (SwayNC, SwayOSD)
+├── swaync.css           # SwayNC notification styling (Catppuccin Mocha)
+├── swayosd.css          # SwayOSD overlay styling (Catppuccin Mocha)
 ├── ghostty.nix          # Terminal emulator configuration
 ├── yazi.nix             # Terminal file manager configuration
 ├── zed.nix              # Zed editor configuration
 ├── chromium.nix         # Chromium browser configuration
 ├── hyprlock.nix         # Lock screen configuration
 ├── keyring.nix          # GNOME Keyring for secret storage
-├── services.nix         # Background services (mako notifications)
 ├── spicetify.nix        # Spotify theming
 ├── theme.nix            # Cursor theming and wallpaper
 ├── themes/              # Custom themes

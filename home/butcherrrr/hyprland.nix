@@ -188,6 +188,9 @@
 
         # Power button
         ", XF86PowerOff, exec, hyprlock"
+
+        # Notification center
+        "$mainMod, N, exec, swaync-client -t -sw"
       ];
 
       # Hyper key bindings
@@ -210,7 +213,7 @@
       # Autostart
       exec-once = [
         "waybar"
-        "mako"
+        "swaync"
         "swaybg -i ~/.config/hypr/wallpaper.jpg -m fill"
         # Start swayidle for automatic screen locking after inactivity
         "swayidle -w timeout 300 'hyprlock' lock 'hyprlock' before-sleep 'hyprlock'"

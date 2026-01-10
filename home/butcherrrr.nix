@@ -18,7 +18,7 @@
     # Per-app theming (new naming scheme)
     rofi.enable = true;
     waybar.enable = false; # Using custom manual styling in waybar.nix
-    mako.enable = false; # Using custom Catppuccin styling in services.nix
+    swaync.enable = true; # SwayNC notification daemon theming
     hyprland.enable = true;
     hyprlock.enable = false; # Using custom configuration in hyprlock.nix
     fzf.enable = true;

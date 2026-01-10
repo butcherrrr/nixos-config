@@ -38,7 +38,7 @@
 }
 
 window#waybar {
-  background: transparent;
+  background: @mantle;
 }
 
 .modules-left,

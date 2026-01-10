@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 
 {
   # Services Configuration
@@ -7,77 +7,66 @@
   # Styled with Catppuccin Mocha colors
   services.swayosd = {
     enable = true;
-
-    # Catppuccin Mocha styling - green background, purple text/progress
-    stylePath = pkgs.writeText "swayosd.css" ''
-      window {
-        background: rgba(166, 227, 161, 0.95); /* Catppuccin Mocha green */
-      }
-
-      progress {
-        background: #1e1e2e; /* Catppuccin Mocha base */
-      }
-
-      label {
-        color: #1e1e2e; /* Catppuccin Mocha base */
-      }
-
-      image {
-        color: #1e1e2e; /* Catppuccin Mocha base */
-      }
-    '';
+    stylePath = ./swayosd.css;
   };
 
-  # Mako notification daemon
+  # SwayNC (Sway Notification Center)
+  # Notification daemon with history and control center
   # Styled with Catppuccin Mocha - green background, purple text
-  services.mako = {
+  services.swaync = {
     enable = true;
 
     settings = {
-      # Layout
-      width = 450;
-      height = 100;
-      margin = "5,20,20,20"; # top, right, bottom, left - small top margin to overlay waybar
-      padding = "15,20"; # vertical, horizontal
-      border-size = 2;
-      border-radius = 10;
-
-      # Font
-      font = "JetBrainsMono Nerd Font 14";
-
-      # Behavior
-      default-timeout = 3000; # 3 seconds
-      ignore-timeout = false;
-
       # Positioning
-      anchor = "top-center";
+      positionX = "right";
+      positionY = "top";
 
-      # Layer - overlay to appear above waybar
-      layer = "overlay";
+      # Notification settings
+      # Timeout controls how long notifications show on screen
+      # They hide after timeout but stay in notification center
+      timeout = 5;
+      timeout-low = 3;
+      timeout-critical = 0;
 
-      # Catppuccin Mocha colors - green background, purple text
-      background-color = "#a6e3a1F2"; # Catppuccin Mocha green with transparency
-      text-color = "#1e1e2e"; # Catppuccin Mocha base (dark purple)
-      border-color = "#a6e3a1"; # Catppuccin Mocha green
+      # Dismissal settings
+      notification-inline-replies = false;
+      notification-icon-size = 48;
+      notification-body-image-height = 100;
+      notification-body-image-width = 200;
 
-      # Progress bar styling
-      progress-color = "source #1e1e2e"; # Catppuccin Mocha base (dark purple)
+      # Notification center behavior
+      hide-on-clear = false; # Don't hide center when clearing notifications
+      hide-on-action = true; # Hide notification popup when clicking action buttons
 
-      # Format with progress bar
-      format = "<b>%s</b>\\n%b";
+      # Control center
+      control-center-margin-top = 0;
+      control-center-margin-bottom = 5;
+      control-center-margin-right = 5;
+      control-center-margin-left = 5;
+      control-center-width = 450;
+      control-center-height = 600;
 
-      # Markup
-      markup = true;
+      # Notification window
+      notification-window-width = 450;
+
+      # Animation
+      transition-time = 300;
+
+      # Show images in notifications (album art, icons, etc)
+      image-visibility = "when-available";
+
+      keyboard-shortcuts = true;
+
+      # Widget configuration
+      widgets = [
+        "title"
+        "dnd"
+        "notifications"
+      ];
     };
 
-    # Critical notifications stay until dismissed
-    extraConfig = ''
-      [urgency=critical]
-      default-timeout=0
-      background-color=#a6e3a1F2
-      border-color=#f38ba8
-      text-color=#1e1e2e
-    '';
+    # Catppuccin Mocha styling handled by catppuccin module in butcherrrr.nix
+    # Remove manual style setting to avoid conflict
   };
 
   # SwayOSD configuration file for top-center positioning and vertical orientation

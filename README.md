@@ -46,7 +46,9 @@ nixos-config/
 │       ├── themes/        # Custom themes
 │       │   └── zed-custom-catppuccin.nix  # Catppuccin Mocha theme for Zed
 │       ├── keyring.nix    # GNOME Keyring for secret storage
-│       ├── services.nix   # Mako notifications
+│       ├── services.nix   # SwayNC and SwayOSD services
+│       ├── swaync.css     # SwayNC notification styling
+│       ├── swayosd.css    # SwayOSD overlay styling
 │       ├── spicetify.nix  # Spotify theming
 │       └── theme.nix      # Cursor theme and wallpaper
 ├── scripts/               # Custom shell scripts

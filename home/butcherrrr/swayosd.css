@@ -1,0 +1,17 @@
+/* SwayOSD - Catppuccin Mocha Styling */
+
+window {
+  background: rgba(166, 227, 161, 0.95); /* Catppuccin Mocha green */
+}
+
+progress {
+  background: #1e1e2e; /* Catppuccin Mocha base */
+}
+
+label {
+  color: #1e1e2e; /* Catppuccin Mocha base */
+}
+
+image {
+  color: #1e1e2e; /* Catppuccin Mocha base */
+}

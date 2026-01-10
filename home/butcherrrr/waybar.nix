@@ -22,6 +22,7 @@
           "tray"
           "group/network"
           "clock"
+          "custom/notification"
         ];
 
         "hyprland/workspaces" = {
@@ -40,12 +41,11 @@
             mode-mon-col = 3;
             weeks-pos = "right";
             on-scroll = 1;
-            on-click-right = "mode";
             format = {
-              months = "<span color='#b4befe'><b>{}</b></span>";
+              months = "<span color='#f5e0dc'><b>{}</b></span>";
               days = "<span color='#cdd6f4'><b>{}</b></span>";
-              weeks = "<span color='#89b4fa'><b>W{}</b></span>";
-              weekdays = "<span color='#fab387'><b>{}</b></span>";
+              weeks = "<span color='#89dceb'><b>W{}</b></span>";
+              weekdays = "<span color='#f9e2af'><b>{}</b></span>";
               today = "<span color='#f38ba8'><b><u>{}</u></b></span>";
             };
           };
@@ -54,6 +54,27 @@
             on-scroll-up = "shift_up";
             on-scroll-down = "shift_down";
           };
+        };
+
+        "custom/notification" = {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            notification = "<span foreground='#a6e3a1'>󰂚</span>";
+            none = "󰂚";
+            dnd-notification = "<span foreground='#a6e3a1'>󰂚</span>";
+            dnd-none = "󰂚";
+            inhibited-notification = "<span foreground='#a6e3a1'>󰂚</span>";
+            inhibited-none = "󰂚";
+            dnd-inhibited-notification = "<span foreground='#a6e3a1'>󰂚</span>";
+            dnd-inhibited-none = "󰂚";
+          };
+          return-type = "json";
+          exec-if = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
         };
 
         "group/network" = {
