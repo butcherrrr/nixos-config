@@ -95,7 +95,7 @@
 
         cpu = {
           interval = 10;
-          format = "󰍛";
+          format = " ";
           tooltip = true;
           on-click = "~/.local/bin/toggle-tui btop 'btop'";
         };
