@@ -46,6 +46,9 @@
         gaps_in = 12;
         gaps_out = 26;
         border_size = 1;
+        # Catppuccin Mocha mauve border colors
+        "col.active_border" = "rgba(cba6f7ff)"; # Catppuccin mauve
+        "col.inactive_border" = "rgba(313244ff)"; # Catppuccin surface0
         layout = "dwindle";
         allow_tearing = false;
       };
@@ -60,8 +63,7 @@
       decoration = {
         rounding = 10;
         blur = {
-          # Disable blur on battery to reduce GPU load
-          enabled = false;
+          enabled = true;
           size = 3;
           passes = 1;
         };
@@ -99,8 +101,6 @@
         animation = [
           "windows, 1, 5, myBezier"
           "windowsOut, 1, 5, default, popin 80%"
-          "border, 1, 5, default"
-          "borderangle, 1, 5, default"
           "fade, 1, 5, default"
           "workspaces, 1, 5, default"
         ];

@@ -9,8 +9,11 @@
         reload_style_on_change = true;
         layer = "top";
         position = "top";
-        height = 32;
+        height = 28;
         spacing = 0;
+        margin-top = 26;
+        margin-left = 26;
+        margin-right = 26;
 
         modules-left = [
           "custom/nix"
