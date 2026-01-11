@@ -206,7 +206,7 @@
         "$mainMod, N, exec, swaync-client -t -sw"
 
         # Wallpaper cycling
-        "$mainMod SHIFT, Space, exec, ~/.local/bin/wallpaper next"
+        "CTRL $mainMod, Space, exec, ~/.local/bin/wallpaper next"
       ];
 
       # Hyper key bindings

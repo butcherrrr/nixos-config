@@ -80,4 +80,29 @@
     anchor = top-center
     margin-top = 50
   '';
+
+  # Automatic wallpaper rotation service
+  systemd.user.services.wallpaper-rotation = {
+    Unit = {
+      Description = "Automatic wallpaper rotation";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${builtins.getEnv "HOME"}/.local/bin/wallpaper next";
+    };
+  };
+
+  # Timer to trigger wallpaper rotation every hour
+  systemd.user.timers.wallpaper-rotation = {
+    Unit = {
+      Description = "Hourly wallpaper rotation timer";
+    };
+    Timer = {
+      OnCalendar = "hourly";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
+  };
 }
