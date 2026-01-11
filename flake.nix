@@ -10,6 +10,9 @@
     # Determines which versions of packages are available
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    # Unstable nixpkgs for packages that need newer versions
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     # Home Manager - manages user-level configuration and packages
     home-manager.url = "github:nix-community/home-manager/release-25.11";
 
@@ -35,6 +38,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       catppuccin,
       spicetify-nix,
@@ -58,6 +62,11 @@
           specialArgs = {
             inherit hostname user;
             inherit spicetify-nix awww;
+            # Make unstable packages available
+            pkgs-unstable = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
 
           # Modules that make up this system configuration
@@ -84,6 +93,11 @@
                 inherit hostname user;
                 inherit spicetify-nix awww;
                 inputs = { inherit nixvim; };
+                # Make unstable packages available in home-manager
+                pkgs-unstable = import nixpkgs-unstable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
               };
 
               # User-specific home-manager configuration

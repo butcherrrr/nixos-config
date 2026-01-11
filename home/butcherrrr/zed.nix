@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}:
 
 let
   # Import custom theme from separate file
@@ -8,6 +13,7 @@ in
   # Zed Editor Configuration
   programs.zed-editor = {
     enable = true;
+    package = pkgs-unstable.zed-editor;
 
     userSettings = {
       # Panel settings
