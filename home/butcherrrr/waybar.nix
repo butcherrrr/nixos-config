@@ -137,7 +137,7 @@
           format = "{icon}";
           format-discharging = "{icon}";
           format-charging = "󰂄";
-          format-plugged = "󰚥";
+          format-plugged = " ";
           format-full = "󱟢";
           format-icons = {
             charging = [

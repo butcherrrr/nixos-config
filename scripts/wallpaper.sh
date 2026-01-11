@@ -39,11 +39,11 @@ set_wallpaper() {
 
     # Set wallpaper with awww
     # Transition options: simple, fade, wipe, grow, wave, center, outer, any, random
-    # --transition-step: smaller values = faster transition (1-255, default is 90)
+    # --transition-duration: How long the transition takes in seconds
     awww img "$wallpaper" \
         --transition-type random \
         --transition-fps 60 \
-        --transition-step 30
+        --transition-duration 1.5
 }
 
 case "$ACTION" in

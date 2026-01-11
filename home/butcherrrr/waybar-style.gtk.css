@@ -297,10 +297,10 @@ tooltip * {
   padding: 0;
   margin: 0 4px 0 12px;
   border: none;
-  min-width: 24px;
-  min-height: 24px;
+  min-width: 22px;
+  min-height: 22px;
   background-image: url("file:///home/butcherrrr/.config/waybar/assets/NixOS.png");
-  background-size: 24px 24px;
+  background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: center;
   transition: all 0.3s ease;
@@ -309,7 +309,7 @@ tooltip * {
 #custom-nix:hover {
   background: transparent;
   background-image: url("file:///home/butcherrrr/.config/waybar/assets/NixOS.png");
-  background-size: 24px 24px;
+  background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.8;
