@@ -38,7 +38,7 @@
 }
 
 window#waybar {
-  background: @mantle;
+  background: rgba(24, 24, 37, 0.85);
 }
 
 .modules-left,

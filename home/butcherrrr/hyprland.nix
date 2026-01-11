@@ -73,9 +73,9 @@
           color = "rgba(0000004D)";
           color_inactive = "rgba(00000026)";
         };
-        # Reduce opacity effects to minimize compositing overhead
-        active_opacity = 1.0;
-        inactive_opacity = 0.90;
+        # Window transparency
+        active_opacity = 0.95;
+        inactive_opacity = 0.85;
       };
 
       # Window rules
