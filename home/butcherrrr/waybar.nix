@@ -185,7 +185,7 @@
         "custom/nix" = {
           format = " ";
           tooltip-format = "NixOS";
-          on-click = "~/.local/bin/toggle-tui fastfetch 'fastfetch; echo; read -p \"Press enter to close...\"'";
+          on-click = "~/.local/bin/toggle-tui fastfetch 'fastfetch; echo; echo \"Press q to close...\"; read -n1 -s key; while [ \"$key\" != \"q\" ]; do read -n1 -s key; done'";
         };
       };
     };

@@ -39,6 +39,7 @@
     ./butcherrrr/waybar.nix # Status bar
     ./butcherrrr/rofi.nix # Application launcher
     ./butcherrrr/ghostty.nix # Terminal emulator
+    ./butcherrrr/fastfetch.nix # System info tool
     ./butcherrrr/yazi.nix # Terminal file manager
     ./butcherrrr/zed.nix # Zed editor
     ./butcherrrr/chromium.nix # Chromium browser
