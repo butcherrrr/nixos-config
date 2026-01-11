@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, awww, ... }:
 
 {
   # User Packages
@@ -7,7 +7,7 @@
   # Only include packages WITHOUT home-manager modules
   home.packages = with pkgs; [
     # Wayland utilities
-    swaybg
+    awww.packages.${pkgs.stdenv.hostPlatform.system}.awww
     swayidle
 
     # System utilities
@@ -52,6 +52,11 @@
 
   home.file.".local/bin/brightness" = {
     source = ../../scripts/brightness.sh;
+    executable = true;
+  };
+
+  home.file.".local/bin/wallpaper" = {
+    source = ../../scripts/wallpaper.sh;
     executable = true;
   };
 }

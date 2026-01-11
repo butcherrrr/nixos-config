@@ -141,7 +141,6 @@
         # Window management
         "$mainMod, W, killactive"
         "$mainMod, M, exit"
-        "$mainMod SHIFT, Space, togglefloating"
         "$mainMod, P, pseudo"
         "$mainMod, S, togglesplit"
         "$mainMod, F, fullscreen"
@@ -205,6 +204,9 @@
 
         # Notification center
         "$mainMod, N, exec, swaync-client -t -sw"
+
+        # Wallpaper cycling
+        "$mainMod SHIFT, Space, exec, ~/.local/bin/wallpaper next"
       ];
 
       # Hyper key bindings
@@ -231,7 +233,10 @@
       exec-once = [
         "waybar"
         "swaync"
-        "swaybg -i ~/.config/hypr/wallpaper.jpg -m fill"
+        # Start awww daemon for animated wallpaper transitions
+        "awww-daemon"
+        # Set random wallpaper at startup (after awww daemon starts)
+        "sleep 1 && ~/.local/bin/wallpaper random"
         # Start swayidle for automatic screen locking after inactivity
         "swayidle -w timeout 300 'hyprlock' lock 'hyprlock' before-sleep 'hyprlock'"
       ];

@@ -26,6 +26,9 @@
     # Nixvim
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    # awww - animated wallpaper daemon
+    awww.url = "git+https://codeberg.org/LGFae/awww";
   };
 
   # Outputs - what this flake produces (system configurations)
@@ -36,6 +39,7 @@
       catppuccin,
       spicetify-nix,
       nixvim,
+      awww,
       ...
     }:
     let
@@ -53,7 +57,7 @@
           # Special arguments passed to all modules
           specialArgs = {
             inherit hostname user;
-            inherit spicetify-nix;
+            inherit spicetify-nix awww;
           };
 
           # Modules that make up this system configuration
@@ -78,7 +82,7 @@
               # Pass extra arguments to home-manager modules
               home-manager.extraSpecialArgs = {
                 inherit hostname user;
-                inherit spicetify-nix;
+                inherit spicetify-nix awww;
                 inputs = { inherit nixvim; };
               };
 

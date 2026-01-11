@@ -59,15 +59,14 @@ butcherrrr/
 
 ### Window Management
 
-| Keybind                 | Action                                          |
-| ----------------------- | ----------------------------------------------- |
-| `Super + W`             | Kill active window                              |
-| `Super + M`             | Exit Hyprland                                   |
-| `Super + Shift + Space` | Toggle floating mode                            |
-| `Super + P`             | Toggle pseudo-tiling                            |
-| `Super + S`             | Toggle split direction                          |
-| `Super + F`             | Toggle fullscreen (real fullscreen, hides bar)  |
-| `Hyper + F`             | Toggle maximize (full width, keeps bar visible) |
+| Keybind     | Action                                          |
+| ----------- | ----------------------------------------------- |
+| `Super + W` | Kill active window                              |
+| `Super + M` | Exit Hyprland                                   |
+| `Super + P` | Toggle pseudo-tiling                            |
+| `Super + S` | Toggle split direction                          |
+| `Super + F` | Toggle fullscreen (real fullscreen, hides bar)  |
+| `Hyper + F` | Toggle maximize (full width, keeps bar visible) |
 
 ### Focus Movement
 
@@ -88,10 +87,11 @@ butcherrrr/
 
 ### System Controls
 
-| Keybind             | Action                 |
-| ------------------- | ---------------------- |
-| `Super + Escape`    | Lock screen (hyprlock) |
-| `Super + Shift + R` | Reload Hyprland config |
+| Keybind                 | Action                  |
+| ----------------------- | ----------------------- |
+| `Super + Escape`        | Lock screen (hyprlock)  |
+| `Super + Shift + R`     | Reload Hyprland config  |
+| `Super + Shift + Space` | Cycle to next wallpaper |
 
 ### Notes
 
