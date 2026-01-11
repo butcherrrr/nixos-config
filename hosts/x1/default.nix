@@ -6,6 +6,9 @@
   # Use systemd-boot as the bootloader (modern, simple UEFI bootloader)
   boot.loader.systemd-boot.enable = true;
 
+  # Skip boot menu - boot directly into default entry
+  boot.loader.timeout = 0;
+
   # Allow systemd-boot to modify EFI variables (needed for boot entry management)
   boot.loader.efi.canTouchEfiVariables = true;
 
