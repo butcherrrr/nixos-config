@@ -46,6 +46,10 @@
       control-center-width = 450;
       control-center-height = 600;
 
+      # Backdrop layer for blur effect
+      layer = "overlay";
+      layer-shell = true;
+
       # Notification window
       notification-window-width = 450;
 

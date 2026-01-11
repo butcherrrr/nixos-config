@@ -1,6 +1,8 @@
 { ... }:
 
 {
+  home.file.".config/waybar/assets/NixOS.png".source = ./assets/NixOS.png;
+
   programs.waybar = {
     enable = true;
 
@@ -181,7 +183,7 @@
         };
 
         "custom/nix" = {
-          format = "󱄅";
+          format = " ";
           tooltip-format = "NixOS";
           on-click = "~/.local/bin/toggle-tui fastfetch 'fastfetch; echo; read -p \"Press enter to close...\"'";
         };

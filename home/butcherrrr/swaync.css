@@ -1,174 +1,358 @@
-/* SwayNC - Catppuccin Mocha Styling */
+/* SwayNC - Catppuccin Mocha Styling - Matching Waybar */
+
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
 
 * {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
+  color: @text;
 }
 
-/* Disable all hover effects */
-*:hover {
-  background: inherit !important;
+/* Backdrop blur when notification center is open */
+.notification-center-backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-/* Notification window - slide down from top */
-.notification {
-  background: #a6e3a1; /* Catppuccin green - solid, no transparency */
-  color: #1e1e2e; /* Catppuccin base (dark purple) */
-  border: 2px solid #a6e3a1;
-  border-radius: 10px;
-  margin: 5px;
-  animation: slide-down 0.2s ease-out;
-}
-
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-out-right {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-}
-
-.notification-content {
-  color: #1e1e2e;
-  padding: 15px 20px;
-}
-
-.summary {
-  color: #1e1e2e;
-  font-weight: bold;
-}
-
-.body {
-  color: #1e1e2e;
-}
-
-.time {
-  color: #1e1e2e;
-}
-
-/* Close button */
-.close-button {
-  background: rgba(30, 30, 46, 0.3);
-  color: #1e1e2e;
-  border-radius: 5px;
-  padding: 4px;
-  margin: 4px;
-  transition: all 0.2s ease;
-}
-
-.close-button:hover {
-  background: rgba(30, 30, 46, 0.5);
-}
-
-/* Critical notifications */
-.critical {
-  background: #a6e3a1; /* Solid green, no transparency */
-  border-color: #f38ba8; /* Catppuccin red */
-}
-
-/* Control Center - slide in from right */
+/* Control Center - matches waybar appearance */
 .control-center {
-  background: #181825; /* Catppuccin Mocha mantle, no transparency */
-  border: none;
-  border-left: 1px solid #a6e3a1;
-  border-radius: 0;
-  animation: slide-in-right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.control-center.closing {
-  animation: slide-out-right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: rgba(24, 24, 37, 0.85);
+  border-radius: 12px;
+  border: 1px solid @mauve;
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  margin: 26px;
 }
 
 .control-center-list {
   background: transparent;
+  padding: 4px;
 }
 
-/* Notification groups in control center */
+.control-center-list-placeholder {
+  color: @overlay0;
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* Widget area at top */
+.widget-title {
+  background: transparent;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.widget-title > label {
+  font-size: 18px;
+  font-weight: 600;
+  color: @text;
+}
+
+/* Clear all button */
+.widget-title > button {
+  background: transparent;
+  color: @text;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 12px;
+  transition: all 0.2s ease;
+}
+
+.widget-title > button:hover {
+  background: rgba(203, 166, 247, 0.2);
+}
+
+/* DND toggle button */
+.widget-dnd {
+  background: transparent;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.widget-dnd > switch {
+  background: @surface0;
+  border: 1px solid @surface1;
+  border-radius: 20px;
+  min-width: 50px;
+  min-height: 28px;
+}
+
+.widget-dnd > switch:checked {
+  background: @mauve;
+  border-color: @mauve;
+}
+
+.widget-dnd > switch slider {
+  background: @text;
+  border-radius: 50%;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+/* Notification groups */
 .notification-group {
   background: transparent;
+  padding: 4px;
+  margin: 4px 0;
 }
 
 .notification-group-headers {
   background: transparent;
+  padding: 4px 8px;
+  margin-bottom: 4px;
+}
+
+.notification-group-header {
+  color: @text;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.notification-group-collapse-button {
+  background: transparent;
+  color: @text;
+  border: none;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.notification-group-collapse-button:hover {
+  background: rgba(203, 166, 247, 0.2);
 }
 
 .notification-group-content {
   background: transparent;
 }
 
-/* Hide placeholder image when no notifications */
+/* Individual notifications in control center */
+.control-center .notification {
+  background: rgba(49, 50, 68, 0.6);
+  border: 1px solid @surface1;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 6px 0;
+  transition: all 0.2s ease;
+}
+
+.control-center .notification:hover {
+  background: rgba(49, 50, 68, 0.8);
+  border-color: @surface2;
+}
+
+/* Floating notifications (popup) */
+.floating-notifications {
+  background: transparent;
+}
+
+.notification {
+  background: rgba(24, 24, 37, 0.95);
+  border: 1px solid @mauve;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 8px;
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.notification.critical {
+  border-color: @red;
+  background: rgba(24, 24, 37, 0.98);
+}
+
+.notification-content {
+  background: transparent;
+  padding: 4px;
+}
+
+.notification-default-action {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.summary {
+  font-size: 15px;
+  font-weight: 600;
+  color: @text;
+  margin-bottom: 4px;
+}
+
+.body {
+  font-size: 13px;
+  color: @subtext0;
+  margin-top: 4px;
+}
+
+.time {
+  font-size: 11px;
+  color: @overlay0;
+  margin-top: 4px;
+}
+
+/* App name */
+.app-name {
+  font-size: 12px;
+  color: @overlay1;
+  margin-bottom: 6px;
+}
+
+/* Close button */
+.close-button {
+  background: rgba(203, 166, 247, 0.2);
+  color: @text;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  margin: 4px;
+  min-width: 20px;
+  min-height: 20px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(203, 166, 247, 0.4);
+}
+
+/* Notification images */
+.notification image {
+  margin-right: 12px;
+  border-radius: 6px;
+}
+
+.notification .app-icon {
+  margin-right: 12px;
+}
+
+/* Action buttons in notifications */
+.notification-action {
+  background: rgba(203, 166, 247, 0.2);
+  color: @text;
+  border: 1px solid @mauve;
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin: 4px;
+  transition: all 0.2s ease;
+}
+
+.notification-action:hover {
+  background: rgba(203, 166, 247, 0.35);
+  border-color: @mauve;
+}
+
+/* Inline reply */
+.inline-reply {
+  background: @surface0;
+  border: 1px solid @surface1;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.inline-reply-entry {
+  background: @base;
+  color: @text;
+  border: 1px solid @surface2;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.inline-reply-button {
+  background: @mauve;
+  color: @crust;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.inline-reply-button:hover {
+  background: @mauve;
+  opacity: 0.8;
+}
+
+/* Progress bar */
+progressbar {
+  background: @surface0;
+  border-radius: 10px;
+  padding: 0;
+  margin-top: 8px;
+}
+
+progressbar trough {
+  background: @surface0;
+  border-radius: 10px;
+  min-height: 6px;
+}
+
+progressbar progress {
+  background: @mauve;
+  border-radius: 10px;
+  min-height: 6px;
+}
+
+/* Buttons container */
+.notification-action-box {
+  background: transparent;
+  padding: 8px 4px 4px 4px;
+}
+
+/* Scrollbar styling */
+scrollbar {
+  background: transparent;
+  width: 8px;
+}
+
+scrollbar trough {
+  background: rgba(49, 50, 68, 0.3);
+  border-radius: 10px;
+}
+
+scrollbar slider {
+  background: @surface2;
+  border-radius: 10px;
+  min-width: 6px;
+  min-height: 40px;
+}
+
+scrollbar slider:hover {
+  background: @overlay0;
+}
+
+/* Hide blank window placeholder */
 .blank-window {
   background: transparent;
 }
 
 .blank-window image {
-  display: none;
-}
-
-/* Show images in actual notifications */
-.notification image {
-  margin-right: 10px;
-}
-
-.widget-title > label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #cdd6f4; /* Catppuccin white/text */
-}
-
-/* Buttons */
-.control-center button {
-  background: rgba(166, 227, 161, 0.2);
-  color: #cdd6f4; /* Catppuccin white/text */
-  border: 1px solid #a6e3a1;
-  border-radius: 5px;
-}
-
-.control-center button:hover {
-  background: rgba(166, 227, 161, 0.4);
-}
-
-/* Progress bar */
-progressbar {
-  background: rgba(166, 227, 161, 0.3);
-}
-
-progress {
-  background: #a6e3a1; /* Catppuccin green */
-}
-
-/* Control center notification items */
-.control-center .notification {
-  color: #1e1e2e; /* Base text in control center */
-}
-
-.control-center .notification .summary,
-.control-center .notification .body,
-.control-center .notification .time {
-  color: #1e1e2e; /* Base text */
+  opacity: 0;
 }

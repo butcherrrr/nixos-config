@@ -57,7 +57,7 @@ window#waybar {
 }
 
 .modules-left {
-  margin-left: 0px;
+  margin-left: 12px;
 }
 
 .modules-right {
@@ -295,14 +295,22 @@ tooltip * {
   background: transparent;
   border-radius: 0;
   padding: 0;
-  margin: 0 4px;
+  margin: 0 4px 0 12px;
   border: none;
-  min-width: 40px;
-  color: @text;
-  font-size: 20px;
+  min-width: 24px;
+  min-height: 24px;
+  background-image: url("file:///home/butcherrrr/.config/waybar/assets/NixOS.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
   transition: all 0.3s ease;
 }
 
 #custom-nix:hover {
   background: transparent;
+  background-image: url("file:///home/butcherrrr/.config/waybar/assets/NixOS.png");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
 }
