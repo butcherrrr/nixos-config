@@ -13,6 +13,8 @@
     # System utilities
     fastfetch
     brightnessctl
+    bat
+    dust
 
     # Development tools
     nodejs
