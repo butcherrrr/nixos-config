@@ -14,11 +14,11 @@
       ];
 
       workspace = [
-        "1,monitor:HDMI-A-1,default:true"
-        "2,monitor:HDMI-A-1"
-        "3,monitor:HDMI-A-1"
-        "4,monitor:HDMI-A-1"
-        "5,monitor:HDMI-A-1"
+        "1,default:true"
+        "2"
+        "3"
+        "4"
+        "5"
         "6,monitor:eDP-1"
         "7,monitor:eDP-1"
         "8,monitor:eDP-1"
