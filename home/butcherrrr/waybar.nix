@@ -1,8 +1,6 @@
 { ... }:
 
 {
-  home.file.".config/waybar/assets/NixOS.png".source = ./assets/NixOS.png;
-
   programs.waybar = {
     enable = true;
 
@@ -11,23 +9,24 @@
         reload_style_on_change = true;
         layer = "top";
         position = "top";
-        height = 28;
-        spacing = 0;
+        height = 49;
+        spacing = 40;
         margin-top = 26;
         margin-left = 26;
         margin-right = 26;
 
         modules-left = [
-          "custom/nix"
+          "hyprland/workspaces"
         ];
 
         modules-center = [ ];
 
         modules-right = [
-          "tray"
-          "group/network"
+          "network"
+          "bluetooth"
+          "cpu"
+          "battery"
           "clock"
-          "custom/notification"
         ];
 
         "hyprland/workspaces" = {
@@ -80,17 +79,6 @@
           on-click = "swaync-client -t -sw";
           on-click-right = "swaync-client -d -sw";
           escape = true;
-        };
-
-        "group/network" = {
-          orientation = "horizontal";
-          modules = [
-            "hyprland/workspaces"
-            "network"
-            "bluetooth"
-            "cpu"
-            "battery"
-          ];
         };
 
         cpu = {
@@ -180,12 +168,6 @@
           icon-size = 18;
           spacing = 12;
           show-passive-items = true;
-        };
-
-        "custom/nix" = {
-          format = " ";
-          tooltip-format = "NixOS";
-          on-click = "~/.local/bin/toggle-tui fastfetch 'fastfetch; echo; echo \"Press q to close...\"; read -n1 -s key; while [ \"$key\" != \"q\" ]; do read -n1 -s key; done'";
         };
       };
     };

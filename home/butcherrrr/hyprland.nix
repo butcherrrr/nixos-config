@@ -90,6 +90,7 @@
         # Workspace assignments
         "workspace 1,class:(com.mitchellh.ghostty)$"
         "workspace 2,class:(dev.zed.Zed)"
+        "maximize,class:(dev.zed.Zed)"
         "workspace 3,class:(chromium-browser)"
         "workspace 3,class:(firefox)"
       ];
@@ -207,6 +208,10 @@
 
         # Wallpaper cycling
         "CTRL $mainMod, Space, exec, ~/.local/bin/wallpaper next"
+
+        # Cycle through windows on current workspace
+        "ALT, H, cyclenext, prev"
+        "ALT, L, cyclenext"
       ];
 
       # Hyper key bindings

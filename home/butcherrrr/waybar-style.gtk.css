@@ -1,4 +1,4 @@
-/* Waybar Catppuccin Mocha Theme */
+/* Waybar Catppuccin Mocha Theme - Simplified */
 
 @define-color rosewater #f5e0dc;
 @define-color flamingo #f2cdcd;
@@ -35,15 +35,14 @@
   font-size: 18px;
   font-weight: 500;
   color: @text;
+  box-shadow: none;
 }
 
 window#waybar {
-  background: rgba(24, 24, 37, 0.85);
+  background: rgba(30, 30, 46, 0.85);
   border-radius: 12px;
-  border: 1px solid rgb(203, 166, 247);
-  box-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.15),
-    0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid @mauve;
+  box-shadow: none;
 }
 
 .modules-left,
@@ -51,101 +50,25 @@ window#waybar {
 .modules-center {
   background: transparent;
   border: none;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  padding: 0;
-}
-
-.modules-left {
-  margin-left: 12px;
-}
-
-.modules-right {
-  margin-right: 12px;
-}
-
-#workspaces {
-  padding: 0;
-  background: transparent;
-  margin: 0 4px;
-}
-
-#workspaces button {
-  background: transparent;
-  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0 4px;
   box-shadow: none;
-  padding: 0;
-  margin: 0;
-  min-width: 40px;
-  color: @text;
-  transition: all 0.2s ease;
 }
 
+/* All modules uniform styling */
+#workspaces,
+#network,
+#bluetooth,
+#cpu,
+#battery,
 #clock {
   background: transparent;
-  border-radius: 0;
-  padding: 0;
-  margin: 0 4px;
-  font-weight: 600;
-  font-size: 19px;
   color: @text;
   border: none;
+  border-radius: 0;
   box-shadow: none;
-  transition: all 0.3s ease;
-}
-
-#clock:hover {
-  background: transparent;
-  box-shadow: none;
-  color: @text;
-}
-
-.modules-right > widget > * {
-  border-radius: 12px;
-  padding: 6px 14px;
-  margin: 0 4px;
-  transition: all 0.3s ease;
-}
-
-#cpu,
-#network,
-#bluetooth {
-  padding: 6px 12px;
-  margin: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  transition: all 0.2s ease;
-}
-
-#cpu:hover,
-#network:hover,
-#bluetooth:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-#group-network {
-  background: @mauve;
-  border-radius: 12px;
-  padding: 0;
-  margin: 0 4px;
-  border: 1px solid @pink;
-}
-
-#group-network:hover {
-  background: @mauve;
-  border-color: @pink;
-}
-
-#network {
-  padding: 0;
-  margin: 0 4px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  min-width: 40px;
-  transition: all 0.2s ease;
-  color: @text;
+  margin: 0 10px;
 }
 
 #network.disconnected {
@@ -153,60 +76,10 @@ window#waybar {
   opacity: 0.6;
 }
 
-#network:hover {
-  background: transparent;
-}
-
-#bluetooth {
-  padding: 0;
-  margin: 0 4px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  min-width: 40px;
-  transition: all 0.2s ease;
-  color: @text;
-}
-
-#bluetooth:hover {
-  background: transparent;
-}
-
 #bluetooth.disabled,
 #bluetooth.off {
   color: @surface0;
   opacity: 0.6;
-}
-
-#cpu {
-  padding: 0;
-  margin: 0 4px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  min-width: 40px;
-  transition: all 0.2s ease;
-  color: @text;
-}
-
-#cpu:hover {
-  background: transparent;
-}
-
-#battery {
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
-  margin: 0 4px;
-  border: none;
-  min-width: 40px;
-  color: @text;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-#battery:hover {
-  background: transparent;
 }
 
 #battery.charging {
@@ -237,14 +110,8 @@ window#waybar {
 #tray {
   background: transparent;
   border-radius: 0;
-  padding: 0;
-  margin: 0 4px;
-  min-width: 40px;
   border: none;
-}
-
-#tray:hover {
-  background: transparent;
+  box-shadow: none;
 }
 
 #tray > .passive {
@@ -259,58 +126,39 @@ window#waybar {
   background: rgba(30, 30, 46, 0.95);
   border: 1px solid rgba(127, 132, 156, 0.3);
   border-radius: 10px;
-  padding: 4px;
+  box-shadow: none;
 }
 
 #tray menu menuitem {
   background: transparent;
   border-radius: 6px;
-  padding: 6px 10px;
-  margin: 2px;
   transition: all 0.2s ease;
-}
-
-#tray menu menuitem:hover {
-  background: rgba(137, 180, 250, 0.2);
+  box-shadow: none;
 }
 
 tooltip {
   background: rgba(17, 17, 27, 0.96);
   border: 1px solid rgba(137, 180, 250, 0.3);
   border-radius: 12px;
-  padding: 15px 21px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
 }
 
 tooltip label {
   color: @text;
   font-size: 22px;
+  box-shadow: none;
 }
 
 tooltip * {
   background: transparent;
+  box-shadow: none;
 }
 
 #custom-nix {
   background: transparent;
   border-radius: 0;
-  padding: 0;
-  margin: 0 4px 0 12px;
   border: none;
-  min-width: 22px;
-  min-height: 22px;
-  background-image: url("file:///home/butcherrrr/.config/waybar/assets/NixOS.png");
-  background-size: 22px 22px;
-  background-repeat: no-repeat;
-  background-position: center;
+  color: @text;
   transition: all 0.3s ease;
-}
-
-#custom-nix:hover {
-  background: transparent;
-  background-image: url("file:///home/butcherrrr/.config/waybar/assets/NixOS.png");
-  background-size: 22px 22px;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.8;
+  box-shadow: none;
 }
