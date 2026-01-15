@@ -3,6 +3,18 @@
 {
   # Shell Configuration
 
+  # direnv - automatic environment loading
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+
+    config = {
+      # Reduce verbosity - hide the long export list
+      hide_env_diff = true;
+    };
+  };
+
   # Eza - modern ls replacement
   programs.eza = {
     enable = true;
