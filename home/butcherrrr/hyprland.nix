@@ -102,7 +102,7 @@
         animation = [
           "windows, 1, 5, myBezier"
           "windowsOut, 1, 5, default, popin 80%"
-          "fade, 1, 5, default"
+          "fade, 0, 5, default"
           "workspaces, 1, 5, default"
         ];
       };
@@ -151,12 +151,6 @@
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
-
-        # Move focus (vim keys)
-        "$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, j, movefocus, d"
 
         # Switch workspaces
         "$mainMod, 1, workspace, 1"
@@ -210,8 +204,8 @@
         "CTRL $mainMod, Space, exec, ~/.local/bin/wallpaper next"
 
         # Cycle through windows on current workspace
-        "ALT, H, cyclenext, prev"
-        "ALT, L, cyclenext"
+        "$mainMod, H, cyclenext, prev"
+        "$mainMod, L, cyclenext"
       ];
 
       # Hyper key bindings

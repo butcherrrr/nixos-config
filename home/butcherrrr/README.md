@@ -70,10 +70,11 @@ butcherrrr/
 
 ### Focus Movement
 
-| Keybind           | Action                  |
-| ----------------- | ----------------------- |
-| `Super + ←/→/↑/↓` | Move focus (arrow keys) |
-| `Super + h/j/k/l` | Move focus (vim keys)   |
+| Keybind           | Action                   |
+| ----------------- | ------------------------ |
+| `Super + ←/→/↑/↓` | Move focus (arrow keys)  |
+| `Super + H`       | Cycle to previous window |
+| `Super + L`       | Cycle to next window     |
 
 ### Workspace Management
 
@@ -87,11 +88,12 @@ butcherrrr/
 
 ### System Controls
 
-| Keybind                 | Action                  |
-| ----------------------- | ----------------------- |
-| `Super + Escape`        | Lock screen (hyprlock)  |
-| `Super + Shift + R`     | Reload Hyprland config  |
-| `Super + Shift + Space` | Cycle to next wallpaper |
+| Keybind                 | Action                         |
+| ----------------------- | ------------------------------ |
+| `Super + Escape`        | Lock screen (hyprlock)         |
+| `Super + Shift + R`     | Reload Hyprland config         |
+| `Ctrl + Super + Space`  | Cycle to next wallpaper        |
+| `Super + N`             | Toggle notification center     |
 
 ### Notes
 

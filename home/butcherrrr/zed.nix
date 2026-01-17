@@ -111,6 +111,7 @@ in
         catppuccin = true;
         catppuccin-icons = true;
         nix = true;
+        hyprlang = true;
       };
 
       # Git
@@ -172,6 +173,7 @@ in
     extensions = [
       "nix"
       "catppuccin-icons"
+      "hyprlang"
     ];
   };
 }
