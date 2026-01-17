@@ -26,8 +26,6 @@ butcherrrr/
 ├── keyring.nix          # GNOME Keyring for secret storage
 ├── spicetify.nix        # Spotify theming
 ├── theme.nix            # Cursor theming and wallpaper
-├── themes/              # Custom themes
-│   └── zed-custom-catppuccin.nix  # Custom Catppuccin Mocha theme for Zed
 └── README.md            # You are here
 ```
 
@@ -88,12 +86,12 @@ butcherrrr/
 
 ### System Controls
 
-| Keybind                 | Action                         |
-| ----------------------- | ------------------------------ |
-| `Super + Escape`        | Lock screen (hyprlock)         |
-| `Super + Shift + R`     | Reload Hyprland config         |
-| `Ctrl + Super + Space`  | Cycle to next wallpaper        |
-| `Super + N`             | Toggle notification center     |
+| Keybind                | Action                     |
+| ---------------------- | -------------------------- |
+| `Super + Escape`       | Lock screen (hyprlock)     |
+| `Super + Shift + R`    | Reload Hyprland config     |
+| `Ctrl + Super + Space` | Cycle to next wallpaper    |
+| `Super + N`            | Toggle notification center |
 
 ### Notes
 

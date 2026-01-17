@@ -5,10 +5,6 @@
   ...
 }:
 
-let
-  # Import custom theme from separate file
-  customTheme = import ./themes/zed-custom-catppuccin.nix;
-in
 {
   # Zed Editor Configuration
   programs.zed-editor = {
@@ -138,13 +134,9 @@ in
 
       icon_theme = "Catppuccin Mocha";
 
-      # Custom theme definitions
-      # Catppuccin Mocha theme loaded from ./themes/zed-custom-catppuccin.nix
-      themes = customTheme.themes;
-
-      # Theme selection - using custom Catppuccin Mocha theme
-      # Using lib.mkForce to override any other theme definitions
-      theme = lib.mkForce {
+      # Theme selection - using standard Catppuccin Mocha theme from extension
+      theme = {
+        mode = "dark";
         dark = "Catppuccin Mocha";
         light = "Catppuccin Mocha";
       };
