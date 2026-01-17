@@ -43,8 +43,8 @@
 
       # General settings
       general = {
-        gaps_in = 12;
-        gaps_out = 26;
+        gaps_in = 8;
+        gaps_out = 18;
         border_size = 1;
         # Catppuccin Mocha mauve border colors
         "col.active_border" = "rgba(cba6f7ff)"; # Catppuccin mauve

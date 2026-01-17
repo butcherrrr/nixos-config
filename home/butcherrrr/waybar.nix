@@ -11,9 +11,9 @@
         position = "top";
         height = 49;
         spacing = 40;
-        margin-top = 26;
-        margin-left = 26;
-        margin-right = 26;
+        margin-top = 18;
+        margin-left = 18;
+        margin-right = 18;
 
         modules-left = [
           "hyprland/workspaces"
