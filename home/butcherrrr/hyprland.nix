@@ -100,10 +100,22 @@
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 1, 5, myBezier"
-          "windowsOut, 1, 5, default, popin 80%"
-          "fade, 0, 5, default"
+          # Window creation/destruction animations
+          "windows, 1, 5, default, slide"
+          "windowsOut, 1, 5, default, slide"
+
+          # Focus change animation (affects cyclenext window switching)
+          # Format: "fade, ENABLED, SPEED, CURVE"
+          # Lower speed = faster fade (try 3-10)
+          "fade, 1, 5, default"
+
+          # Workspace switching animation
           "workspaces, 1, 5, default"
+
+          # Alternative fade options for cyclenext:
+          # "fade, 1, 3, default"  - faster fade
+          # "fade, 1, 7, default"  - slower fade
+          # "fade, 0"              - disable fade (instant switch)
         ];
       };
 
@@ -204,8 +216,15 @@
         "CTRL $mainMod, Space, exec, ~/.local/bin/wallpaper next"
 
         # Cycle through windows on current workspace
+        # Note: cyclenext uses fade animation only (controlled by fade setting above)
+        # For different animations, use movefocus with directional keys instead
         "$mainMod, H, cyclenext, prev"
         "$mainMod, L, cyclenext"
+
+        # Alternative: Use movefocus for directional movement (uses windows animation)
+        # Uncomment these and comment out cyclenext above if you want slide/popin animations:
+        # "$mainMod, H, movefocus, l"
+        # "$mainMod, L, movefocus, r"
       ];
 
       # Hyper key bindings
