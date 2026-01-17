@@ -86,7 +86,7 @@
         "float,class:(com.mitchellh.ghostty.tui)"
         "center,class:(com.mitchellh.ghostty.tui)"
         "pin,class:(com.mitchellh.ghostty.tui)"
-        "size 80% 80%,class:(com.mitchellh.ghostty.tui)"
+        "size 70% 75%,class:(com.mitchellh.ghostty.tui)"
         # Workspace assignments
         "workspace 1,class:(com.mitchellh.ghostty)$"
         "workspace 2,class:(dev.zed.Zed)"
