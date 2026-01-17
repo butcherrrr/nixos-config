@@ -76,8 +76,8 @@
           color_inactive = "rgba(00000026)";
         };
         # Window transparency
-        active_opacity = 0.95;
-        inactive_opacity = 0.85;
+        active_opacity = 0.97;
+        inactive_opacity = 0.95;
       };
 
       # Window rules
