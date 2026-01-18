@@ -107,7 +107,7 @@
           # Focus change animation (affects cyclenext window switching)
           # Format: "fade, ENABLED, SPEED, CURVE"
           # Lower speed = faster fade (try 3-10)
-          "fade, 1, 5, default"
+          "fade, 0, 5, default"
 
           # Workspace switching animation
           "workspaces, 1, 5, default"
@@ -215,14 +215,13 @@
         # Wallpaper cycling
         "CTRL $mainMod, Space, exec, ~/.local/bin/wallpaper next"
 
-        # Cycle through windows on current workspace
-        # Note: cyclenext uses fade animation only (controlled by fade setting above)
-        # For different animations, use movefocus with directional keys instead
-        "$mainMod, H, cyclenext, prev"
-        "$mainMod, L, cyclenext"
+        # Cycle through windows on current workspace in consistent order
+        # Uses window address (creation order) instead of focus history
+        "$mainMod, H, exec, ~/.local/bin/cycle-windows prev"
+        "$mainMod, L, exec, ~/.local/bin/cycle-windows next"
 
-        # Alternative: Use movefocus for directional movement (uses windows animation)
-        # Uncomment these and comment out cyclenext above if you want slide/popin animations:
+        # Alternative: Use movefocus for directional/spatial movement
+        # Uncomment these and comment out cycle-windows above if you want spatial navigation:
         # "$mainMod, H, movefocus, l"
         # "$mainMod, L, movefocus, r"
       ];

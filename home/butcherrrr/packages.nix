@@ -61,4 +61,9 @@
     source = ../../scripts/wallpaper.sh;
     executable = true;
   };
+
+  home.file.".local/bin/cycle-windows" = {
+    source = ../../scripts/cycle-windows.sh;
+    executable = true;
+  };
 }
