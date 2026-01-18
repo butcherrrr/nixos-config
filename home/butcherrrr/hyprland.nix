@@ -164,17 +164,16 @@
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
 
-        # Switch workspaces
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+        # Focus Nth window on current workspace (by creation order)
+        "$mainMod, 1, exec, ~/.local/bin/focus-window-number 1"
+        "$mainMod, 2, exec, ~/.local/bin/focus-window-number 2"
+        "$mainMod, 3, exec, ~/.local/bin/focus-window-number 3"
+        "$mainMod, 4, exec, ~/.local/bin/focus-window-number 4"
+        "$mainMod, 5, exec, ~/.local/bin/focus-window-number 5"
+        "$mainMod, 6, exec, ~/.local/bin/focus-window-number 6"
+        "$mainMod, 7, exec, ~/.local/bin/focus-window-number 7"
+        "$mainMod, 8, exec, ~/.local/bin/focus-window-number 8"
+        "$mainMod, 9, exec, ~/.local/bin/focus-window-number 9"
 
         # Move active window to workspace
         "$mainMod SHIFT, 1, movetoworkspace, 1"

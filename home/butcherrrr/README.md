@@ -68,21 +68,21 @@ butcherrrr/
 
 ### Focus Movement
 
-| Keybind           | Action                   |
-| ----------------- | ------------------------ |
-| `Super + ←/→/↑/↓` | Move focus (arrow keys)  |
-| `Super + H`       | Cycle to previous window |
-| `Super + L`       | Cycle to next window     |
+| Keybind           | Action                                                |
+| ----------------- | ----------------------------------------------------- |
+| `Super + ←/→/↑/↓` | Move focus (arrow keys)                               |
+| `Super + H`       | Cycle to previous window (by creation order)          |
+| `Super + L`       | Cycle to next window (by creation order)              |
+| `Super + 1-9`     | Focus 1st, 2nd, 3rd... 9th window (by creation order) |
 
 ### Workspace Management
 
-| Keybind                 | Action                                 |
-| ----------------------- | -------------------------------------- |
-| `Super + 1-9/0`         | Switch to workspace 1-10               |
-| `Super + Shift + 1-9/0` | Move window to workspace 1-10          |
-| `Hyper + 1-9/0`         | Switch to workspace 1-10 (alternative) |
-| `Hyper + H`             | Switch to previous workspace           |
-| `Hyper + L`             | Switch to next workspace               |
+| Keybind                 | Action                        |
+| ----------------------- | ----------------------------- |
+| `Super + Shift + 1-9/0` | Move window to workspace 1-10 |
+| `Hyper + 1-9/0`         | Switch to workspace 1-10      |
+| `Hyper + H`             | Switch to previous workspace  |
+| `Hyper + L`             | Switch to next workspace      |
 
 ### System Controls
 

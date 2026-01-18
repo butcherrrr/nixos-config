@@ -66,4 +66,9 @@
     source = ../../scripts/cycle-windows.sh;
     executable = true;
   };
+
+  home.file.".local/bin/focus-window-number" = {
+    source = ../../scripts/focus-window-number.sh;
+    executable = true;
+  };
 }
