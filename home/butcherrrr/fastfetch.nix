@@ -1,15 +1,19 @@
 { ... }:
 
 {
+  # Copy assets directory for fastfetch logo
+  xdg.configFile."assets" = {
+    source = ./assets;
+    recursive = true;
+  };
+
   programs.fastfetch = {
     enable = true;
 
     settings = {
       logo = {
         type = "kitty-direct";
-        source = "~/.config/waybar/assets/NixOS.png";
-        width = 30;
-        height = 15;
+        source = "~/.config/assets/NixOS.png";
         padding = {
           top = 1;
           left = 2;
@@ -35,13 +39,13 @@
         }
         {
           type = "separator";
-          string = "─────────────────────────────────";
+          string = "──────────────────────────────────────────────────────────────";
         }
 
         # System
         {
           type = "custom";
-          format = "╭─   System ─────────────────────╮";
+          format = "╭─   System ──────────────────────────────────────────────╮";
         }
         {
           type = "os";
@@ -65,14 +69,14 @@
         }
         {
           type = "packages";
-          key = "│    ";
+          key = "│  󰏖  ";
           keyColor = "cyan";
         }
 
         # Desktop
         {
           type = "custom";
-          format = "├─   Desktop ────────────────────┤";
+          format = "├─   Desktop ─────────────────────────────────────────────┤";
         }
         {
           type = "de";
@@ -101,14 +105,14 @@
         }
         {
           type = "display";
-          key = "│    ";
+          key = "│  󰍹  ";
           keyColor = "yellow";
         }
 
         # Hardware
         {
           type = "custom";
-          format = "├─   Hardware ───────────────────┤";
+          format = "├─   Hardware ────────────────────────────────────────────┤";
         }
         {
           type = "cpu";
@@ -122,7 +126,7 @@
         }
         {
           type = "memory";
-          key = "│    ";
+          key = "│  󰘚  ";
           keyColor = "yellow";
         }
         {
@@ -138,11 +142,11 @@
 
         {
           type = "custom";
-          format = "╰────────────────────────────────╯";
+          format = "╰─────────────────────────────────────────────────────────╯";
         }
         {
           type = "separator";
-          string = "─────────────────────────────────";
+          string = "──────────────────────────────────────────────────────────────";
         }
         {
           type = "colors";
